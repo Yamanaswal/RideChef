@@ -9,4 +9,14 @@
     <string name="enter_mobile_number">Enter Mobile Number</string>
     <string name="please_enter_your_mobile_number_to_verify_your_account">Please enter your mobile number to verify your account.</string>
     <string name="what_s_your_mobile_number">What\'s your Mobile number ?</string>
+    <string name="by_signing_up_you_agree_to">By Signing up you agree to </string>
+    <string name="skip_this_step_for_now">Skip this step for now</string>
+    <string name="terms_of_use">Terms of use</string>
+    <string name="verify_otp">Verify OTP</string>
+    <string name="verify_your_number">Verify your Number</string>
+    <string name="change">Change</string>
+    <string name="continue_text">Continue</string>
+    <string name="we_send_4_digit_no_text">We’ve sent a 4 digit code on your registered mobile number</string>
+    <string name="use_current_location">Use current location</string>
+    <string name="_30_off">30% OFF</string>
 </resources>
