@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data></data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@mipmap/allow_location"
+        android:fillViewport="true"
+        tools:context=".view.screens.AllowLocationScreen">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:src="@mipmap/allow_location_circle"
+                android:text="@string/hello_blank_fragment" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="15dp"
+                android:fontFamily="@font/airbnb_cereal_bold"
+                android:text="@string/your_location"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="25sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginBottom="35dp"
+                android:fontFamily="@font/airbnb_cereal_book"
+                android:text="@string/_1373_emily_renzelli_boulevard_monterey_ca_california_95940"
+                android:textAlignment="center"
+                android:textColor="@color/black_80_op"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/confirmLocation"
+                style="@style/buttonStyleRed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:fontFamily="@font/airbnb_cereal_medium"
+                android:text="@string/confirm_location"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/changeLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/airbnb_cereal_medium"
+                android:text="@string/change_location"
+                android:textColor="@color/black"
+                android:textSize="13sp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</layout>
