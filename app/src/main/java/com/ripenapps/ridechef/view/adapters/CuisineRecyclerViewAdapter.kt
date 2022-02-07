@@ -10,7 +10,43 @@ import com.ripenapps.ridechef.R
 import com.ripenapps.ridechef.databinding.RestaurantCuisineItemBinding
 import com.ripenapps.ridechef.databinding.RestaurantCuisineSearchItemBinding
 
-class CuisineRecyclerViewAdapter(private val context: Context) : RecyclerView.Adapter<CuisineRecyclerViewAdapter.ViewHolder>() {
+//TODO
+//Home Adapter
+class CuisineRecyclerViewAdapter(private val context: Context) :
+    RecyclerView.Adapter<CuisineRecyclerViewAdapter.ViewHolder>() {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view: View = LayoutInflater.from(parent.context)
+            .inflate(R.layout.restaurant_cuisine_item, parent, false)
+        return ViewHolder(view)
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
+    }
+
+    override fun getItemCount(): Int {
+        return 10
+    }
+
+    inner class ViewHolder(view: View?) : RecyclerView.ViewHolder(view!!) {
+        var binding: RestaurantCuisineItemBinding? = DataBindingUtil.bind(view!!)
+
+        init {
+            // Define click listener for the ViewHolder's View
+        }
+    }
+
+    init {
+//        this.faqListResponseList = faqListResponseList
+    }
+}
+
+
+//TODO
+//Search Adapter
+class CuisineSearchRecyclerViewAdapter(private val context: Context) :
+    RecyclerView.Adapter<CuisineSearchRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view: View = LayoutInflater.from(parent.context).inflate(R.layout.restaurant_cuisine_search_item, parent, false)
@@ -37,5 +73,8 @@ class CuisineRecyclerViewAdapter(private val context: Context) : RecyclerView.Ad
 //        this.faqListResponseList = faqListResponseList
     }
 }
+
+
+
 
 

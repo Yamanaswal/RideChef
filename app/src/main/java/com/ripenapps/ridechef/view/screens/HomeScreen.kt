@@ -38,16 +38,28 @@ class HomeScreen : Fragment() {
         setRestaurantBannerRecyclerView()
         setTrendingRecyclerView()
 
+
+        binding.profileImage.setOnClickListener {
+            this.findNavController().navigate(HomeScreenDirections.actionHomeScreenToSideMenuScreen())
+        }
+
         binding.search.setOnClickListener {
             this.findNavController().navigate(HomeScreenDirections.actionHomeScreenToHomeSearchScreen().setScreenType(HomeScreenType.All))
         }
 
-
-
-        binding.profileImage.setOnClickListener {
-            this.findNavController()
-                .navigate(HomeScreenDirections.actionHomeScreenToSideMenuScreen())
+        binding.trendingCuisineViewAll.setOnClickListener {
+            this.findNavController().navigate(HomeScreenDirections.actionHomeScreenToHomeSearchScreen().setScreenType(HomeScreenType.Cuisines))
         }
+
+        binding.featuredRestaurantViewAll.setOnClickListener {
+            this.findNavController().navigate(HomeScreenDirections.actionHomeScreenToHomeSearchScreen().setScreenType(HomeScreenType.FeaturedRestaurant))
+        }
+
+        binding.trendingRestaurantViewAll.setOnClickListener {
+            this.findNavController().navigate(HomeScreenDirections.actionHomeScreenToHomeSearchScreen().setScreenType(HomeScreenType.TrendRestaurant))
+        }
+        
+
     }
 
     private fun setTrendingRecyclerView() {
