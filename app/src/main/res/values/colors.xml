@@ -10,4 +10,10 @@
     <color name="black_80_op">#232633</color>
     <color name="button_red">#EA1500</color>
     <color name="green">#18A866</color>
+    <color name="grey">#6A6A6A</color>
+    <color name="line_grey">#4D707070</color>
+    <color name="grey_two">#54565D</color>
+    <color name="grey_three">#54565D</color>
+    <color name="grey_light">#A7A8AD</color>
+    <color name="black_66_op">#A6000000</color>
 </resources>

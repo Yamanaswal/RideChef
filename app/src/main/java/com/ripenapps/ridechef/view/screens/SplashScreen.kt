@@ -7,8 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.ripenapps.ridechef.R
 import com.ripenapps.ridechef.databinding.FragmentSplashScreenBinding
+import com.ripenapps.ridechef.view_model.SplashViewModel
 
 @SuppressLint("CustomSplashScreen")
 class SplashScreen : Fragment() {
@@ -21,7 +24,17 @@ class SplashScreen : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_splash_screen, container, false)
+        splashTimer()
         return binding.root
+    }
+
+    private fun splashTimer() {
+        val splashViewModel = ViewModelProvider(this)[SplashViewModel::class.java]
+        splashViewModel.splashStatus.observe(viewLifecycleOwner,{ status ->
+            if(status){
+                this.findNavController().navigate(SplashScreenDirections.actionSplashScreenToAllowLocationScreen())
+            }
+        })
     }
 
 }

@@ -7,6 +7,8 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="5dp"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="12dp">
 
@@ -72,31 +74,63 @@
 
             <TextView
                 android:id="@+id/restaurantName"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="13dp"
+                android:layout_marginEnd="20dp"
+                android:fontFamily="@font/airbnb_cereal_medium"
                 android:text="3BROS Restaurant"
+                android:textColor="@color/black"
+                android:textSize="17sp"
+                app:layout_constraintEnd_toStartOf="@+id/textView2"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/restaurantImageLayout" />
 
             <TextView
                 android:id="@+id/restaurantDishes"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:layout_marginEnd="20dp"
+                android:fontFamily="@font/airbnb_cereal_medium"
                 android:text="French"
+                android:textColor="@color/grey"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/restaurantName"
                 app:layout_constraintTop_toBottomOf="@+id/restaurantName" />
 
             <TextView
                 android:id="@+id/address"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="14dp"
                 android:drawableStart="@drawable/location_red"
+                android:drawablePadding="7dp"
+                android:fontFamily="@font/airbnb_cereal_medium"
                 android:text="4211 Sunburst Drive, Puerto Rico"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/restaurantName"
                 app:layout_constraintTop_toBottomOf="@+id/restaurantDishes" />
 
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="12dp"
+                android:fontFamily="@font/airbnb_cereal_medium"
+                android:text="$59 for 2"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/restaurantImageLayout" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

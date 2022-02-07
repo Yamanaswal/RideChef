@@ -14,7 +14,6 @@ import com.ripenapps.ridechef.databinding.FragmentChangeLocationBinding
 import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
 import com.ripenapps.ridechef.R
-import java.util.*
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment
 
 
@@ -29,8 +28,7 @@ class ChangeLocation : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_change_location, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_change_location, container, false)
         setSearchAutoComplete()
         return binding.root
     }
@@ -42,8 +40,7 @@ class ChangeLocation : Fragment() {
         }
 
         // Initialize the AutocompleteSupportFragment.
-        val autocompleteFragment =
-            requireActivity().supportFragmentManager.findFragmentById(R.id.autocomplete_fragment) as AutocompleteSupportFragment
+        val autocompleteFragment = requireActivity().supportFragmentManager.findFragmentById(R.id.autocomplete_fragment) as AutocompleteSupportFragment
         autocompleteFragment.setPlaceFields(listOf(Place.Field.ID, Place.Field.NAME))
 
         autocompleteFragment.setOnPlaceSelectedListener(object : PlaceSelectionListener {

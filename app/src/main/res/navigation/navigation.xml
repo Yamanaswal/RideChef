@@ -1,6 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/navigation">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/homeScreen">
+
+    <fragment
+        android:id="@+id/splashScreen"
+        android:name="com.ripenapps.ridechef.view.screens.SplashScreen"
+        android:label="SplashScreen"
+        tools:layout="@layout/fragment_splash_screen">
+        <action
+            android:id="@+id/action_splashScreen_to_allowLocationScreen"
+            app:destination="@id/allowLocationScreen" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/changeLocation"
+        android:name="com.ripenapps.ridechef.view.screens.ChangeLocation"
+        android:label="ChangeLocation"
+        tools:layout="@layout/fragment_change_location" >
+        <action
+            android:id="@+id/action_changeLocation_to_loginScreen"
+            app:destination="@id/loginScreen" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/allowLocationScreen"
+        android:name="com.ripenapps.ridechef.view.screens.AllowLocationScreen"
+        android:label="AllowLocationScreen"
+        tools:layout="@layout/fragment_allow_location_screen">
+        <action
+            android:id="@+id/action_allowLocationScreen_to_changeLocation"
+            app:destination="@id/changeLocation" />
+        <action
+            android:id="@+id/action_allowLocationScreen_to_loginScreen"
+            app:destination="@id/loginScreen" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/loginScreen"
+        android:name="com.ripenapps.ridechef.view.screens.LoginScreen"
+        android:label="LoginScreen"
+        tools:layout="@layout/fragment_login_screen" >
+        <action
+            android:id="@+id/action_loginScreen_to_otpScreen"
+            app:destination="@id/otpScreen" />
+        <action
+            android:id="@+id/action_loginScreen_to_homeScreen"
+            app:destination="@id/homeScreen" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/homeScreen"
+        android:name="com.ripenapps.ridechef.view.screens.HomeScreen"
+        android:label="HomeScreen"
+        tools:layout="@layout/fragment_home_screen" >
+        <action
+            android:id="@+id/action_homeScreen_to_sideMenuScreen"
+            app:destination="@id/sideMenuScreen" />
+        <action
+            android:id="@+id/action_homeScreen_to_homeSearchScreen"
+            app:destination="@id/homeSearchScreen" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/otpScreen"
+        android:name="com.ripenapps.ridechef.view.screens.OtpScreen"
+        android:label="OtpScreen"
+        tools:layout="@layout/fragment_otp_screen" >
+        <action
+            android:id="@+id/action_otpScreen_to_homeScreen"
+            app:destination="@id/homeScreen" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/sideMenuScreen"
+        android:name="com.ripenapps.ridechef.view.screens.SideMenuScreen"
+        android:label="SideMenuScreen"
+        tools:layout="@layout/fragment_side_menu_screen"/>
+
+    <fragment
+        android:id="@+id/homeSearchScreen"
+        android:name="com.ripenapps.ridechef.view.screens.HomeSearchScreen"
+        android:label="HomeSearchScreen"
+        tools:layout="@layout/fragment_home_search_screen">
+        <argument
+            android:name="screen_type"
+            app:argType="com.ripenapps.ridechef.model.HomeScreenType"
+            android:defaultValue="All" />
+    </fragment>
+
 
 </navigation>
