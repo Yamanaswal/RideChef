@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.findNavController
 import com.ripenapps.ridechef.R
 import com.ripenapps.ridechef.databinding.FragmentSideMenuScreenBinding
 import com.ripenapps.ridechef.model.sideMenuList
@@ -32,6 +33,15 @@ class SideMenuScreen : Fragment() {
         binding.home.setOnClickListener {
             requireActivity().onBackPressed()
         }
+
+        binding.notification.sideMenuRow.setOnClickListener {
+//            this.findNavController().navigate()
+        }
+
+
+
+
+
 
 
     }

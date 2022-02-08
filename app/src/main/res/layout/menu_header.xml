@@ -12,7 +12,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="18dp"
         android:fontFamily="@font/airbnb_cereal_bold"
-        android:text="Recommended"
+        android:text="Recommend"
         android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"

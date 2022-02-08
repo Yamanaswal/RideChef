@@ -19,7 +19,7 @@
         android:id="@+id/changeLocation"
         android:name="com.ripenapps.ridechef.view.screens.ChangeLocation"
         android:label="ChangeLocation"
-        tools:layout="@layout/fragment_change_location" >
+        tools:layout="@layout/fragment_change_location">
         <action
             android:id="@+id/action_changeLocation_to_loginScreen"
             app:destination="@id/loginScreen" />
@@ -42,7 +42,7 @@
         android:id="@+id/loginScreen"
         android:name="com.ripenapps.ridechef.view.screens.LoginScreen"
         android:label="LoginScreen"
-        tools:layout="@layout/fragment_login_screen" >
+        tools:layout="@layout/fragment_login_screen">
         <action
             android:id="@+id/action_loginScreen_to_otpScreen"
             app:destination="@id/otpScreen" />
@@ -55,20 +55,23 @@
         android:id="@+id/homeScreen"
         android:name="com.ripenapps.ridechef.view.screens.HomeScreen"
         android:label="HomeScreen"
-        tools:layout="@layout/fragment_home_screen" >
+        tools:layout="@layout/fragment_home_screen">
         <action
             android:id="@+id/action_homeScreen_to_sideMenuScreen"
             app:destination="@id/sideMenuScreen" />
         <action
             android:id="@+id/action_homeScreen_to_homeSearchScreen"
             app:destination="@id/homeSearchScreen" />
+        <action
+            android:id="@+id/action_homeScreen_to_restaurantDetailsScreen"
+            app:destination="@id/restaurantDetailsScreen" />
     </fragment>
 
     <fragment
         android:id="@+id/otpScreen"
         android:name="com.ripenapps.ridechef.view.screens.OtpScreen"
         android:label="OtpScreen"
-        tools:layout="@layout/fragment_otp_screen" >
+        tools:layout="@layout/fragment_otp_screen">
         <action
             android:id="@+id/action_otpScreen_to_homeScreen"
             app:destination="@id/homeScreen" />
@@ -78,7 +81,35 @@
         android:id="@+id/sideMenuScreen"
         android:name="com.ripenapps.ridechef.view.screens.SideMenuScreen"
         android:label="SideMenuScreen"
-        tools:layout="@layout/fragment_side_menu_screen"/>
+        tools:layout="@layout/fragment_side_menu_screen">
+        <action
+            android:id="@+id/action_sideMenuScreen_to_notificationScreen"
+            app:destination="@id/notificationScreen" />
+        <action
+            android:id="@+id/action_sideMenuScreen_to_aboutUsScreen"
+            app:destination="@id/aboutUsScreen" />
+        <action
+            android:id="@+id/action_sideMenuScreen_to_myOrdersScreen"
+            app:destination="@id/myOrdersScreen" />
+        <action
+            android:id="@+id/action_sideMenuScreen_to_privacyPolicyScreen"
+            app:destination="@id/privacyPolicyScreen" />
+        <action
+            android:id="@+id/action_sideMenuScreen_to_faqsScreen"
+            app:destination="@id/faqsScreen" />
+        <action
+            android:id="@+id/action_sideMenuScreen_to_myFavouriteScreen"
+            app:destination="@id/myFavouriteScreen" />
+        <action
+            android:id="@+id/action_sideMenuScreen_to_profileSettingsScreen"
+            app:destination="@id/profileSettingsScreen" />
+        <action
+            android:id="@+id/action_sideMenuScreen_to_savedAddressScreen"
+            app:destination="@id/savedAddressScreen" />
+        <action
+            android:id="@+id/action_sideMenuScreen_to_termsConditionsScreen"
+            app:destination="@id/termsConditionsScreen" />
+    </fragment>
 
     <fragment
         android:id="@+id/homeSearchScreen"
@@ -87,9 +118,68 @@
         tools:layout="@layout/fragment_home_search_screen">
         <argument
             android:name="screen_type"
-            app:argType="com.ripenapps.ridechef.model.HomeScreenType"
-            android:defaultValue="All" />
+            android:defaultValue="All"
+            app:argType="com.ripenapps.ridechef.model.HomeScreenType" />
     </fragment>
 
+    <fragment
+        android:id="@+id/restaurantDetailsScreen"
+        android:name="com.ripenapps.ridechef.view.screens.RestaurantDetailsScreen"
+        android:label="RestaurantDetailsScreen"
+        tools:layout="@layout/fragment_restaurant_details_screen" />
+
+    <fragment
+        android:id="@+id/notificationScreen"
+        android:name="com.ripenapps.ridechef.view.screens.NotificationScreen"
+        android:label="fragment_notification_screen"
+        tools:layout="@layout/fragment_notification_screen" />
+
+    <fragment
+        android:id="@+id/aboutUsScreen"
+        android:name="com.ripenapps.ridechef.view.screens.AboutUsScreen"
+        android:label="fragment_about_us_screen"
+        tools:layout="@layout/fragment_about_us_screen" />
+
+    <fragment
+        android:id="@+id/myOrdersScreen"
+        android:name="com.ripenapps.ridechef.view.screens.MyOrdersScreen"
+        android:label="fragment_my_orders_screen"
+        tools:layout="@layout/fragment_my_orders_screen" />
+
+    <fragment
+        android:id="@+id/privacyPolicyScreen"
+        android:name="com.ripenapps.ridechef.view.screens.PrivacyPolicyScreen"
+        android:label="PrivacyPolicyScreen"
+        tools:layout="@layout/fragment_privacy_policy" />
+
+    <fragment
+        android:id="@+id/faqsScreen"
+        android:name="com.ripenapps.ridechef.view.screens.FaqsScreen"
+        android:label="fragment_faqs_screen"
+        tools:layout="@layout/fragment_faqs_screen" />
+
+    <fragment
+        android:id="@+id/myFavouriteScreen"
+        android:name="com.ripenapps.ridechef.view.screens.MyFavouriteScreen"
+        android:label="fragment_my_favourite_screen"
+        tools:layout="@layout/fragment_my_favourite_screen" />
+
+    <fragment
+        android:id="@+id/profileSettingsScreen"
+        android:name="com.ripenapps.ridechef.view.screens.ProfileSettingsScreen"
+        android:label="fragment_profile_settings_screen"
+        tools:layout="@layout/fragment_profile_settings_screen" />
+
+    <fragment
+        android:id="@+id/savedAddressScreen"
+        android:name="com.ripenapps.ridechef.view.screens.SavedAddressScreen"
+        android:label="fragment_saved_address_screen"
+        tools:layout="@layout/fragment_saved_address_screen" />
+
+    <fragment
+        android:id="@+id/termsConditionsScreen"
+        android:name="com.ripenapps.ridechef.view.screens.TermsConditionsScreen"
+        android:label="fragment_terms_conditions_screen"
+        tools:layout="@layout/fragment_terms_conditions_screen" />
 
 </navigation>
