@@ -14,10 +14,14 @@
         <entry key="app/src/main/res/drawable/round_button_red_background.xml" value="0.23072916666666668" />
         <entry key="app/src/main/res/drawable/round_edit_text_background.xml" value="0.23072916666666668" />
         <entry key="app/src/main/res/drawable/round_green_background.xml" value="0.1457236842105263" />
+        <entry key="app/src/main/res/drawable/round_grey_background.xml" value="0.34609375" />
+        <entry key="app/src/main/res/drawable/round_red_border_background.xml" value="0.34609375" />
         <entry key="app/src/main/res/drawable/round_red_gradient_background.xml" value="0.1457236842105263" />
+        <entry key="app/src/main/res/drawable/search.xml" value="0.34609375" />
         <entry key="app/src/main/res/drawable/view_all.xml" value="0.23072916666666668" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19479166666666667" />
         <entry key="app/src/main/res/layout/app_bar.xml" value="0.315625" />
+        <entry key="app/src/main/res/layout/coupon_off_item.xml" value="0.55" />
         <entry key="app/src/main/res/layout/fragment_allow_location_screen.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_change_location.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_cuisine_search_screen.xml" value="0.25" />
@@ -27,8 +31,11 @@
         <entry key="app/src/main/res/layout/fragment_otp_screen.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_privacy_policy.xml" value="0.524074074074074" />
         <entry key="app/src/main/res/layout/fragment_restaurant_banner_screen.xml" value="0.315625" />
+        <entry key="app/src/main/res/layout/fragment_restaurant_details_screen.xml" value="0.505" />
         <entry key="app/src/main/res/layout/fragment_side_menu_screen.xml" value="0.375" />
         <entry key="app/src/main/res/layout/fragment_splash_screen.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/menu_header.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/menu_item.xml" value="0.5" />
         <entry key="app/src/main/res/layout/restaurant_banner_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/restaurant_cuisine_item.xml" value="0.165" />
         <entry key="app/src/main/res/layout/restaurant_cuisine_search_item.xml" value="0.21041666666666667" />

@@ -9,6 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="black_80_op">#232633</color>
     <color name="button_red">#EA1500</color>
+    <color name="button_red_25_op">#40EA1500</color>
     <color name="green">#18A866</color>
     <color name="grey">#6A6A6A</color>
     <color name="line_grey">#4D707070</color>
