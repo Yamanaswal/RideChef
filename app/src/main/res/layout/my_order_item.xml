@@ -8,6 +8,8 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_marginTop="4dp"
+        android:background="#FBFBFB"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -118,6 +120,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
 
                 <Button
+                    android:id="@+id/buttonRepeatOrder"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
@@ -135,7 +138,18 @@
                     app:layout_constraintTop_toBottomOf="@+id/line" />
 
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="4dp"
+                    android:background="@color/line_grey"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/buttonRepeatOrder" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         </androidx.cardview.widget.CardView>
 

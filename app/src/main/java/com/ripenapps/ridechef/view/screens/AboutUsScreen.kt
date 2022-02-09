@@ -20,7 +20,15 @@ class AboutUsScreen : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_about_us_screen, container, false)
+        setAppBar()
         return binding.root
+    }
+
+    private fun setAppBar() {
+        binding.appBarId.titleId.text = getString(R.string.about_us)
+        binding.appBarId.backButtonId.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
     }
 
 }

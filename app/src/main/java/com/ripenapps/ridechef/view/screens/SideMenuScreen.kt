@@ -20,8 +20,7 @@ class SideMenuScreen : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_side_menu_screen, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_side_menu_screen, container, false)
         //Set Data in Side Menus
         binding.sideMenuDataList = sideMenuList
 

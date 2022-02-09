@@ -45,4 +45,7 @@
     <string name="my_order">My Order</string>
     <string name="help_support"><![CDATA[Help & Support]]></string>
     <string name="saved_address">Saved Address</string>
+    <string name="add_to_cart">Add to Cart</string>
+    <string name="ridechef">RideChef</string>
+    <string name="about_us">About Us</string>
 </resources>

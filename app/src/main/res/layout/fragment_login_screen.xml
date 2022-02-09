@@ -79,6 +79,7 @@
                     android:fontFamily="@font/airbnb_cereal_medium"
                     android:hint="@string/enter_mobile_number"
                     android:inputType="phone"
+                    android:background="@android:color/transparent"
                     android:maxLines="1"
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"

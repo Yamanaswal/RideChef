@@ -7,19 +7,27 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.ripenapps.ridechef.R
-import com.ripenapps.ridechef.databinding.FragmentFaqsScreenBinding
+import com.ripenapps.ridechef.databinding.FragmentAddToCartBottomSheetBinding
 
+class AddToCartBottomSheet : Fragment() {
 
-class FaqsScreen : Fragment() {
+    lateinit var binding: FragmentAddToCartBottomSheetBinding
 
-    lateinit var binding: FragmentFaqsScreenBinding
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_faqs_screen, container, false)
+        binding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_add_to_cart_bottom_sheet,
+            container,
+            false
+        )
         return binding.root
     }
 
