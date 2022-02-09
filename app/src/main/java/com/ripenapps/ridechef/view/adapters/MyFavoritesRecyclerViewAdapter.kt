@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ripenapps.ridechef.R
 import com.ripenapps.ridechef.databinding.RestaurantItemFavBinding
 
-
 class MyFavoritesRecyclerViewAdapter(private val context: Context) : RecyclerView.Adapter<MyFavoritesRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

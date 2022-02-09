@@ -7,13 +7,13 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.ripenapps.ridechef.R
-import com.ripenapps.ridechef.databinding.MyOrderItemBinding
+import com.ripenapps.ridechef.databinding.SavedAddressItemBinding
 
 
-class MyOrderRecyclerViewAdapter(private val context: Context) : RecyclerView.Adapter<MyOrderRecyclerViewAdapter.ViewHolder>() {
+class SavedAddressRecyclerViewAdapter(private val context: Context) : RecyclerView.Adapter<SavedAddressRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view: View = LayoutInflater.from(parent.context).inflate(R.layout.my_order_item, parent, false)
+        val view: View = LayoutInflater.from(parent.context).inflate(R.layout.saved_address_item, parent, false)
         return ViewHolder(view)
     }
 
@@ -22,11 +22,11 @@ class MyOrderRecyclerViewAdapter(private val context: Context) : RecyclerView.Ad
     }
 
     override fun getItemCount(): Int {
-        return 4
+        return 2
     }
 
     inner class ViewHolder(view: View?) : RecyclerView.ViewHolder(view!!) {
-        var binding: MyOrderItemBinding? = DataBindingUtil.bind(view!!)
+        var binding: SavedAddressItemBinding? = DataBindingUtil.bind(view!!)
 
         init {
             // Define click listener for the ViewHolder's View

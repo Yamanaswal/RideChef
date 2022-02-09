@@ -6,8 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.ripenapps.ridechef.R
 import com.ripenapps.ridechef.databinding.FragmentSavedAddressScreenBinding
+import com.ripenapps.ridechef.view.adapters.MyOrderRecyclerViewAdapter
+import com.ripenapps.ridechef.view.adapters.SavedAddressRecyclerViewAdapter
 
 
 class SavedAddressScreen : Fragment() {
@@ -25,8 +28,23 @@ class SavedAddressScreen : Fragment() {
             container,
             false
         )
+        setAppBar()
+        setRecyclerView()
         return binding.root
     }
 
+    private fun setRecyclerView() {
+        val savedAddressRecyclerAdapter = SavedAddressRecyclerViewAdapter(requireContext())
+        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerView.adapter = savedAddressRecyclerAdapter
+    }
+
+
+    private fun setAppBar() {
+        binding.appBarId.titleId.text = getString(R.string.saved_address)
+        binding.appBarId.backButtonId.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
+    }
 
 }

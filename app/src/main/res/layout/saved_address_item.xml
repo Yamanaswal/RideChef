@@ -1,6 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <data></data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:elevation="4dp">
+
+        <TextView
+            android:id="@+id/addressName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/airbnb_cereal_medium"
+            android:text="Home"
+            android:textColor="@color/black"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/addressName"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginBottom="20dp"
+            android:drawablePadding="9dp"
+            android:fontFamily="@font/airbnb_cereal_book"
+            android:text="1373 Emily Renzelli Boulevard, M…"
+            android:textColor="#54565D"
+            android:textSize="15sp"
+            app:drawableStartCompat="@drawable/location_red" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/round_brown_edit_text"
+            android:fontFamily="@font/airbnb_cereal_book"
+            android:gravity="center"
+            android:paddingHorizontal="22dp"
+            android:paddingVertical="4dp"
+            android:text="@string/edit"
+            android:textColor="#54565D"
+            android:textSize="13sp" />
+
+    </RelativeLayout>
+</layout>

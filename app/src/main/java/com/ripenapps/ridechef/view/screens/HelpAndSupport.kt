@@ -18,15 +18,14 @@ class HelpAndSupport : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_help_and_support, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_help_and_support, container, false)
 
         setAppBar()
         return binding.root
     }
 
     private fun setAppBar() {
-        binding.appBarId.titleId.text = "Help & Support"
+        binding.appBarId.titleId.text = getString(R.string.help_support)
         binding.appBarId.backButtonId.setOnClickListener {
             requireActivity().onBackPressed()
         }

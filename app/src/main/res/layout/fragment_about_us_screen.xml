@@ -9,24 +9,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:orientation="vertical"
+        android:elevation="4dp"
         tools:context=".view.screens.AboutUsScreen">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Home" />
-
-        <TextView
-            android:drawablePadding="9dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="1373 Emily Renzelli Boulevard, M…"
-            app:drawableStartCompat="@drawable/location_red" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
 
     </LinearLayout>
 </layout>

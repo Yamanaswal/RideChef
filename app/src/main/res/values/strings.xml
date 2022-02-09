@@ -41,4 +41,8 @@
     <string name="my_favorites">My Favorites</string>
     <string name="delivered">Delivered</string>
     <string name="repeat_order">Repeat Order</string>
+    <string name="edit">Edit</string>
+    <string name="my_order">My Order</string>
+    <string name="help_support"><![CDATA[Help & Support]]></string>
+    <string name="saved_address">Saved Address</string>
 </resources>
