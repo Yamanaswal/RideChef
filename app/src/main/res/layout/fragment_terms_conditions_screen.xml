@@ -1,14 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.screens.TermsConditionsScreen">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+
+    </data>
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        tools:context=".view.screens.cms.PrivacyPolicy">
 
-</FrameLayout>
+        <include
+            android:id="@+id/appBarId"
+            layout="@layout/app_bar" />
+
+        <TextView
+            android:id="@+id/privacyPolicyText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/appBarId"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/airbnb_cereal_bold"
+            android:text="@string/terms_of_use"
+            android:textColor="@color/black"
+            android:textSize="24sp" />
+
+
+        <TextView
+            android:id="@+id/policyDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/privacyPolicyText"
+            android:layout_marginStart="15dp"
+            android:fontFamily="@font/airbnb_cereal_medium"
+            android:text="Last update on Nov 15, 2020 at 03:09 PM"
+            android:textColor="@color/black_66_op"
+            android:textSize="13sp" />
+
+        <WebView
+            android:id="@+id/webView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/policyDate"
+            android:layout_marginTop="30dp" />
+
+    </RelativeLayout>
+</layout>

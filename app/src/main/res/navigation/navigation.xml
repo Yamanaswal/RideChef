@@ -109,6 +109,9 @@
         <action
             android:id="@+id/action_sideMenuScreen_to_termsConditionsScreen"
             app:destination="@id/termsConditionsScreen" />
+        <action
+            android:id="@+id/action_sideMenuScreen_to_helpAndSupport"
+            app:destination="@id/helpAndSupport" />
     </fragment>
 
     <fragment
@@ -181,5 +184,11 @@
         android:name="com.ripenapps.ridechef.view.screens.TermsConditionsScreen"
         android:label="fragment_terms_conditions_screen"
         tools:layout="@layout/fragment_terms_conditions_screen" />
+
+    <fragment
+        android:id="@+id/helpAndSupport"
+        android:name="com.ripenapps.ridechef.view.screens.HelpAndSupport"
+        android:label="HelpAndSupport"
+        tools:layout="@layout/fragment_help_and_support" />
 
 </navigation>

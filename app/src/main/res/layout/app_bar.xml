@@ -6,9 +6,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
+        android:elevation="2dp"
         app:contentInsetLeft="0dp"
-        app:contentInsetStart="0dp"
-        android:elevation="2dp">
+        app:contentInsetStart="0dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -26,7 +26,8 @@
                 android:id="@+id/titleId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
+                android:layout_marginStart="24dp"
+                android:layout_toEndOf="@+id/backButtonId"
                 android:fontFamily="@font/airbnb_cereal_bold"
                 android:text="Title"
                 android:textAlignment="center"

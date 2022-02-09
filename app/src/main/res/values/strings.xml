@@ -31,8 +31,14 @@
     <string name="notifications">Notifications</string>
     <string name="you_have_item_saved_in_your_cart">You have item saved in your cart</string>
     <string name="view">View</string>
-
+    <string name="max_file_size_5_mb_file_type_jpg_amp_png"><![CDATA[Max file size 5 MB (file type .jpg & .png)]]></string>
     <string name="privacy_policy">Privacy Policy</string>
     <string name="our_menu">Our Menu</string>
     <string name="get_50_off">Get 50% Off</string>
+    <string name="submit">Submit</string>
+    <string name="save_changes">Save Changes</string>
+    <string name="search_restaurant">Search Restaurant</string>
+    <string name="my_favorites">My Favorites</string>
+    <string name="delivered">Delivered</string>
+    <string name="repeat_order">Repeat Order</string>
 </resources>

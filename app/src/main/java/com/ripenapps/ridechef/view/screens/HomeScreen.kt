@@ -58,7 +58,8 @@ class HomeScreen : Fragment() {
         binding.trendingRestaurantViewAll.setOnClickListener {
             this.findNavController().navigate(HomeScreenDirections.actionHomeScreenToHomeSearchScreen().setScreenType(HomeScreenType.TrendRestaurant))
         }
-        
+
+
 
     }
 

@@ -18,12 +18,14 @@
         android:orientation="horizontal"
         tools:context=".view.screens.SideMenuScreen">
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/profileImage"
+            android:theme="@style/roundedImageViewRounded"
             android:layout_width="68dp"
             android:layout_height="68dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="25dp"
+            android:background="@color/white"
             android:src="@mipmap/person_placeholder"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -91,7 +93,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/line"
             app:sideMenuData="@{sideMenuDataList[0]}" />
-
 
         <include
             android:id="@+id/profileSettings"
@@ -190,7 +191,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/faq"
             app:sideMenuData="@{sideMenuDataList[9]}" />
-
 
         <include
             android:id="@+id/logout"

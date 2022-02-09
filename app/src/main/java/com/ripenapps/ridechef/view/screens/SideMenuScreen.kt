@@ -22,26 +22,69 @@ class SideMenuScreen : Fragment() {
         // Inflate the layout for this fragment
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_side_menu_screen, container, false)
+        //Set Data in Side Menus
         binding.sideMenuDataList = sideMenuList
+
         setData()
         return binding.root
     }
 
     private fun setData() {
 
-        /// Home Button Click
+        ////Set Clicks
         binding.home.setOnClickListener {
             requireActivity().onBackPressed()
         }
 
         binding.notification.sideMenuRow.setOnClickListener {
-//            this.findNavController().navigate()
+            this.findNavController()
+                .navigate(SideMenuScreenDirections.actionSideMenuScreenToNotificationScreen())
         }
 
+        binding.profileSettings.sideMenuRow.setOnClickListener {
+            this.findNavController()
+                .navigate(SideMenuScreenDirections.actionSideMenuScreenToProfileSettingsScreen())
+        }
 
+        binding.myFavorites.sideMenuRow.setOnClickListener {
+            this.findNavController()
+                .navigate(SideMenuScreenDirections.actionSideMenuScreenToMyFavouriteScreen())
+        }
 
+        binding.myOrders.sideMenuRow.setOnClickListener {
+            this.findNavController()
+                .navigate(SideMenuScreenDirections.actionSideMenuScreenToMyOrdersScreen())
+        }
 
+        binding.savedAddress.sideMenuRow.setOnClickListener {
+            this.findNavController()
+                .navigate(SideMenuScreenDirections.actionSideMenuScreenToSavedAddressScreen())
+        }
 
+        binding.aboutUs.sideMenuRow.setOnClickListener {
+            this.findNavController()
+                .navigate(SideMenuScreenDirections.actionSideMenuScreenToAboutUsScreen())
+        }
+
+        binding.termsConditions.sideMenuRow.setOnClickListener {
+            this.findNavController()
+                .navigate(SideMenuScreenDirections.actionSideMenuScreenToTermsConditionsScreen())
+        }
+
+        binding.privacyPolicy.sideMenuRow.setOnClickListener {
+            this.findNavController()
+                .navigate(SideMenuScreenDirections.actionSideMenuScreenToPrivacyPolicyScreen())
+        }
+
+        binding.helpSupport.sideMenuRow.setOnClickListener {
+            this.findNavController()
+                .navigate(SideMenuScreenDirections.actionSideMenuScreenToPrivacyPolicyScreen())
+        }
+
+        binding.helpSupport.sideMenuRow.setOnClickListener {
+            this.findNavController()
+                .navigate(SideMenuScreenDirections.actionSideMenuScreenToHelpAndSupport())
+        }
 
 
     }

@@ -71,8 +71,7 @@ class HomeSearchScreen : Fragment() {
     }
 
     private fun setFeaturedRestaurants() {
-        val featureRestaurantRecyclerViewAdapter =
-            FeatureRestaurantRecyclerViewAdapter(requireContext())
+        val featureRestaurantRecyclerViewAdapter = FeatureRestaurantRecyclerViewAdapter(requireContext())
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = featureRestaurantRecyclerViewAdapter
     }

@@ -1,14 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.screens.ProfileSettingsScreen">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data></data>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:background="@color/white"
+        android:orientation="vertical"
+        tools:context=".view.screens.ProfileSettingsScreen">
 
-</FrameLayout>
+        <include
+            android:id="@+id/appBarId"
+            layout="@layout/app_bar" />
+
+        <RelativeLayout
+            android:id="@+id/personImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="35dp"
+            android:layout_marginBottom="35dp">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/profileImage"
+                android:layout_width="107dp"
+                android:layout_height="107dp"
+                android:layout_centerHorizontal="true"
+                android:scaleType="fitXY"
+                android:src="@mipmap/person_placeholder"
+                app:shapeAppearanceOverlay="@style/roundedImageViewRounded" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/profileImage"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="-16dp"
+                android:src="@drawable/camera_red"
+                app:shapeAppearanceOverlay="@style/roundedImageViewRounded" />
+
+        </RelativeLayout>
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="14dp"
+            android:background="@drawable/round_profile_background"
+            android:paddingVertical="12dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="12dp"
+            android:hint="Enter Name"
+            android:text="Raymundo M. McNitt" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="14dp"
+            android:background="@drawable/round_profile_background"
+            android:drawableEnd="@drawable/birthday_icon"
+            android:paddingVertical="12dp"
+            android:paddingStart="16dp"
+            android:hint="Enter Mobile Number"
+            android:text="+1 723 473 6835" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="14dp"
+            android:background="@drawable/round_profile_background"
+            android:paddingVertical="12dp"
+            android:hint="Enter Date Of Birth"
+            android:paddingStart="16dp"
+            android:text="July 27, 1989" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="14dp"
+            android:background="@drawable/round_profile_background"
+            android:paddingVertical="12dp"
+            android:paddingStart="16dp"
+            android:text="raymundom.072@gmail.com" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <Button
+            style="@style/buttonStyleRed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="25dp"
+            android:text="@string/save_changes" />
+
+    </LinearLayout>
+</layout>

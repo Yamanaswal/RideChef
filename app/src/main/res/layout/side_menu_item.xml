@@ -18,8 +18,8 @@
 
         <ImageView
             android:id="@+id/side_menu_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
             android:layout_marginStart="22dp"
             app:imageResource="@{sideMenuData.icon}"
             tools:src="@drawable/notification" />
@@ -30,9 +30,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:fontFamily="@font/airbnb_cereal_medium"
+            android:text="@{sideMenuData.title}"
             android:textColor="@color/black"
             android:textSize="15sp"
-            android:text="@{sideMenuData.title}"
             tools:text="@string/notifications" />
 
     </LinearLayout>

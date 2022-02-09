@@ -11,6 +11,7 @@ val sideMenuList = listOf(
     SideMenuItems(title = "About us", icon = R.drawable.about_us_red),
     SideMenuItems(title = "Terms & Conditions", icon = R.drawable.terms_condition),
     SideMenuItems(title = "Privacy Policy", icon = R.drawable.privacy_policy_red),
+    SideMenuItems(title = "FAQs", icon = R.drawable.faq_red),
     SideMenuItems(title = "Help & Support", icon = R.drawable.help_support_red),
     SideMenuItems(title = "Logout", icon = R.drawable.logout_red),
 )
