@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ripenapps.ridechef.R
 import com.ripenapps.ridechef.databinding.RestaurantItemBinding
 
-
 class FeatureRestaurantRecyclerViewAdapter(private val context: Context) :
     RecyclerView.Adapter<FeatureRestaurantRecyclerViewAdapter.ViewHolder>() {
 
@@ -18,9 +17,7 @@ class FeatureRestaurantRecyclerViewAdapter(private val context: Context) :
         return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
-    }
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {}
 
     override fun getItemCount(): Int {
         return 10
