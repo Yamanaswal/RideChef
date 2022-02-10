@@ -6,13 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.ripenapps.ridechef.R
 import com.ripenapps.ridechef.databinding.FragmentLoginScreenBinding
+import com.ripenapps.ridechef.view_model.LoginViewModel
 
 class LoginScreen : Fragment() {
 
     lateinit var binding: FragmentLoginScreenBinding
+    lateinit var viewModel: LoginViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -20,9 +23,17 @@ class LoginScreen : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login_screen, container, false)
+        viewModel = ViewModelProvider(this)[LoginViewModel::class.java]
+
+        viewModel.loginResponse.observe(viewLifecycleOwner) {
+
+        }
+
 
         binding.continueButton.setOnClickListener {
-            this.findNavController().navigate(LoginScreenDirections.actionLoginScreenToOtpScreen())
+
+
+//            this.findNavController().navigate(LoginScreenDirections.actionLoginScreenToOtpScreen())
         }
 
         binding.skipButton.setOnClickListener {

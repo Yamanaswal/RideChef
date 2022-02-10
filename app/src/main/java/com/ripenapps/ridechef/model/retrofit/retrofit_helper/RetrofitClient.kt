@@ -54,8 +54,7 @@ object RetrofitClient {
 object RetrofitServiceGenerator {
     private var BASE_URL: String = ""
 
-    fun <S> createService(serviceClass: Class<S>, baseUrl: String): S {
-        BASE_URL = baseUrl
+    fun <S> createService(serviceClass: Class<S>): S {
         return RetrofitClient.getAPIClient(BASE_URL)!!.create(serviceClass)
     }
 }
