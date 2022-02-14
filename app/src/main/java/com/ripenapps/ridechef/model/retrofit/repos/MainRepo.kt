@@ -185,7 +185,10 @@ class MainRepo {
     }
 
 
-    suspend fun restaurantDetails(token: String?, restaurantDetailsRequest: RestaurantDetailsRequest) {
+    suspend fun restaurantDetails(
+        token: String?,
+        restaurantDetailsRequest: RestaurantDetailsRequest
+    ) {
         try {
             val response = apiService.restaurantDetails(token, restaurantDetailsRequest)
 
