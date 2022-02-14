@@ -8,9 +8,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.ripenapps.ridechef.R
 import com.ripenapps.ridechef.databinding.RestaurantItemBinding
+import com.ripenapps.ridechef.model.retrofit.models.Restaurant
 
 
 class TrendingRestaurantRecyclerViewAdapter(private val context: Context) : RecyclerView.Adapter<TrendingRestaurantRecyclerViewAdapter.ViewHolder>() {
+
+    var trendingRestaurants: List<Restaurant> = emptyList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view: View = LayoutInflater.from(parent.context).inflate(R.layout.restaurant_item, parent, false)
@@ -18,12 +21,18 @@ class TrendingRestaurantRecyclerViewAdapter(private val context: Context) : Recy
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
+        holder.binding?.restaurantData = trendingRestaurants[position]
     }
 
     override fun getItemCount(): Int {
-        return 10
+        return trendingRestaurants.size
     }
+
+    fun updateList(list: List<Restaurant>?) {
+        trendingRestaurants = list ?: emptyList()
+        notifyDataSetChanged()
+    }
+
 
     inner class ViewHolder(view: View?) : RecyclerView.ViewHolder(view!!) {
         var binding: RestaurantItemBinding? = DataBindingUtil.bind(view!!)

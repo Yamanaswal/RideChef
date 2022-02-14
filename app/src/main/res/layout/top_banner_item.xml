@@ -3,6 +3,9 @@
 
     <data>
 
+        <variable
+            name="adminBannerItem"
+            type="com.ripenapps.ridechef.model.retrofit.models.AdminBanner" />
     </data>
 
     <LinearLayout
@@ -11,8 +14,9 @@
         android:orientation="vertical">
 
         <ImageView
+            loadImageUrl="@{adminBannerItem.image}"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="135dp"
             android:scaleType="fitXY"
             android:src="@mipmap/flat_50_off_banner" />
 

@@ -9,25 +9,33 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ripenapps.ridechef.R
 import com.ripenapps.ridechef.databinding.RestaurantCuisineItemBinding
 import com.ripenapps.ridechef.databinding.RestaurantCuisineSearchItemBinding
+import com.ripenapps.ridechef.model.retrofit.models.Cuisines
 
 //TODO
 //Home Adapter
 class CuisineRecyclerViewAdapter(private val context: Context) :
     RecyclerView.Adapter<CuisineRecyclerViewAdapter.ViewHolder>() {
 
+    var cuisines: List<Cuisines> = emptyList()
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view: View = LayoutInflater.from(parent.context)
-            .inflate(R.layout.restaurant_cuisine_item, parent, false)
+        val view: View = LayoutInflater.from(parent.context).inflate(R.layout.restaurant_cuisine_item, parent, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
+        holder.binding?.cuisine = cuisines[position]
     }
 
     override fun getItemCount(): Int {
-        return 10
+        return cuisines.size
     }
+
+    fun updateList(list: List<Cuisines>?) {
+        cuisines = list ?: emptyList()
+        notifyDataSetChanged()
+    }
+
 
     inner class ViewHolder(view: View?) : RecyclerView.ViewHolder(view!!) {
         var binding: RestaurantCuisineItemBinding? = DataBindingUtil.bind(view!!)

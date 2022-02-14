@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <data></data>
+    <data>
+
+        <variable
+            name="restaurantData"
+            type="com.ripenapps.ridechef.model.retrofit.models.Restaurant" />
+    </data>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -27,12 +33,13 @@
                 <ImageView
                     android:id="@+id/restaurantImage"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="110dp"
                     android:scaleType="fitXY"
-                    android:src="@mipmap/rest_placeholder"
+                    tools:src="@mipmap/rest_placeholder"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:loadImageUrl="@{restaurantData.restaurantImages[0].image}" />
 
                 <TextView
                     android:id="@+id/restaurantDiscount"
@@ -61,13 +68,14 @@
                     android:drawablePadding="2dp"
                     android:paddingHorizontal="8dp"
                     android:paddingVertical="5dp"
-                    android:text="4.5"
+                    android:text="@{restaurantData.rating}"
                     android:textColor="@color/white"
                     android:textSize="13sp"
                     app:drawableTopCompat="@drawable/star_white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/restaurantDiscount"
-                    app:layout_constraintTop_toBottomOf="@+id/restaurantDiscount" />
+                    app:layout_constraintTop_toBottomOf="@+id/restaurantDiscount"
+                    tools:text="4.5" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -80,12 +88,13 @@
                 android:layout_marginTop="13dp"
                 android:layout_marginEnd="20dp"
                 android:fontFamily="@font/airbnb_cereal_medium"
-                android:text="3BROS Restaurant"
+                android:text="@{restaurantData.restaurantName}"
                 android:textColor="@color/black"
                 android:textSize="17sp"
-                app:layout_constraintEnd_toStartOf="@+id/textView2"
+                app:layout_constraintEnd_toStartOf="@+id/price"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/restaurantImageLayout" />
+                app:layout_constraintTop_toBottomOf="@+id/restaurantImageLayout"
+                tools:text="Restaurant Name" />
 
             <TextView
                 android:id="@+id/restaurantDishes"
@@ -94,12 +103,13 @@
                 android:layout_marginTop="7dp"
                 android:layout_marginEnd="20dp"
                 android:fontFamily="@font/airbnb_cereal_medium"
-                android:text="French"
                 android:textColor="@color/grey"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/restaurantName"
-                app:layout_constraintTop_toBottomOf="@+id/restaurantName" />
+                app:layout_constraintTop_toBottomOf="@+id/restaurantName"
+                app:setCuisineName="@{restaurantData.merchantCusines}"
+                tools:text="French • Italian" />
 
             <TextView
                 android:id="@+id/address"
@@ -108,29 +118,31 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="14dp"
-                android:drawableStart="@drawable/location_red"
                 android:drawablePadding="7dp"
                 android:fontFamily="@font/airbnb_cereal_medium"
-                android:text="4211 Sunburst Drive, Puerto Rico"
+                android:text="@{restaurantData.shopLocation}"
                 android:textColor="@color/black"
                 android:textSize="12sp"
+                app:drawableStartCompat="@drawable/location_red"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/restaurantName"
-                app:layout_constraintTop_toBottomOf="@+id/restaurantDishes" />
+                app:layout_constraintTop_toBottomOf="@+id/restaurantDishes"
+                tools:text="4211 Sunburst Drive, Puerto Rico" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
                 android:layout_marginEnd="12dp"
                 android:fontFamily="@font/airbnb_cereal_medium"
-                android:text="$59 for 2"
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/restaurantImageLayout" />
+                app:layout_constraintTop_toBottomOf="@+id/restaurantImageLayout"
+                app:setRestaurantPrice="@{restaurantData.averagePrice}"
+                tools:text="$59 for 2" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

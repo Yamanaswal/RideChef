@@ -52,7 +52,7 @@ object RetrofitClient {
 
 /** Generate New Retrofit Service **/
 object RetrofitServiceGenerator {
-    private var BASE_URL: String = ""
+    private var BASE_URL: String = "http://15.207.35.97/ride-chef/"
 
     fun <S> createService(serviceClass: Class<S>): S {
         return RetrofitClient.getAPIClient(BASE_URL)!!.create(serviceClass)

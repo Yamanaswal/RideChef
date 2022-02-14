@@ -5,11 +5,11 @@
 
     <data></data>
 
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
+        android:overScrollMode="never"
         tools:context=".view.screens.LoginScreen">
 
         <LinearLayout
@@ -23,7 +23,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="100dp"
-                android:layout_marginBottom="100dp"
+                android:layout_marginBottom="50dp"
                 android:src="@mipmap/ride_chef_white" />
 
             <TextView
@@ -58,7 +58,7 @@
                 android:orientation="horizontal">
 
                 <com.hbb20.CountryCodePicker
-                    android:id="@+id/ccp"
+                    android:id="@+id/countryCode"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="10dp"
@@ -73,27 +73,21 @@
                     app:ccp_showNameCode="true" />
 
                 <EditText
-                    android:id="@+id/editText_carrierNumber"
+                    android:id="@+id/mobileNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
                     android:fontFamily="@font/airbnb_cereal_medium"
                     android:hint="@string/enter_mobile_number"
                     android:inputType="phone"
-                    android:background="@android:color/transparent"
                     android:maxLines="1"
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
                     android:textColor="@color/white"
-                    android:textSize="16sp"
-                    tools:text="723 473 6835" />
+                    android:textColorHint="@color/white"
+                    android:textSize="16sp" />
 
             </LinearLayout>
-
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
 
             <Button
                 android:id="@+id/continueButton"
@@ -101,6 +95,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginBottom="15dp"
                 android:text="Continue" />
 
@@ -136,8 +131,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:layout_marginBottom="120dp"
+                android:layout_marginBottom="60dp"
                 android:fontFamily="@font/airbnb_cereal_book"
+                android:paddingVertical="5dp"
                 android:text="@string/skip_this_step_for_now"
                 android:textAlignment="center"
                 android:textColor="@color/white"

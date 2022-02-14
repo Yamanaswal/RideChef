@@ -48,4 +48,7 @@
     <string name="add_to_cart">Add to Cart</string>
     <string name="ridechef">RideChef</string>
     <string name="about_us">About Us</string>
+    <string name="notification_title">RideChef</string>
+    <string name="notification_message">When you\'re order food with us,your location is being collected for faster delivery and safety features.Manage permissions in your device\'s location settings</string>
+    <string name="ticker_text" >Ticker</string>
 </resources>

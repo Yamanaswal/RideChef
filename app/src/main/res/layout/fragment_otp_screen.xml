@@ -61,7 +61,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginEnd="10dp"
                     android:fontFamily="@font/airbnb_cereal_medium"
-                    android:text="+1 723 473 6859"
+                    tools:text="+1 723 473 6859"
                     android:textColor="@color/black"
                     android:textSize="17sp" />
 
