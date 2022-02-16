@@ -25,8 +25,7 @@ class SplashScreen : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_splash_screen, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_splash_screen, container, false)
         splashTimer()
         return binding.root
     }
@@ -35,8 +34,7 @@ class SplashScreen : Fragment() {
         val splashViewModel = ViewModelProvider(this)[SplashViewModel::class.java]
         splashViewModel.splashStatus.observe(viewLifecycleOwner, { status ->
             if (status) {
-                this.findNavController()
-                    .navigate(SplashScreenDirections.actionSplashScreenToAllowLocationScreen())
+                this.findNavController().navigate(SplashScreenDirections.actionSplashScreenToAllowLocationScreen())
             }
         })
     }

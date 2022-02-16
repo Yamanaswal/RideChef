@@ -5,9 +5,9 @@ import com.google.gson.annotations.SerializedName
 
 data class SearchHomeRequest(
     @SerializedName("latitude")
-    val latitude: Double,
+    val latitude: String,
     @SerializedName("longitude")
-    val longitude: Double,
+    val longitude: String,
     @SerializedName("search")
     val search: String
 )

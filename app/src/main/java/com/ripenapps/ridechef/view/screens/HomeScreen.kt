@@ -1,5 +1,7 @@
 package com.ripenapps.ridechef.view.screens
 
+import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -20,6 +22,7 @@ import com.ripenapps.ridechef.view.adapters.*
 import com.ripenapps.ridechef.view_model.HomeViewModel
 import com.yaman.progress_dialog.ProgressAnimatedDialog
 
+
 class HomeScreen : Fragment() {
 
     val TAG = "HomeScreen"
@@ -31,21 +34,37 @@ class HomeScreen : Fragment() {
     private lateinit var featureRestaurantRecyclerViewAdapter: FeatureRestaurantRecyclerViewAdapter
     private lateinit var trendingRestaurantRecyclerViewAdapter: TrendingRestaurantRecyclerViewAdapter
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home_screen, container, false)
-        viewModel = ViewModelProvider(this)[HomeViewModel::class.java]
 
-        viewModel.callApiHome(homeRequest = HomeRequest(23.77, 22.44))
+        if (!this::binding.isInitialized) {
+            // Inflate the layout for this fragment
+            binding =
+                DataBindingUtil.inflate(inflater, R.layout.fragment_home_screen, container, false)
+            viewModel = ViewModelProvider(this)[HomeViewModel::class.java]
+            viewModel.callApiHome(homeRequest = HomeRequest(23.77, 22.44))
 
-        setRecyclerViews()
-        setClicks()
-        setObservers()
+            Log.e(TAG, "onCreateView: ")
+            setRecyclerViews()
+            setClicks()
+            setObservers()
+        }
 
         return binding.root
+    }
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        Log.e(TAG, "onCreate: ")
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        Log.e(TAG, "onAttach: ")
     }
 
     private fun setObservers() {
@@ -60,6 +79,7 @@ class HomeScreen : Fragment() {
             trendingRestaurantRecyclerViewAdapter.updateList(res.response?.data?.trendingRestaurant)
             progress.dismiss()
         }
+
     }
 
     private fun setClicks() {
@@ -108,7 +128,12 @@ class HomeScreen : Fragment() {
 
     private fun setTrendingRecyclerView() {
         trendingRestaurantRecyclerViewAdapter =
-            TrendingRestaurantRecyclerViewAdapter(requireContext())
+            TrendingRestaurantRecyclerViewAdapter(requireContext()) { restaurantItem ->
+                this.findNavController().navigate(
+                    HomeScreenDirections.actionHomeScreenToRestaurantDetailsScreen()
+                        .setRestaurantId(restaurantItem.id)
+                )
+            }
         binding.trendingRestaurantRecyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         val snapHelper: SnapHelper = PagerSnapHelper()
@@ -128,7 +153,12 @@ class HomeScreen : Fragment() {
 
     private fun setFeaturedRecyclerView() {
         featureRestaurantRecyclerViewAdapter =
-            FeatureRestaurantRecyclerViewAdapter(requireContext())
+            FeatureRestaurantRecyclerViewAdapter(requireContext()) { restaurantItem ->
+                this.findNavController().navigate(
+                    HomeScreenDirections.actionHomeScreenToRestaurantDetailsScreen()
+                        .setRestaurantId(restaurantItem.id)
+                )
+            }
         binding.featuredRestaurantRecyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         val snapHelper: SnapHelper = PagerSnapHelper()

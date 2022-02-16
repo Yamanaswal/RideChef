@@ -3,7 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data></data>
+    <data>
+
+        <variable
+            name="restaurantDetailsData"
+            type="com.ripenapps.ridechef.model.retrofit.models.RestaurantDetailsResponseData" />
+    </data>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -33,15 +38,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:background="@drawable/round_green_background"
-                android:drawablePadding="2dp"
+                android:drawablePadding="3dp"
                 android:paddingHorizontal="8dp"
                 android:paddingVertical="5dp"
-                android:text="4.5"
+                android:text="@{restaurantDetailsData.rating}"
                 android:textColor="@color/white"
                 android:textSize="13sp"
                 app:drawableTopCompat="@drawable/star_white"
                 app:layout_constraintStart_toStartOf="@+id/backButtonId"
-                app:layout_constraintTop_toBottomOf="@+id/backButtonId" />
+                app:layout_constraintTop_toBottomOf="@+id/backButtonId"
+                tools:text="4.5" />
 
             <TextView
                 android:id="@+id/restaurantName"
@@ -53,16 +59,18 @@
                 android:ellipsize="end"
                 android:fontFamily="@font/airbnb_cereal_bold"
                 android:maxLines="1"
-                android:text="Celebration Restaurant"
+                android:text="@{restaurantDetailsData.restaurantName}"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 app:layout_constraintStart_toEndOf="@+id/ratingText"
-                app:layout_constraintTop_toBottomOf="@+id/backButtonId" />
+                app:layout_constraintTop_toBottomOf="@+id/backButtonId"
+                tools:text="Celebration Restaurant" />
 
             <TextView
                 android:id="@+id/reviewText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
                 android:layout_marginBottom="17dp"
                 android:fontFamily="@font/airbnb_cereal_book"
                 android:text="2394 Reviews"
@@ -80,20 +88,21 @@
                 android:layout_marginEnd="10dp"
                 android:drawablePadding="6.5dp"
                 android:fontFamily="@font/airbnb_cereal_medium"
-                android:text="4211 Sunburst Drive, Puerto Rico"
+                android:text="@{restaurantDetailsData.shopLocation}"
                 android:textColor="@color/black"
                 android:textSize="12sp"
                 app:drawableStartCompat="@drawable/location_red"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/backButtonId"
-                app:layout_constraintTop_toBottomOf="@+id/ratingText" />
+                app:layout_constraintTop_toBottomOf="@+id/ratingText"
+                tools:text="4211 Sunburst Drive, Puerto Rico" />
 
             <ImageView
                 android:id="@+id/favIcon"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginEnd="20dp"
-                android:src="@mipmap/ic_launcher_round"
+                android:src="@drawable/heart_black_border"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/restaurantName" />
 
@@ -147,10 +156,11 @@
                 app:layout_constraintTop_toBottomOf="@+id/description" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
+                android:id="@+id/couponRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:overScrollMode="never"
                 app:layout_constraintTop_toBottomOf="@+id/line"
                 tools:itemCount="3" />
 
@@ -160,7 +170,7 @@
                 android:layout_height="1dp"
                 android:layout_marginTop="10dp"
                 android:background="@color/line_grey"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+                app:layout_constraintTop_toBottomOf="@+id/couponRecyclerView" />
 
             <TextView
                 android:id="@+id/ourMenu"
@@ -189,24 +199,32 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="13dp"
+                android:textOff="@string/veg"
+                android:textOn="@string/veg"
+                android:thumb="@drawable/round_switch_thumb"
                 app:layout_constraintStart_toStartOf="@+id/ourMenu"
-                app:layout_constraintTop_toBottomOf="@+id/ourMenu" />
+                app:layout_constraintTop_toBottomOf="@+id/ourMenu"
+                app:track="@drawable/custom_switch_track_veg" />
 
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/nonVegSwitch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:textOff="@string/non_veg"
+                android:textOn="@string/non_veg"
+                android:thumb="@drawable/round_switch_thumb"
                 app:layout_constraintStart_toEndOf="@+id/vegSwitch"
-                app:layout_constraintTop_toTopOf="@+id/vegSwitch" />
+                app:layout_constraintTop_toTopOf="@+id/vegSwitch"
+                app:track="@drawable/custom_switch_track_non_veg" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewMenuHeader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="13dp"
-                app:layout_constraintTop_toBottomOf="@+id/vegSwitch"
-                tools:itemCount="5" />
+                android:overScrollMode="never"
+                app:layout_constraintTop_toBottomOf="@+id/vegSwitch" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

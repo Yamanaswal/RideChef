@@ -1,12 +1,13 @@
 package com.ripenapps.ridechef.model.retrofit.models
+
 import com.google.gson.annotations.SerializedName
 
 
 data class ViewAllRequest(
     @SerializedName("latitude")
-    val latitude: Double,
+    val latitude: String,
     @SerializedName("longitude")
-    val longitude: Double,
+    val longitude: String,
     @SerializedName("search")
     val search: String,
     @SerializedName("type")
@@ -55,7 +56,11 @@ data class ViewAllResponseDataData(
     @SerializedName("average_price")
     val averagePrice: String,
     @SerializedName("distance")
-    val distance: Double,
+    val distance: String,
+    @SerializedName("name")
+    val name: String,
+    @SerializedName("status")
+    val status: Int,
     @SerializedName("id")
     val id: Int,
     @SerializedName("latitude")
@@ -69,7 +74,11 @@ data class ViewAllResponseDataData(
     @SerializedName("restaurant_name")
     val restaurantName: String,
     @SerializedName("shop_location")
-    val shopLocation: String
+    val shopLocation: String,
+    @SerializedName("rating")
+    val rating: String,
+    @SerializedName("image")
+    val image: String
 )
 
 data class Link(

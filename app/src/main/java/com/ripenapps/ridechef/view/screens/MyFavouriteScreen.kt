@@ -9,7 +9,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ripenapps.ridechef.R
 import com.ripenapps.ridechef.databinding.FragmentMyFavouriteScreenBinding
-import com.ripenapps.ridechef.view.adapters.FeatureRestaurantRecyclerViewAdapter
 import com.ripenapps.ridechef.view.adapters.MyFavoritesRecyclerViewAdapter
 
 

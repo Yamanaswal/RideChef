@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/splashScreen">
+    app:startDestination="@id/homeScreen">
 
     <fragment
         android:id="@+id/splashScreen"
@@ -64,7 +64,11 @@
             app:destination="@id/homeSearchScreen" />
         <action
             android:id="@+id/action_homeScreen_to_restaurantDetailsScreen"
-            app:destination="@id/restaurantDetailsScreen" />
+            app:destination="@id/restaurantDetailsScreen" >
+            <argument
+                android:name="restaurantId"
+                android:defaultValue="0" />
+        </action>
     </fragment>
 
     <fragment
@@ -133,7 +137,11 @@
         android:id="@+id/restaurantDetailsScreen"
         android:name="com.ripenapps.ridechef.view.screens.RestaurantDetailsScreen"
         android:label="RestaurantDetailsScreen"
-        tools:layout="@layout/fragment_restaurant_details_screen" />
+        tools:layout="@layout/fragment_restaurant_details_screen" >
+        <argument
+            android:name="restaurantId"
+            app:argType="integer" />
+    </fragment>
 
     <fragment
         android:id="@+id/notificationScreen"

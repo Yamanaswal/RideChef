@@ -19,7 +19,6 @@ class HomeViewModel : ViewModel() {
         get() = mainRepo.homeLiveData
 
     fun callApiHome(token: String? = null,homeRequest: HomeRequest) {
-
         viewModelScope.launch {
             mainRepo.homeApi(token,homeRequest)
         }

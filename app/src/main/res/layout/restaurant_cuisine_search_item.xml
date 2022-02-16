@@ -1,27 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <data></data>
+    <data>
+
+        <variable
+            name="cuisine"
+            type="com.ripenapps.ridechef.model.retrofit.models.ViewAllResponseDataData" />
+    </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:layout_marginBottom="10dp"
+        android:gravity="center"
         android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/dish_image" />
+        <com.google.android.material.imageview.ShapeableImageView
+            loadImageUrl="@{cuisine.image}"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:scaleType="fitXY"
+            android:theme="@style/roundedImageViewRounded"
+            tools:src="@mipmap/dish_image" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/airbnb_cereal_medium"
-            android:text="Noodles"
+            android:text="@{cuisine.name}"
             android:textColor="@color/black"
-            android:textSize="13sp" />
+            android:textSize="13sp"
+            tools:text="Noodles" />
 
     </LinearLayout>
 </layout>

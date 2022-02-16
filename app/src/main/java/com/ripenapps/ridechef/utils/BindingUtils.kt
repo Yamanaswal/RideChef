@@ -1,17 +1,18 @@
 package com.ripenapps.ridechef.utils
 
-import android.text.Html
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import coil.Coil
 import coil.load
+import com.ripenapps.ridechef.R
 import com.ripenapps.ridechef.model.retrofit.models.MerchantCusine
 import java.text.DecimalFormat
 
 @BindingAdapter(value = ["loadImageUrl"])
 fun loadImage(image: ImageView, url: String?) {
-    image.load(url)
+    image.load(url) {
+        fallback(R.drawable.ride_chef_placeholder)
+    }
 }
 
 @BindingAdapter(value = ["setCuisineName"])
@@ -37,4 +38,13 @@ fun setRestaurantPrice(textView: TextView, price: String) {
     }
 }
 
+@BindingAdapter(value = ["setMenuPrice"])
+fun setMenuPrice(textView: TextView, price: String) {
+    if (price.isNotEmpty()) {
+        val dec = DecimalFormat("#.##")
+        textView.text = "$ ${price}"
+    } else {
+        textView.text = ""
+    }
+}
 
