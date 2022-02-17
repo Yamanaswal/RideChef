@@ -13,7 +13,7 @@ interface ApiService {
     @GET("api/user/home")
     suspend fun home(
         @Header("Authorization") token: String?,
-        @QueryMap() homeRequest: Map<String,String>
+        @QueryMap() homeRequest: Map<String, String>
     ): Response<HomeResponse>
 
     @POST("api/user/view-all")
@@ -45,6 +45,29 @@ interface ApiService {
         @Header("Authorization") token: String?,
         @Body restaurantDetailsRequest: RestaurantDetailsRequest
     ): Response<RestaurantDetailsResponse>
+
+    @POST("api/user/add-to-cart")
+    suspend fun addToCart(
+        @Header("Authorization") token: String,
+        @Body addToCartRequest: AddToCartRequest
+    ): Response<AddToCartResponse>
+
+    @GET("api/user/cart-details")
+    suspend fun cartDetails(
+        @Header("Authorization") token: String,
+    ): Response<CartDetailsResponse>
+
+    @POST("api/user/dish-details")
+    suspend fun dishDetails(
+        @Header("Authorization") token: String?,
+        @Body dishDetailsRequest: DishDetailsRequest
+    ): Response<DishDetailsResponse>
+
+    @POST("api/user/update-cart-item-quantity")
+    suspend fun updateCartItemQuantity(
+        @Header("Authorization") token: String,
+        @Body updateCartItemQuantityRequest: UpdateCartItemQuantityRequest
+    ): Response<UpdateCartItemQuantityResponse>
 
 }
 

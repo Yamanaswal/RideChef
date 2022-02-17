@@ -64,6 +64,31 @@ class MainRepo {
     val restaurantDetailsLiveData: LiveData<ApiResponse<RestaurantDetailsResponse>>
         get() = restaurantDetailsMutableLiveData
 
+    private val addToCartResponseMutableLiveData =
+        MutableLiveData<ApiResponse<AddToCartResponse>>()
+
+    val addToCartResponseLiveData: LiveData<ApiResponse<AddToCartResponse>>
+        get() = addToCartResponseMutableLiveData
+
+    private val cartDetailsMutableLiveData =
+        MutableLiveData<ApiResponse<CartDetailsResponse>>()
+
+    val cartDetailsResponseLiveData: LiveData<ApiResponse<CartDetailsResponse>>
+        get() = cartDetailsMutableLiveData
+
+    private val dishDetailsMutableLiveData =
+        MutableLiveData<ApiResponse<DishDetailsResponse>>()
+
+    val dishDetailsResponseLiveData: LiveData<ApiResponse<DishDetailsResponse>>
+        get() = dishDetailsMutableLiveData
+
+    private val updateCartItemQuantityMutableLiveData =
+        MutableLiveData<ApiResponse<UpdateCartItemQuantityResponse>>()
+
+    val updateCartItemQuantityLiveData: LiveData<ApiResponse<UpdateCartItemQuantityResponse>>
+        get() = updateCartItemQuantityMutableLiveData
+
+
     /**********************************************************************************
      * Api Methods - Defined Here
      * *******************************************************************************/
@@ -206,6 +231,91 @@ class MainRepo {
         }
     }
 
+
+    suspend fun addToCart(
+        token: String,
+        addToCartRequest: AddToCartRequest
+    ) {
+        try {
+            val response = apiService.addToCart(token, addToCartRequest)
+
+            addToCartResponseMutableLiveData.postValue(
+                ApiResponse(
+                    response = response.body(),
+                    errorBody = response.errorBody(),
+                    error = response.message()
+                )
+            )
+
+        } catch (e: Exception) {
+            Log.e(tag, "Exception (localizedMessage) -> homeApi: ${e.localizedMessage}")
+            Log.e(tag, "Exception (message) -> homeApi: ${e.message}")
+        }
+    }
+
+
+    suspend fun cartDetails(
+        token: String
+    ) {
+        try {
+            val response = apiService.cartDetails(token)
+
+            cartDetailsMutableLiveData.postValue(
+                ApiResponse(
+                    response = response.body(),
+                    errorBody = response.errorBody(),
+                    error = response.message()
+                )
+            )
+
+        } catch (e: Exception) {
+            Log.e(tag, "Exception (localizedMessage) -> homeApi: ${e.localizedMessage}")
+            Log.e(tag, "Exception (message) -> homeApi: ${e.message}")
+        }
+    }
+
+
+    suspend fun dishDetails(
+        token: String?,
+        dishDetailsRequest: DishDetailsRequest
+    ) {
+        try {
+            val response = apiService.dishDetails(token, dishDetailsRequest)
+
+            dishDetailsMutableLiveData.postValue(
+                ApiResponse(
+                    response = response.body(),
+                    errorBody = response.errorBody(),
+                    error = response.message()
+                )
+            )
+
+        } catch (e: Exception) {
+            Log.e(tag, "Exception (localizedMessage) -> homeApi: ${e.localizedMessage}")
+            Log.e(tag, "Exception (message) -> homeApi: ${e.message}")
+        }
+    }
+
+    suspend fun updateCartItemQuantity(
+        token: String,
+        updateCartItemQuantityRequest: UpdateCartItemQuantityRequest
+    ) {
+        try {
+            val response = apiService.updateCartItemQuantity(token, updateCartItemQuantityRequest)
+
+            updateCartItemQuantityMutableLiveData.postValue(
+                ApiResponse(
+                    response = response.body(),
+                    errorBody = response.errorBody(),
+                    error = response.message()
+                )
+            )
+
+        } catch (e: Exception) {
+            Log.e(tag, "Exception (localizedMessage) -> homeApi: ${e.localizedMessage}")
+            Log.e(tag, "Exception (message) -> homeApi: ${e.message}")
+        }
+    }
 
 
 }

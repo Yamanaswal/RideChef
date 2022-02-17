@@ -9,26 +9,28 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ripenapps.ridechef.R
 import com.ripenapps.ridechef.databinding.MenuHeaderBinding
+import com.ripenapps.ridechef.model.retrofit.models.Menu
 import com.ripenapps.ridechef.model.retrofit.models.MerchantMenuType
 
-class MenuHeaderAdapter(private val context: Context) :
+class MenuHeaderAdapter(private val context: Context, val listener: (Menu) -> Unit) :
     RecyclerView.Adapter<MenuHeaderAdapter.ViewHolder>() {
 
     private var menuMerchantTypes = mutableListOf<MerchantMenuType>()
     private lateinit var menuItemAdapter: MenuItemAdapter
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view: View = LayoutInflater.from(parent.context).inflate(R.layout.menu_header, parent, false)
+        val view: View =
+            LayoutInflater.from(parent.context).inflate(R.layout.menu_header, parent, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.binding?.menuMerchantType = menuMerchantTypes[position]
-        setRecyclerView(holder,menuMerchantTypes[position])
+        setRecyclerView(holder, menuMerchantTypes[position])
     }
 
     private fun setRecyclerView(holder: ViewHolder, merchantMenuType: MerchantMenuType) {
-        menuItemAdapter = MenuItemAdapter(context)
+        menuItemAdapter = MenuItemAdapter(context) { menu -> listener(menu) }
         holder.binding?.menusRecyclerView?.layoutManager = LinearLayoutManager(context)
         holder.binding?.menusRecyclerView?.adapter = menuItemAdapter
         menuItemAdapter.updateList(merchantMenuType.menus)

@@ -11,7 +11,7 @@ import com.ripenapps.ridechef.databinding.RestaurantFoodItemBinding
 import com.ripenapps.ridechef.model.retrofit.models.SearchDishHomeResponseDataData
 
 
-class AllFoodsRecyclerAdapter(private val context: Context) :
+class AllFoodsRecyclerAdapter(private val context: Context,val listener: (SearchDishHomeResponseDataData) -> Unit ) :
     RecyclerView.Adapter<AllFoodsRecyclerAdapter.ViewHolder>() {
 
     private val searchDishList = mutableListOf<SearchDishHomeResponseDataData>()
@@ -24,6 +24,10 @@ class AllFoodsRecyclerAdapter(private val context: Context) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.binding?.dishItem = searchDishList[position]
+
+        holder.binding?.dishCard?.setOnClickListener {
+            listener(searchDishList[position])
+        }
     }
 
     override fun getItemCount(): Int {

@@ -2,14 +2,28 @@ package com.ripenapps.ridechef.model.retrofit.models
 
 import com.google.gson.annotations.SerializedName
 
-data class AddToCartRequest(
+class AddToCartRequest(
+    @SerializedName("merchant_id")
+    var merchantId: String? = null,
+    @SerializedName("menu_id")
+    var menuId: String? = null ,
     @SerializedName("price")
-    val price: Int,
-    @SerializedName("quantity")
-    val quantity: Int,
-    @SerializedName("user_cart_id")
-    val userCartId: Int
-)
+    var price: String? = null ,
+    @SerializedName("menu_sub_variant_id")
+    var menuSubVariantId: String? = null,
+    @SerializedName("add_ons")
+    var addOns: List<AddOns>? = null,
+){
+
+}
+
+
+data class AddOns(
+    @SerializedName("id")
+    val id: String,
+    @SerializedName("price")
+    val price: String
+) {}
 
 data class AddToCartResponse(
     @SerializedName("data")
@@ -21,8 +35,8 @@ data class AddToCartResponse(
 )
 
 data class AddToCartResponseData(
-    @SerializedName("added_quantity")
-    val addedQuantity: Int
+    @SerializedName("total_cart_item")
+    val totalCartItem: Int
 )
 
 

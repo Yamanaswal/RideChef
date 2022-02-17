@@ -220,17 +220,16 @@ class HomeSearchScreen : Fragment() {
     private fun setTrendingRestaurants() {
         trendingRestaurantRecyclerViewAdapter =
             TrendingRestaurantSearchRecyclerViewAdapter(requireContext()) { restaurantItem ->
-                this.findNavController().navigate(
-                    HomeScreenDirections.actionHomeScreenToRestaurantDetailsScreen()
-                        .setRestaurantId(restaurantItem.id)
-                )
+                Log.e("TAG", "setTrendingRestaurants: ${restaurantItem.id}" )
             }
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = trendingRestaurantRecyclerViewAdapter
     }
 
     private fun setAllFoodsData() {
-        allFoodsRecyclerAdapter = AllFoodsRecyclerAdapter(requireContext())
+        allFoodsRecyclerAdapter = AllFoodsRecyclerAdapter(requireContext()) {
+            this.findNavController().navigate(HomeSearchScreenDirections.actionHomeSearchScreenToSearchRestaurantAndDishScreen())
+        }
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = allFoodsRecyclerAdapter
     }

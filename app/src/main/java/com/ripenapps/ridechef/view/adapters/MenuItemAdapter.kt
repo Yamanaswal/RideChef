@@ -10,18 +10,24 @@ import com.ripenapps.ridechef.R
 import com.ripenapps.ridechef.databinding.MenuItemBinding
 import com.ripenapps.ridechef.model.retrofit.models.Menu
 
-class MenuItemAdapter(private val context: Context) :
+class MenuItemAdapter(private val context: Context, val listener: (Menu) -> Unit) :
     RecyclerView.Adapter<MenuItemAdapter.ViewHolder>() {
 
     private var menus = mutableListOf<Menu>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view: View = LayoutInflater.from(parent.context).inflate(R.layout.menu_item, parent, false)
+        val view: View =
+            LayoutInflater.from(parent.context).inflate(R.layout.menu_item, parent, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.binding?.menu = menus[position]
+
+        //Click on Menu Add Button
+        holder.binding?.addItem?.setOnClickListener {
+            listener(menus[position])
+        }
     }
 
     override fun getItemCount(): Int {

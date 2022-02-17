@@ -44,9 +44,10 @@ class RestaurantDetailsScreen : Fragment() {
         }
 
         viewModel = ViewModelProvider(this)[RestaurantDetailsViewModel::class.java]
+
         viewModel.callApiRestaurantDetails(
             restaurantDetailsRequest = RestaurantDetailsRequest(
-                menuType = 1,
+                menuType = "",
                 restaurantId = args.restaurantId,
                 search = "",
                 vegType = 1
@@ -59,7 +60,12 @@ class RestaurantDetailsScreen : Fragment() {
     }
 
     private fun setRecyclerViews() {
-        menuHeaderAdapter = MenuHeaderAdapter(requireContext())
+
+        menuHeaderAdapter = MenuHeaderAdapter(requireContext()) { menu ->
+            val addToCartBottomSheet = AddToCartBottomSheet(menu)
+            addToCartBottomSheet.show(parentFragmentManager,"addToCartBottomSheet")
+        }
+
         binding.recyclerViewMenuHeader.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerViewMenuHeader.adapter = menuHeaderAdapter
 

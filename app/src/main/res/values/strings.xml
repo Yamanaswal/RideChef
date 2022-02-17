@@ -49,9 +49,16 @@
     <string name="about_us">About Us</string>
     <string name="notification_title">RideChef</string>
     <string name="notification_message">When you\'re order food with us,your location is being collected for faster delivery and safety features.Manage permissions in your device\'s location settings</string>
-    <string name="ticker_text" >Ticker</string>
+    <string name="ticker_text">Ticker</string>
     <string name="veg">Veg</string>
     <string name="non_veg">Non-Veg</string>
     <string name="add">+Add</string>
     <string name="dish">Dish</string>
+    <string name="quantity">Quantity</string>
+    <string name="please_select_any_one_option">Please select any one option</string>
+    <string name="add_on">Add on</string>
+    <string name="peoples_also_add_this">Peoples also add this</string>
+    <string name="delivery_location">Delivery location</string>
+    <string name="restaurant">Restaurant</string>
+    <string name="dishes">Dishes</string>
 </resources>

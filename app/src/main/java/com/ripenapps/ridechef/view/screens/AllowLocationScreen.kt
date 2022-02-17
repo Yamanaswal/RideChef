@@ -31,7 +31,7 @@ class AllowLocationScreen : Fragment() {
         }
 
         binding.changeLocation.setOnClickListener {
-//            this.findNavController().navigate(AllowLocationScreenDirections.actionAllowLocationScreenToChangeLocation())
+            this.findNavController().navigate(AllowLocationScreenDirections.actionAllowLocationScreenToChangeLocation())
         }
 
         return binding.root

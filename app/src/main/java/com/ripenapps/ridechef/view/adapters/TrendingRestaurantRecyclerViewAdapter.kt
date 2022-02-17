@@ -12,12 +12,16 @@ import com.ripenapps.ridechef.databinding.RestaurantItemSearchBinding
 import com.ripenapps.ridechef.model.retrofit.models.Restaurant
 import com.ripenapps.ridechef.model.retrofit.models.ViewAllResponseDataData
 
-class TrendingRestaurantRecyclerViewAdapter(private val context: Context,private val listener: (restaurantItem: Restaurant) -> Unit) : RecyclerView.Adapter<TrendingRestaurantRecyclerViewAdapter.ViewHolder>() {
+class TrendingRestaurantRecyclerViewAdapter(
+    private val context: Context,
+    private val listener: (restaurantItem: Restaurant) -> Unit
+) : RecyclerView.Adapter<TrendingRestaurantRecyclerViewAdapter.ViewHolder>() {
 
     private var trendingRestaurants: List<Restaurant> = emptyList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view: View = LayoutInflater.from(parent.context).inflate(R.layout.restaurant_item, parent, false)
+        val view: View =
+            LayoutInflater.from(parent.context).inflate(R.layout.restaurant_item, parent, false)
         return ViewHolder(view)
     }
 
@@ -49,18 +53,27 @@ class TrendingRestaurantRecyclerViewAdapter(private val context: Context,private
 }
 
 
-class TrendingRestaurantSearchRecyclerViewAdapter(private val context: Context,private val listener: (restaurantItem: ViewAllResponseDataData) -> Unit) : RecyclerView.Adapter<TrendingRestaurantSearchRecyclerViewAdapter.ViewHolder>() {
+class TrendingRestaurantSearchRecyclerViewAdapter(
+    private val context: Context,
+    private val listener: (restaurantItem: ViewAllResponseDataData) -> Unit
+) : RecyclerView.Adapter<TrendingRestaurantSearchRecyclerViewAdapter.ViewHolder>() {
 
     private var trendingRestaurants = mutableListOf<ViewAllResponseDataData>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view: View = LayoutInflater.from(parent.context).inflate(R.layout.restaurant_item_search, parent, false)
+        val view: View = LayoutInflater.from(parent.context)
+            .inflate(R.layout.restaurant_item_search, parent, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.binding?.restaurantData = trendingRestaurants[position]
-        listener(trendingRestaurants[position])
+
+        holder.binding?.restaurantCard?.setOnClickListener {
+            if (trendingRestaurants.isNotEmpty()) {
+                listener(trendingRestaurants[position])
+            }
+        }
     }
 
     override fun getItemCount(): Int {

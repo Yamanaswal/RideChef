@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/homeScreen">
+    app:startDestination="@id/splashScreen">
 
     <fragment
         android:id="@+id/splashScreen"
@@ -69,6 +69,12 @@
                 android:name="restaurantId"
                 android:defaultValue="0" />
         </action>
+        <action
+            android:id="@+id/action_homeScreen_to_restaurantBannerScreen"
+            app:destination="@id/restaurantBannerScreen" />
+        <action
+            android:id="@+id/action_homeScreen_to_changeLocation"
+            app:destination="@id/changeLocation" />
     </fragment>
 
     <fragment
@@ -131,6 +137,12 @@
             android:name="screen_type"
             android:defaultValue="All"
             app:argType="com.ripenapps.ridechef.model.HomeScreenType" />
+        <action
+            android:id="@+id/action_homeSearchScreen_to_restaurantDetailsScreen"
+            app:destination="@id/restaurantDetailsScreen" />
+        <action
+            android:id="@+id/action_homeSearchScreen_to_searchRestaurantAndDishScreen"
+            app:destination="@id/searchRestaurantAndDishScreen" />
     </fragment>
 
     <fragment
@@ -202,5 +214,22 @@
         android:name="com.ripenapps.ridechef.view.screens.HelpAndSupport"
         android:label="HelpAndSupport"
         tools:layout="@layout/fragment_help_and_support" />
+
+    <fragment
+        android:id="@+id/restaurantBannerScreen"
+        android:name="com.ripenapps.ridechef.view.screens.RestaurantBannerScreen"
+        android:label="RestaurantBannerScreen"
+        tools:layout="@layout/fragment_restaurant_banner_screen"/>
+
+    <fragment
+        android:id="@+id/searchRestaurantAndDishScreen"
+        android:name="com.ripenapps.ridechef.view.screens.SearchRestaurantAndDishScreen"
+        android:label="SearchRestaurantAndDishScreen"
+        tools:layout="@layout/fragment_search_restaurant_and_dish_screen" >
+        <argument
+            android:name="cuisine_id"
+            app:argType="string"
+            android:defaultValue='""' />
+    </fragment>
 
 </navigation>
