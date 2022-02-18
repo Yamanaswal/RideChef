@@ -48,3 +48,26 @@ fun setMenuPrice(textView: TextView, price: String) {
     }
 }
 
+@BindingAdapter(value = ["setReviews"])
+fun setReviews(textView: TextView, review: String) {
+    if (review.isNotEmpty()) {
+        if (review.length == 1) {
+            textView.text = "$review Review"
+        } else {
+            textView.text = "$review Reviews"
+        }
+    } else {
+        textView.text = ""
+    }
+}
+
+
+@BindingAdapter(value = ["setCouponOff"])
+fun setCouponOff(textView: TextView, value: Int) {
+    textView.text = "Get ${value}% Off"
+}
+
+@BindingAdapter(value = ["setCouponText"])
+fun setCouponText(textView: TextView, value: String) {
+    textView.text = "Valid on orders above $$value"
+}

@@ -45,7 +45,7 @@ class AddToCartBottomSheet(val menu: Menu) : BottomSheetDialogFragment() {
         )
 
         setRecyclerView()
-        setAddToCartRequest()
+//        setAddToCartRequest()
         setClicks()
         setObservers()
         return binding.root

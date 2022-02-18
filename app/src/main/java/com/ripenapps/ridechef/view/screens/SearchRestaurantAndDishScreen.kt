@@ -6,14 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.ConcatAdapter
 import com.google.android.material.tabs.TabLayout
 import com.ripenapps.ridechef.R
 import com.ripenapps.ridechef.databinding.FragmentSearchRestaurantAndDishScreenBinding
-import com.ripenapps.ridechef.databinding.FragmentSearchRestaurantAndDishScreenBindingImpl
 
 class SearchRestaurantAndDishScreen : Fragment() {
 
     lateinit var binding: FragmentSearchRestaurantAndDishScreenBinding
+    val args: SearchRestaurantAndDishScreenArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,21 +27,32 @@ class SearchRestaurantAndDishScreen : Fragment() {
             container,
             false
         )
+        if (args.searchText.isNotEmpty()) {
+            binding.search.setText(args.searchText)
+        }
+        setClicks()
         setOnTabSelectedListeners()
         return binding.root
+    }
+
+    private fun setClicks() {
+        binding.backButtonId.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
+
     }
 
 
     private fun setOnTabSelectedListeners() {
         //First Fragment
-        replaceFragment(fragment = RestaurantSearchScreen())
+        replaceFragment(fragment = RestaurantSearchScreen(args))
 
         binding.tabLayoutId.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 if (tab != null) {
                     when (tab.position) {
-                        0 -> replaceFragment(fragment = RestaurantSearchScreen())
-                        1 -> replaceFragment(fragment = DishSearchScreen())
+                        0 -> replaceFragment(fragment = RestaurantSearchScreen(args))
+                        1 -> replaceFragment(fragment = DishSearchScreen(args))
                     }
                 }
             }

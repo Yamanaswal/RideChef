@@ -27,6 +27,10 @@ class TrendingRestaurantRecyclerViewAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.binding?.restaurantData = trendingRestaurants[position]
+
+        holder.binding?.restaurantCard?.setOnClickListener {
+            listener(trendingRestaurants[position])
+        }
     }
 
     override fun getItemCount(): Int {
@@ -47,9 +51,6 @@ class TrendingRestaurantRecyclerViewAdapter(
         }
     }
 
-    init {
-//        this.faqListResponseList = faqListResponseList
-    }
 }
 
 
@@ -95,7 +96,4 @@ class TrendingRestaurantSearchRecyclerViewAdapter(
         }
     }
 
-    init {
-//        this.faqListResponseList = faqListResponseList
-    }
 }

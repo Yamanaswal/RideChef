@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
+        <variable
+            name="coupon"
+            type="com.ripenapps.ridechef.model.retrofit.models.Coupons" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,12 +27,13 @@
             android:layout_marginTop="9dp"
             android:drawablePadding="7dp"
             android:fontFamily="@font/airbnb_cereal_bold"
-            android:text="@string/get_50_off"
             android:textColor="@color/black"
             android:textSize="12sp"
             app:drawableStartCompat="@drawable/coupon_offer"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:setCouponOff="@{coupon.discount}"
+            tools:text="@string/get_50_off" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -37,11 +42,12 @@
             android:layout_marginTop="3dp"
             android:layout_marginBottom="9dp"
             android:fontFamily="@font/airbnb_cereal_medium"
-            android:text="Valid on orders above $50.49"
             android:textSize="11sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/couponText"
-            app:layout_constraintTop_toBottomOf="@+id/couponText" />
+            app:layout_constraintTop_toBottomOf="@+id/couponText"
+            app:setCouponText="@{coupon.minBillAmount}"
+            tools:text="Valid on orders above $50.49" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -50,11 +56,12 @@
             android:layout_marginEnd="11dp"
             android:fontFamily="@font/airbnb_cereal_bold"
             android:letterSpacing="0.2"
-            android:text="HAPPYHOUR"
+            android:text="@{coupon.couponCode}"
             android:textColor="@color/button_red"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="HappyHour" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

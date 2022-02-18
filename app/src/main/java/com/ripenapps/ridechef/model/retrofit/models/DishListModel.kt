@@ -1,15 +1,14 @@
 package com.ripenapps.ridechef.model.retrofit.models
+
 import com.google.gson.annotations.SerializedName
 
 data class DishListRequest(
-    @SerializedName("menu_type")
-    val menuType: Int,
-    @SerializedName("restaurant_id")
-    val restaurantId: Int,
+    @SerializedName("latitude")
+    val latitude: String,
+    @SerializedName("longitude")
+    val longitude: String,
     @SerializedName("search")
-    val search: String,
-    @SerializedName("veg_type")
-    val vegType: Int
+    val search: String
 )
 
 data class DishListResponse(
@@ -65,6 +64,8 @@ data class DishListResponseDataData(
     val merchantMenus: List<MerchantMenu>,
     @SerializedName("rating")
     val rating: String,
+    @SerializedName("review")
+    val review: String,
     @SerializedName("restaurant_name")
     val restaurantName: String,
     @SerializedName("shop_location")

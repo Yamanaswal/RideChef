@@ -4,10 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
-            name="menu"
-            type="com.ripenapps.ridechef.model.retrofit.models.Menu" />
+            name="dishBody"
+            type="com.ripenapps.ridechef.model.retrofit.models.MerchantMenu" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -47,7 +46,7 @@
             android:ellipsize="end"
             android:fontFamily="@font/airbnb_cereal_medium"
             android:maxLines="1"
-            android:text="@{menu.name}"
+            android:text="@{dishBody.name}"
             android:textColor="@color/black"
             android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -65,7 +64,7 @@
             android:textSize="15sp"
             app:layout_constraintStart_toStartOf="@+id/menuIcon"
             app:layout_constraintTop_toBottomOf="@+id/menuFoodName"
-            app:setMenuPrice="@{menu.finalPrice}"
+            app:setMenuPrice="@{dishBody.finalPrice}"
             tools:text="$29.45" />
 
         <TextView
@@ -87,4 +86,5 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

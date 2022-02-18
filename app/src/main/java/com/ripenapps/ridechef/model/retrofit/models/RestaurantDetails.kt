@@ -38,8 +38,11 @@ data class RestaurantDetailsResponseData(
     @SerializedName("restaurant_name")
     val restaurantName: String,
     @SerializedName("shop_location")
-    val shopLocation: String
+    val shopLocation: String,
+    @SerializedName("coupons")
+    val coupons: List<Coupons>
 )
+
 
 data class MerchantMenuType(
     @SerializedName("created_at")
@@ -89,4 +92,21 @@ data class Menu(
     val type: Int,
     @SerializedName("updated_at")
     val updatedAt: String
+)
+
+data class Coupons(
+    @SerializedName("coupon_code")
+    val couponCode: String,
+    @SerializedName("discount")
+    val discount: Int,
+    @SerializedName("id")
+    val id: Int,
+    @SerializedName("max_discount")
+    val maxDiscount: String,
+    @SerializedName("merchant_id")
+    val merchantId: Int,
+    @SerializedName("min_bill_amount")
+    val minBillAmount: String,
+    @SerializedName("status")
+    val status: Int
 )

@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="menuVariant"
             type="com.ripenapps.ridechef.model.retrofit.models.MenuVariant" />
@@ -54,10 +53,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/selectQuantity"
-            tools:itemCount="3" />
-
+            app:layout_constraintTop_toBottomOf="@+id/selectQuantity" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

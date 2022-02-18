@@ -7,15 +7,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.ripenapps.ridechef.R
 import com.ripenapps.ridechef.databinding.FragmentRestaurantSearchScreenBinding
 import com.ripenapps.ridechef.model.retrofit.models.RestaurantListRequest
+import com.ripenapps.ridechef.view.adapters.RestaurantSearchRecyclerViewAdapter
 import com.ripenapps.ridechef.view_model.RestaurantAndDishViewModel
 
-class RestaurantSearchScreen : Fragment() {
+class RestaurantSearchScreen(private val args: SearchRestaurantAndDishScreenArgs) : Fragment() {
 
     lateinit var binding: FragmentRestaurantSearchScreenBinding
-    lateinit var viewModel : RestaurantAndDishViewModel
+    lateinit var viewModel: RestaurantAndDishViewModel
+    private lateinit var restaurantSearchRecyclerViewAdapter: RestaurantSearchRecyclerViewAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,9 +31,35 @@ class RestaurantSearchScreen : Fragment() {
             container,
             false
         )
+
         viewModel = ViewModelProvider(this)[RestaurantAndDishViewModel::class.java]
-        viewModel.callRestaurantListApi(restaurantListRequest = RestaurantListRequest("24.33","25.00","","1"))
+        viewModel.callRestaurantListApi(
+            restaurantListRequest = RestaurantListRequest(
+                latitude = "24.33",
+                longitude = "25.00",
+                search = "",
+                cuisine_id = ""
+            )
+        )
+
+        setRecyclerView()
+        setObservers()
         return binding.root
+    }
+
+    private fun setRecyclerView() {
+        restaurantSearchRecyclerViewAdapter =
+            RestaurantSearchRecyclerViewAdapter(requireContext()) {
+
+            }
+        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerView.adapter = restaurantSearchRecyclerViewAdapter
+    }
+
+    private fun setObservers() {
+        viewModel.restaurantListResponse.observe(this) {
+            restaurantSearchRecyclerViewAdapter.updateList(it.response?.data?.data)
+        }
     }
 
 }

@@ -61,4 +61,13 @@
     <string name="delivery_location">Delivery location</string>
     <string name="restaurant">Restaurant</string>
     <string name="dishes">Dishes</string>
+    <string name="delivery_location">Delivery location</string>
+    <string name="apply_coupon">Apply Coupon</string>
+    <string name="add_a_tip_for_rider">Add a Tip for rider</string>
+    <string name="enter_tip_amount">Enter tip amount</string>
+    <string name="bill_details">Bill Details</string>
+    <string name="delivery_charges">Delivery Charges</string>
+    <string name="tax_fee"><![CDATA[Tax & Fee]]></string>
+    <string name="coupon_discount">Coupon Discount</string>
+    <string name="item_total">Item Total</string>
 </resources>

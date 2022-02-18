@@ -64,7 +64,7 @@
             app:destination="@id/homeSearchScreen" />
         <action
             android:id="@+id/action_homeScreen_to_restaurantDetailsScreen"
-            app:destination="@id/restaurantDetailsScreen" >
+            app:destination="@id/restaurantDetailsScreen">
             <argument
                 android:name="restaurantId"
                 android:defaultValue="0" />
@@ -75,6 +75,9 @@
         <action
             android:id="@+id/action_homeScreen_to_changeLocation"
             app:destination="@id/changeLocation" />
+        <action
+            android:id="@+id/action_homeScreen_to_searchRestaurantAndDishScreen"
+            app:destination="@id/searchRestaurantAndDishScreen" />
     </fragment>
 
     <fragment
@@ -87,8 +90,8 @@
             app:destination="@id/homeScreen" />
         <argument
             android:name="mobileNumber"
-            app:argType="string"
-            android:defaultValue='""' />
+            android:defaultValue='""'
+            app:argType="string" />
     </fragment>
 
     <fragment
@@ -149,7 +152,7 @@
         android:id="@+id/restaurantDetailsScreen"
         android:name="com.ripenapps.ridechef.view.screens.RestaurantDetailsScreen"
         android:label="RestaurantDetailsScreen"
-        tools:layout="@layout/fragment_restaurant_details_screen" >
+        tools:layout="@layout/fragment_restaurant_details_screen">
         <argument
             android:name="restaurantId"
             app:argType="integer" />
@@ -219,17 +222,21 @@
         android:id="@+id/restaurantBannerScreen"
         android:name="com.ripenapps.ridechef.view.screens.RestaurantBannerScreen"
         android:label="RestaurantBannerScreen"
-        tools:layout="@layout/fragment_restaurant_banner_screen"/>
+        tools:layout="@layout/fragment_restaurant_banner_screen" />
 
     <fragment
         android:id="@+id/searchRestaurantAndDishScreen"
         android:name="com.ripenapps.ridechef.view.screens.SearchRestaurantAndDishScreen"
         android:label="SearchRestaurantAndDishScreen"
-        tools:layout="@layout/fragment_search_restaurant_and_dish_screen" >
+        tools:layout="@layout/fragment_search_restaurant_and_dish_screen">
         <argument
             android:name="cuisine_id"
-            app:argType="string"
-            android:defaultValue='""' />
+            android:defaultValue='""'
+            app:argType="string" />
+        <argument
+            android:name="search_text"
+            android:defaultValue='""'
+            app:argType="string" />
     </fragment>
 
 </navigation>

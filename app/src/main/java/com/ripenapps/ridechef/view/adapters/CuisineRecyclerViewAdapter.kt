@@ -10,22 +10,31 @@ import com.ripenapps.ridechef.R
 import com.ripenapps.ridechef.databinding.RestaurantCuisineItemBinding
 import com.ripenapps.ridechef.databinding.RestaurantCuisineSearchItemBinding
 import com.ripenapps.ridechef.model.retrofit.models.Cuisines
+import com.ripenapps.ridechef.model.retrofit.models.Restaurant
 import com.ripenapps.ridechef.model.retrofit.models.ViewAllResponseDataData
 
 //TODO
 //Home Adapter
-class CuisineRecyclerViewAdapter(private val context: Context) :
+class CuisineRecyclerViewAdapter(
+    private val context: Context,
+    private val listener: (cuisineItem: Cuisines) -> Unit
+) :
     RecyclerView.Adapter<CuisineRecyclerViewAdapter.ViewHolder>() {
 
     private var cuisines: List<Cuisines> = emptyList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view: View = LayoutInflater.from(parent.context).inflate(R.layout.restaurant_cuisine_item, parent, false)
+        val view: View = LayoutInflater.from(parent.context)
+            .inflate(R.layout.restaurant_cuisine_item, parent, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.binding?.cuisine = cuisines[position]
+
+        holder.binding?.cuisineCard?.setOnClickListener {
+            listener(cuisines[position])
+        }
     }
 
     override fun getItemCount(): Int {
@@ -51,18 +60,26 @@ class CuisineRecyclerViewAdapter(private val context: Context) :
 
 //TODO
 //Search Adapter
-class CuisineSearchRecyclerViewAdapter(private val context: Context) :
+class CuisineSearchRecyclerViewAdapter(
+    private val context: Context,
+    private val listener: (cuisineItem: ViewAllResponseDataData) -> Unit
+) :
     RecyclerView.Adapter<CuisineSearchRecyclerViewAdapter.ViewHolder>() {
 
     private var cuisines = mutableListOf<ViewAllResponseDataData>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view: View = LayoutInflater.from(parent.context).inflate(R.layout.restaurant_cuisine_search_item, parent, false)
+        val view: View = LayoutInflater.from(parent.context)
+            .inflate(R.layout.restaurant_cuisine_search_item, parent, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.binding?.cuisine = cuisines[position]
+
+        holder.binding?.cuisineCard?.setOnClickListener {
+            listener(cuisines[position])
+        }
     }
 
     override fun getItemCount(): Int {

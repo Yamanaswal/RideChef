@@ -18,8 +18,7 @@ class MenuVariantRecyclerViewAdapter(private val context: Context) :
     private val meuVariantList = mutableListOf<MenuVariant>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view: View =
-            LayoutInflater.from(parent.context).inflate(R.layout.menu_variant_item, parent, false)
+        val view: View = LayoutInflater.from(parent.context).inflate(R.layout.menu_variant_item, parent, false)
         return ViewHolder(view)
     }
 

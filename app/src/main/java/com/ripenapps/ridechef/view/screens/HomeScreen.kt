@@ -1,6 +1,5 @@
 package com.ripenapps.ridechef.view.screens
 
-import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -42,8 +41,7 @@ class HomeScreen : Fragment() {
 
         if (!this::binding.isInitialized) {
             // Inflate the layout for this fragment
-            binding =
-                DataBindingUtil.inflate(inflater, R.layout.fragment_home_screen, container, false)
+            binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home_screen, container, false)
             viewModel = ViewModelProvider(this)[HomeViewModel::class.java]
             viewModel.callApiHome(homeRequest = HomeRequest(23.77, 22.44))
 
@@ -167,7 +165,12 @@ class HomeScreen : Fragment() {
     }
 
     private fun setCuisineRecyclerView() {
-        cuisineRecyclerViewAdapter = CuisineRecyclerViewAdapter(requireContext())
+        cuisineRecyclerViewAdapter = CuisineRecyclerViewAdapter(requireContext()) { cuisineItem ->
+            this.findNavController().navigate(
+                HomeScreenDirections.actionHomeScreenToSearchRestaurantAndDishScreen()
+                    .setCuisineId(cuisineItem.id.toString())
+            )
+        }
         binding.trendingCuisineRecyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.trendingCuisineRecyclerView.adapter = cuisineRecyclerViewAdapter

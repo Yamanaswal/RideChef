@@ -61,8 +61,7 @@ class RestaurantDetailsScreen : Fragment() {
 
     private fun setRecyclerViews() {
 
-        menuHeaderAdapter = MenuHeaderAdapter(requireContext()) { menu ->
-            val addToCartBottomSheet = AddToCartBottomSheet(menu)
+        menuHeaderAdapter = MenuHeaderAdapter(requireContext()) { menu -> val addToCartBottomSheet = AddToCartBottomSheet(menu)
             addToCartBottomSheet.show(parentFragmentManager,"addToCartBottomSheet")
         }
 
@@ -70,8 +69,7 @@ class RestaurantDetailsScreen : Fragment() {
         binding.recyclerViewMenuHeader.adapter = menuHeaderAdapter
 
         couponRecyclerViewAdapter = CouponRecyclerViewAdapter(requireContext())
-        binding.couponRecyclerView.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.couponRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.couponRecyclerView.adapter = couponRecyclerViewAdapter
     }
 
@@ -80,6 +78,7 @@ class RestaurantDetailsScreen : Fragment() {
             //Set Restaurant Details
             binding.restaurantDetailsData = res.response?.data
             menuHeaderAdapter.updateList(res.response?.data?.merchantMenuTypes)
+            couponRecyclerViewAdapter.updateList(res.response?.data?.coupons)
         }
     }
 

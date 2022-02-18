@@ -198,9 +198,15 @@ class HomeSearchScreen : Fragment() {
         }
     }
 
-
     private fun setCuisineRecyclerView() {
-        cuisineSearchRecyclerViewAdapter = CuisineSearchRecyclerViewAdapter(requireContext())
+        cuisineSearchRecyclerViewAdapter =
+            CuisineSearchRecyclerViewAdapter(requireContext()) { cuisineItem ->
+                this.findNavController().navigate(
+                    HomeSearchScreenDirections.actionHomeSearchScreenToSearchRestaurantAndDishScreen()
+                        .setCuisineId(cuisineItem.id.toString())
+                        .setSearchText(binding.search.toString())
+                )
+            }
         binding.recyclerView.layoutManager = GridLayoutManager(requireContext(), 3)
         binding.recyclerView.adapter = cuisineSearchRecyclerViewAdapter
     }
@@ -209,8 +215,7 @@ class HomeSearchScreen : Fragment() {
         featureRestaurantRecyclerViewAdapter =
             FeatureRestaurantSearchRecyclerViewAdapter(requireContext()) { restaurantItem ->
                 this.findNavController().navigate(
-                    HomeScreenDirections.actionHomeScreenToRestaurantDetailsScreen()
-                        .setRestaurantId(restaurantItem.id)
+                    HomeSearchScreenDirections.actionHomeSearchScreenToRestaurantDetailsScreen(restaurantItem.id)
                 )
             }
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -220,7 +225,9 @@ class HomeSearchScreen : Fragment() {
     private fun setTrendingRestaurants() {
         trendingRestaurantRecyclerViewAdapter =
             TrendingRestaurantSearchRecyclerViewAdapter(requireContext()) { restaurantItem ->
-                Log.e("TAG", "setTrendingRestaurants: ${restaurantItem.id}" )
+                this.findNavController().navigate(
+                    HomeSearchScreenDirections.actionHomeSearchScreenToRestaurantDetailsScreen(restaurantItem.id)
+                )
             }
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = trendingRestaurantRecyclerViewAdapter
@@ -228,7 +235,9 @@ class HomeSearchScreen : Fragment() {
 
     private fun setAllFoodsData() {
         allFoodsRecyclerAdapter = AllFoodsRecyclerAdapter(requireContext()) {
-            this.findNavController().navigate(HomeSearchScreenDirections.actionHomeSearchScreenToSearchRestaurantAndDishScreen())
+            this.findNavController().navigate(
+                HomeSearchScreenDirections.actionHomeSearchScreenToSearchRestaurantAndDishScreen().setSearchText(binding.search.text.toString())
+            )
         }
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = allFoodsRecyclerAdapter
