@@ -6,9 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast.LENGTH_SHORT
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import com.ripenapps.ridechef.MainActivity
 import com.ripenapps.ridechef.R
 import com.ripenapps.ridechef.databinding.FragmentLoginScreenBinding
@@ -52,7 +54,29 @@ class LoginScreen : Fragment() {
     }
 
     private fun continueButtonClick() {
-        this.findNavController().navigate(LoginScreenDirections.actionLoginScreenToOtpScreen().setMobileNumber(binding.countryCode.selectedCountryCode + "-" + binding.mobileNumber.text.toString()))
+        val validMobile = validateMobileNumber(binding.mobileNumber.text.toString())
+        if(validMobile.validStatus){
+            this.findNavController().navigate(LoginScreenDirections.actionLoginScreenToOtpScreen().setMobileNumber(binding.countryCode.selectedCountryCode + "-" + binding.mobileNumber.text.toString()))
+        }else{
+            Snackbar.make(requireView(),validMobile.validReason,2000).show()
+        }
+
     }
 
+//    fun validateMobileNumber(mobileNumber: String): Valid {
+//
+//        if (mobileNumber.isEmpty()) {
+//            return Valid(
+//                validStatus = false,
+//                validReason = "Please Enter Mobile Number."
+//            )
+//        } else if (mobileNumber.length < 9 || mobileNumber.length > 13) {
+//            return Valid(
+//                validStatus = false,
+//                validReason = "Please Enter Mobile Number Between 9 to 12."
+//            )
+//        }
+//
+//        return Valid(validStatus = true, validReason = "")
+//    }
 }

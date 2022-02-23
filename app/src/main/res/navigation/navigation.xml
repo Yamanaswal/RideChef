@@ -22,7 +22,9 @@
         tools:layout="@layout/fragment_change_location">
         <action
             android:id="@+id/action_changeLocation_to_loginScreen"
-            app:destination="@id/loginScreen" />
+            app:destination="@id/loginScreen"
+            app:popUpTo="@id/changeLocation"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
@@ -35,7 +37,9 @@
             app:destination="@id/changeLocation" />
         <action
             android:id="@+id/action_allowLocationScreen_to_loginScreen"
-            app:destination="@id/loginScreen" />
+            app:destination="@id/loginScreen"
+            app:popUpTo="@id/allowLocationScreen"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
@@ -78,6 +82,9 @@
         <action
             android:id="@+id/action_homeScreen_to_searchRestaurantAndDishScreen"
             app:destination="@id/searchRestaurantAndDishScreen" />
+        <action
+            android:id="@+id/action_homeScreen_to_myCartScreen"
+            app:destination="@id/myCartScreen" />
     </fragment>
 
     <fragment
@@ -87,7 +94,9 @@
         tools:layout="@layout/fragment_otp_screen">
         <action
             android:id="@+id/action_otpScreen_to_homeScreen"
-            app:destination="@id/homeScreen" />
+            app:destination="@id/homeScreen"
+            app:popUpTo="@id/homeScreen"
+            app:popUpToInclusive="true" />
         <argument
             android:name="mobileNumber"
             android:defaultValue='""'
@@ -129,6 +138,10 @@
         <action
             android:id="@+id/action_sideMenuScreen_to_helpAndSupport"
             app:destination="@id/helpAndSupport" />
+        <action
+            android:id="@+id/action_sideMenuScreen_to_loginScreen"
+            app:destination="@id/loginScreen"
+            app:popUpTo="@id/loginScreen" />
     </fragment>
 
     <fragment
@@ -156,6 +169,9 @@
         <argument
             android:name="restaurantId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_restaurantDetailsScreen_to_loginScreen"
+            app:destination="@id/loginScreen" />
     </fragment>
 
     <fragment
@@ -237,6 +253,30 @@
             android:name="search_text"
             android:defaultValue='""'
             app:argType="string" />
+        <action
+            android:id="@+id/action_searchRestaurantAndDishScreen_to_restaurantDetailsScreen"
+            app:destination="@id/restaurantDetailsScreen" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/couponScreen"
+        android:name="com.ripenapps.ridechef.view.screens.CouponScreen"
+        android:label="CouponScreen"
+        tools:layout="@layout/fragment_coupon_screen">
+        <argument
+            android:name="couponsList"
+            app:nullable="true"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/myCartScreen"
+        android:name="com.ripenapps.ridechef.view.screens.MyCartScreen"
+        android:label="MyCartScreen"
+        tools:layout="@layout/fragment_my_cart_screen">
+        <action
+            android:id="@+id/action_myCartScreen_to_couponScreen"
+            app:destination="@id/couponScreen" />
     </fragment>
 
 </navigation>

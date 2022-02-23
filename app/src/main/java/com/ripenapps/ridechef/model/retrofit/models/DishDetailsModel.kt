@@ -1,4 +1,5 @@
 package com.ripenapps.ridechef.model.retrofit.models
+
 import com.google.gson.annotations.SerializedName
 
 
@@ -95,5 +96,6 @@ data class MenuSubVariant(
     @SerializedName("price")
     val price: String,
     @SerializedName("updated_at")
-    val updatedAt: String
+    val updatedAt: String,
+    var isSelect: Boolean = false
 )

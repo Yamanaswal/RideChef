@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data></data>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -124,8 +123,8 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/trendingCuisineRecyclerView"
                     android:layout_width="match_parent"
-                    android:layout_marginStart="20dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
                     android:overScrollMode="never"
                     tools:itemCount="5" />
 
@@ -222,6 +221,8 @@
         </ScrollView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/viewCart"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardBackgroundColor="@color/white"
@@ -241,7 +242,7 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="25dp"
                     android:scaleType="fitXY"
-                    android:src="@mipmap/rest_placeholder"
+                    tools:src="@mipmap/rest_placeholder"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -253,7 +254,7 @@
                     android:layout_marginStart="12dp"
                     android:layout_marginEnd="10dp"
                     android:fontFamily="@font/airbnb_cereal_bold"
-                    android:text="Celebration Restaurant"
+                    tools:text="Celebration Restaurant"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toStartOf="@+id/viewButton"

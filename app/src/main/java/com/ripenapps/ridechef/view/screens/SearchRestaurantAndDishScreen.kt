@@ -22,16 +22,18 @@ class SearchRestaurantAndDishScreen : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(
-            inflater, R.layout.fragment_search_restaurant_and_dish_screen,
-            container,
-            false
-        )
-        if (args.searchText.isNotEmpty()) {
-            binding.search.setText(args.searchText)
+        if (!this::binding.isInitialized) {
+            binding = DataBindingUtil.inflate(
+                inflater, R.layout.fragment_search_restaurant_and_dish_screen,
+                container,
+                false
+            )
+            if (args.searchText.isNotEmpty()) {
+                binding.search.setText(args.searchText)
+            }
+            setClicks()
+            setOnTabSelectedListeners()
         }
-        setClicks()
-        setOnTabSelectedListeners()
         return binding.root
     }
 

@@ -1,10 +1,13 @@
 package com.ripenapps.ridechef.utils
 
+import android.content.Context
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import coil.load
+import com.google.gson.Gson
 import com.ripenapps.ridechef.R
+import com.ripenapps.ridechef.model.retrofit.models.LoginResponseData
 import com.ripenapps.ridechef.model.retrofit.models.MerchantCusine
 import java.text.DecimalFormat
 
@@ -42,7 +45,7 @@ fun setRestaurantPrice(textView: TextView, price: String) {
 fun setMenuPrice(textView: TextView, price: String) {
     if (price.isNotEmpty()) {
         val dec = DecimalFormat("#.##")
-        textView.text = "$ ${price}"
+        textView.text = "$ $price"
     } else {
         textView.text = ""
     }
@@ -71,3 +74,25 @@ fun setCouponOff(textView: TextView, value: Int) {
 fun setCouponText(textView: TextView, value: String) {
     textView.text = "Valid on orders above $$value"
 }
+
+@BindingAdapter(value = ["setAddressType"])
+fun setAddressType(textView: TextView, value: Int) {
+    if (value == 1) {
+        textView.text = "HOME"
+    } else if (value == 2) {
+        textView.text = "WORK"
+    } else {
+        textView.text = "OTHER"
+    }
+}
+
+
+fun getUserData(context: Context): LoginResponseData? {
+    return Gson().fromJson(
+        PreferencesUtil.getStringPreference(
+            context,
+            PrefConstants.USERDATA
+        ), LoginResponseData::class.java
+    )
+}
+

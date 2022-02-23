@@ -5,11 +5,13 @@ import com.google.gson.annotations.SerializedName
 
 data class UpdateCartItemQuantityRequest(
     @SerializedName("price")
-    val price: Int,
+    val price: String,
     @SerializedName("quantity")
     val quantity: Int,
     @SerializedName("user_cart_id")
-    val userCartId: Int
+    val userCartId: Int,
+    @SerializedName("type")
+    val type: String
 )
 
 

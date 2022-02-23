@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="21dp"
+            android:layout_marginTop="21dp"
+            android:fontFamily="@font/airbnb_cereal_bold"
+            android:text="@string/enter_address_details"
+            android:textColor="#232633"
+            android:textSize="19sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginVertical="20dp"
+            android:background="@color/grey_light" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="21dp"
+            android:fontFamily="@font/airbnb_cereal_medium"
+            android:text="@string/complete_address"
+            android:textColor="#A7A8AD"
+            android:textSize="13sp" />
+
+        <EditText
+            android:id="@+id/houseNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="21dp"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/airbnb_cereal_medium"
+            android:hint="@string/house_no_flat_no_floor"
+            android:textColor="#54565D"
+            android:textColorHint="#DDDFE3"
+            android:textSize="15sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="15sp"
+            android:background="@color/grey_light" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="21dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/airbnb_cereal_medium"
+            android:text="@string/landmark_optional"
+            android:textColor="#A7A8AD"
+            android:textSize="13dp" />
+
+        <EditText
+            android:id="@+id/landmarkAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="21dp"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/airbnb_cereal_medium"
+            android:hint="Near about you"
+            android:textColor="#54565D"
+            android:textColorHint="#DDDFE3"
+            android:textSize="15sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="15sp"
+            android:background="@color/grey_light" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="21dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/airbnb_cereal_medium"
+            android:text="@string/pincode"
+            android:textColor="#A7A8AD"
+            android:textSize="13dp" />
+
+        <EditText
+            android:id="@+id/pinCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="21dp"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/airbnb_cereal_medium"
+            android:hint="@string/near_about_you"
+            android:inputType="number"
+            android:maxLength="6"
+            android:textColor="#54565D"
+            android:textColorHint="#DDDFE3"
+            android:textSize="15sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="15sp"
+            android:background="@color/grey_light" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="21dp"
+            android:layout_marginTop="21dp"
+            android:fontFamily="@font/airbnb_cereal_bold"
+            android:text="@string/save_as"
+            android:textColor="#232633"
+            android:textSize="17sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="21dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/round_button_red_background"
+                android:fontFamily="@font/airbnb_cereal_medium"
+                android:paddingHorizontal="17sp"
+                android:paddingVertical="10dp"
+                android:text="@string/home"
+                android:textColor="@color/white"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/work"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="11sp"
+                android:background="@drawable/round_gray_11dp"
+                android:fontFamily="@font/airbnb_cereal_medium"
+                android:paddingHorizontal="17sp"
+                android:paddingVertical="10dp"
+                android:text="@string/work"
+                android:textColor="#232633"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/other"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="11sp"
+                android:background="@drawable/round_gray_11dp"
+                android:fontFamily="@font/airbnb_cereal_medium"
+                android:paddingHorizontal="17sp"
+                android:paddingVertical="10dp"
+                android:text="@string/other"
+                android:textColor="#232633"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <Button
+            style="@style/buttonStyleRed"
+            android:id="@+id/saveLocation"
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="20dp"
+            android:layout_height="wrap_content"
+            android:text="@string/save_location"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+</layout>

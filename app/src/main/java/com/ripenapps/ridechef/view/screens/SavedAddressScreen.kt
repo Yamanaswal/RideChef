@@ -6,16 +6,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ripenapps.ridechef.R
 import com.ripenapps.ridechef.databinding.FragmentSavedAddressScreenBinding
+import com.ripenapps.ridechef.utils.getUserData
 import com.ripenapps.ridechef.view.adapters.MyOrderRecyclerViewAdapter
 import com.ripenapps.ridechef.view.adapters.SavedAddressRecyclerViewAdapter
+import com.ripenapps.ridechef.view_model.LoginViewModel
+import com.ripenapps.ridechef.view_model.SavedAddressViewModel
 
 
 class SavedAddressScreen : Fragment() {
 
     lateinit var binding: FragmentSavedAddressScreenBinding
+    lateinit var viewModel: SavedAddressViewModel
+    lateinit var savedAddressRecyclerAdapter: SavedAddressRecyclerViewAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,13 +34,25 @@ class SavedAddressScreen : Fragment() {
             container,
             false
         )
+        viewModel = ViewModelProvider(this)[SavedAddressViewModel::class.java]
+        val userData = getUserData(requireContext())
+        viewModel.callApiUserAddress(userData?.tokenType + " " + userData?.accessToken)
         setAppBar()
         setRecyclerView()
+        setObservers()
         return binding.root
     }
 
+    private fun setObservers() {
+        viewModel.userAddressResponse.observe(this) { res ->
+            if (res.response?.status == 200) {
+                savedAddressRecyclerAdapter.updateList(res.response?.data)
+            }
+        }
+    }
+
     private fun setRecyclerView() {
-        val savedAddressRecyclerAdapter = SavedAddressRecyclerViewAdapter(requireContext())
+        savedAddressRecyclerAdapter = SavedAddressRecyclerViewAdapter(requireContext())
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = savedAddressRecyclerAdapter
     }

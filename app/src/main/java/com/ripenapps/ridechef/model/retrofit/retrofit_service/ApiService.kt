@@ -69,5 +69,26 @@ interface ApiService {
         @Body updateCartItemQuantityRequest: UpdateCartItemQuantityRequest
     ): Response<UpdateCartItemQuantityResponse>
 
+
+    @POST("api/user/save-user-address")
+    suspend fun saveUserAddress(
+        @Header("Authorization") token: String,
+        @Body saveUserAddressRequest: SaveUserAddressRequest
+    ): Response<EmptyResponse>
+
+
+    @POST("api/user/make-default-user-address")
+    suspend fun makeDefaultUserAddress(
+        @Header("Authorization") token: String,
+        @Body makeDefaultAddressRequest: MakeDefaultAddressRequest
+    ): Response<EmptyResponse>
+
+
+    @GET("api/user/user-address")
+    suspend fun userAddress(
+        @Header("Authorization") token: String,
+    ): Response<UserAddressesResponse>
+
+
 }
 

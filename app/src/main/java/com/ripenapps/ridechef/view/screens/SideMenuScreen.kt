@@ -10,6 +10,9 @@ import androidx.navigation.fragment.findNavController
 import com.ripenapps.ridechef.R
 import com.ripenapps.ridechef.databinding.FragmentSideMenuScreenBinding
 import com.ripenapps.ridechef.model.sideMenuList
+import com.ripenapps.ridechef.utils.PrefConstants
+import com.ripenapps.ridechef.utils.PreferencesUtil
+import com.ripenapps.ridechef.utils.getUserData
 
 class SideMenuScreen : Fragment() {
 
@@ -20,15 +23,17 @@ class SideMenuScreen : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_side_menu_screen, container, false)
+        binding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_side_menu_screen, container, false)
         //Set Data in Side Menus
         binding.sideMenuDataList = sideMenuList
-
         setData()
         return binding.root
     }
 
     private fun setData() {
+
+        val userdata = getUserData(requireContext())
 
         ////Set Clicks
         binding.home.setOnClickListener {
@@ -56,8 +61,13 @@ class SideMenuScreen : Fragment() {
         }
 
         binding.savedAddress.sideMenuRow.setOnClickListener {
-            this.findNavController()
-                .navigate(SideMenuScreenDirections.actionSideMenuScreenToSavedAddressScreen())
+            if (userdata?.accessToken != null) {
+                this.findNavController()
+                    .navigate(SideMenuScreenDirections.actionSideMenuScreenToSavedAddressScreen())
+            } else {
+                this.findNavController()
+                    .navigate(SideMenuScreenDirections.actionSideMenuScreenToLoginScreen())
+            }
         }
 
         binding.aboutUs.sideMenuRow.setOnClickListener {
@@ -83,6 +93,13 @@ class SideMenuScreen : Fragment() {
         binding.helpSupport.sideMenuRow.setOnClickListener {
             this.findNavController()
                 .navigate(SideMenuScreenDirections.actionSideMenuScreenToHelpAndSupport())
+        }
+
+        binding.logout.sideMenuRow.setOnClickListener {
+            PreferencesUtil.removePreference(requireContext(), PrefConstants.USERDATA)
+            PreferencesUtil.removePreference(requireContext(), PrefConstants.IS_USER_LOGIN)
+            this.findNavController()
+                .navigate(SideMenuScreenDirections.actionSideMenuScreenToLoginScreen())
         }
 
 

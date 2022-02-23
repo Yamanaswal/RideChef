@@ -3,8 +3,6 @@ package com.ripenapps.ridechef.utils
 import android.content.Context
 import android.content.SharedPreferences
 import java.lang.Exception
-import java.util.ArrayList
-
 
 //Const
 object PrefConstants {
@@ -18,7 +16,7 @@ object PrefConstants {
 
 
 //Utility Class
-object Preferences {
+object PreferencesUtil {
 
     private fun getSharedPreferences(context: Context): SharedPreferences {
         return context.getSharedPreferences(PrefConstants.TAG, Context.MODE_PRIVATE)
@@ -39,39 +37,38 @@ object Preferences {
     }
 
     fun setIntegerPreference(context: Context, key: String?, `val`: Int) {
-        val settings: SharedPreferences =
-            Preferences.getSharedPreferences(context)
+        val settings: SharedPreferences = getSharedPreferences(context)
         val editor = settings.edit()
         editor.putInt(key, `val`)
         editor.commit()
     }
 
     fun getStringPreference(context: Context, key: String?): String? {
-        val prefs: SharedPreferences = Preferences.getSharedPreferences(context)
+        val prefs: SharedPreferences = getSharedPreferences(context)
         return prefs.getString(key, "")
     }
 
     fun getStringPreference1(context: Context, key: String?): String? {
         val prefs: SharedPreferences =
-            Preferences.getSharedPreferences(context)
+            getSharedPreferences(context)
         return prefs.getString(key, "0")
     }
 
     fun getBooleanPreference(context: Context, key: String?): Boolean {
         val prefs: SharedPreferences =
-            Preferences.getSharedPreferences(context)
+            getSharedPreferences(context)
         return prefs.getBoolean(key, false)
     }
 
     fun getIntegerPreference(context: Context, key: String?): Int {
         val prefs: SharedPreferences =
-            Preferences.getSharedPreferences(context)
+            getSharedPreferences(context)
         return prefs.getInt(key, -1)
     }
 
     fun getAllPreference(context: Context): String {
         val settings: SharedPreferences =
-            Preferences.getSharedPreferences(context)
+            getSharedPreferences(context)
         val editor = settings.all
         var text = ""
         try {
@@ -88,15 +85,14 @@ object Preferences {
 
     fun removePreference(context: Context, key: String?) {
         val settings: SharedPreferences =
-            Preferences.getSharedPreferences(context)
+            getSharedPreferences(context)
         val editor = settings.edit()
         editor.remove(key)
         editor.commit()
     }
 
     fun removeAllPreference(context: Context) {
-        val settings: SharedPreferences =
-            Preferences.getSharedPreferences(context)
+        val settings: SharedPreferences = getSharedPreferences(context)
         val editor = settings.edit()
         editor.clear()
         editor.commit()

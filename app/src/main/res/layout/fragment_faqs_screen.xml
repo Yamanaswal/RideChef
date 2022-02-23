@@ -12,5 +12,7 @@
         android:orientation="vertical"
         tools:context=".view.screens.FaqsScreen">
 
+
+
     </LinearLayout>
 </layout>

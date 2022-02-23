@@ -8,20 +8,23 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.gson.Gson
 import com.ripenapps.ridechef.R
 import com.ripenapps.ridechef.databinding.FragmentOtpScreenBinding
 import com.ripenapps.ridechef.model.retrofit.models.LoginRequest
-import com.ripenapps.ridechef.view_model.LoginViewModel
+import com.ripenapps.ridechef.model.retrofit.models.LoginResponse
+import com.ripenapps.ridechef.utils.PrefConstants
+import com.ripenapps.ridechef.utils.PreferencesUtil
+import com.ripenapps.ridechef.utils.getUserData
 import com.ripenapps.ridechef.view_model.OtpViewModel
 
 class OtpScreen : Fragment() {
 
     lateinit var binding: FragmentOtpScreenBinding
     lateinit var viewModel: OtpViewModel
-
-    val args : OtpScreenArgs by navArgs()
-
+    private val args: OtpScreenArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,6 +34,7 @@ class OtpScreen : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_otp_screen, container, false)
         viewModel = ViewModelProvider(this)[OtpViewModel::class.java]
 
+        Log.e("Mobile Number", "onCreateView: ${args.mobileNumber}")
         binding.mobileNumber.text = args.mobileNumber
 
         setObservers()
@@ -40,28 +44,66 @@ class OtpScreen : Fragment() {
 
     private fun setClicks() {
         binding.otpButton.setOnClickListener {
-
             viewModel.callLoginApi(
                 loginRequest = LoginRequest(
                     "Vasundhara",
                     23.99,
                     23.00,
-                    "7042108402"
+                    args.mobileNumber,
+                    fcmToken = "xyz",
+                    deviceType = "1"
                 )
             )
+        }
 
+        binding.changeNumber.setOnClickListener {
+            requireActivity().onBackPressed()
         }
     }
 
     private fun setObservers() {
+        viewModel.getLoginResponse.observe(this) { res ->
+            if (res.response?.status == 200) {
+                Log.e("TAG", "setObservers: ${res.response?.message}")
 
-        viewModel.getLoginResponse.observe(this) { response ->
-            if (response.response?.status == 200) {
-                Log.e("TAG", "setObservers: ${response.response?.message}")
+                val isUser = PreferencesUtil.getBooleanPreference(
+                    requireContext(),
+                    PrefConstants.IS_USER_LOGIN
+                )
+
+                // Save User Data
+                saveLocalData(res.response)
+                //Navigate to Home
+                this.findNavController().navigate(OtpScreenDirections.actionOtpScreenToHomeScreen())
+
+                //User Login Flow Change
+//                if (isUser) {
+//                    this.findNavController().navigate(OtpScreenDirections.actionOtpScreenToHomeScreen())
+//                }
+//                //Guest Flow
+//                else {
+//                    // Save User Data
+//                    saveLocalData(res.response)
+//                    this.findNavController().navigate(OtpScreenDirections.actionOtpScreenToHomeScreen())
+//                }
+
             }
         }
     }
 
+    private fun saveLocalData(response: LoginResponse?) {
+        PreferencesUtil.setStringPreference(
+            requireContext(),
+            PrefConstants.USERDATA,
+            Gson().toJson(response?.data)
+        )
+
+        PreferencesUtil.setBooleanPreference(
+            requireContext(),
+            PrefConstants.IS_USER_LOGIN, true
+        )
+
+    }
 
 }
 

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ripenapps.ridechef.R
 import com.ripenapps.ridechef.databinding.FragmentRestaurantSearchScreenBinding
@@ -49,8 +50,12 @@ class RestaurantSearchScreen(private val args: SearchRestaurantAndDishScreenArgs
 
     private fun setRecyclerView() {
         restaurantSearchRecyclerViewAdapter =
-            RestaurantSearchRecyclerViewAdapter(requireContext()) {
-
+            RestaurantSearchRecyclerViewAdapter(requireContext()) { resItem ->
+                this.findNavController().navigate(
+                    SearchRestaurantAndDishScreenDirections.actionSearchRestaurantAndDishScreenToRestaurantDetailsScreen(
+                        resItem.id
+                    )
+                )
             }
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = restaurantSearchRecyclerViewAdapter

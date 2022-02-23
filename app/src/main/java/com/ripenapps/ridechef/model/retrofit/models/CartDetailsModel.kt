@@ -1,4 +1,5 @@
 package com.ripenapps.ridechef.model.retrofit.models
+
 import com.google.gson.annotations.SerializedName
 
 
@@ -19,7 +20,13 @@ data class CartDetailsResponseData(
     @SerializedName("shipping_charge")
     val shippingCharge: Int,
     @SerializedName("total_amount")
-    val totalAmount: Int
+    val totalAmount: String,
+    @SerializedName("tax")
+    val tax: Int,
+    @SerializedName("address")
+    val address: UserAddressesData,
+    @SerializedName("coupons")
+    val coupons: List<Coupons>,
 )
 
 data class Item(
@@ -42,7 +49,7 @@ data class Item(
     @SerializedName("price")
     val price: String,
     @SerializedName("quantity")
-    val quantity: Int,
+    var quantity: Int,
     @SerializedName("updated_at")
     val updatedAt: String,
     @SerializedName("user_id")

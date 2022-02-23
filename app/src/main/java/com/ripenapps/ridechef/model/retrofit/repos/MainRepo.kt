@@ -88,6 +88,24 @@ class MainRepo {
     val updateCartItemQuantityLiveData: LiveData<ApiResponse<UpdateCartItemQuantityResponse>>
         get() = updateCartItemQuantityMutableLiveData
 
+    private val saveUserAddressMutableLiveData =
+        MutableLiveData<ApiResponse<EmptyResponse>>()
+
+    val saveUserAddressLiveData: LiveData<ApiResponse<EmptyResponse>>
+        get() = saveUserAddressMutableLiveData
+
+    private val makeDefaultUserAddressMutableLiveData =
+        MutableLiveData<ApiResponse<EmptyResponse>>()
+
+    val makeDefaultUserAddressLiveData: LiveData<ApiResponse<EmptyResponse>>
+        get() = makeDefaultUserAddressMutableLiveData
+
+    private val userAddressMutableLiveData =
+        MutableLiveData<ApiResponse<UserAddressesResponse>>()
+
+    val userAddressLiveData: LiveData<ApiResponse<UserAddressesResponse>>
+        get() = userAddressMutableLiveData
+
 
     /**********************************************************************************
      * Api Methods - Defined Here
@@ -115,8 +133,9 @@ class MainRepo {
     suspend fun homeApi(token: String?, homeRequest: HomeRequest) {
         try {
             val hashMap = HashMap<String, String>()
-            hashMap["latitude"] = homeRequest.latitude.toString()
-            hashMap["longitude"] = homeRequest.longitude.toString()
+            hashMap["latitude"] = homeRequest.latitude
+            hashMap["longitude"] = homeRequest.longitude
+            hashMap["user_id"] = homeRequest.userId
 
             val response = apiService.home(token, hashMap)
 
@@ -317,5 +336,67 @@ class MainRepo {
         }
     }
 
+
+    suspend fun saveUserAddress(
+        token: String,
+        saveUserAddressRequest: SaveUserAddressRequest
+    ) {
+        try {
+            val response = apiService.saveUserAddress(token, saveUserAddressRequest)
+
+            saveUserAddressMutableLiveData.postValue(
+                ApiResponse(
+                    response = response.body(),
+                    errorBody = response.errorBody(),
+                    error = response.message()
+                )
+            )
+
+        } catch (e: Exception) {
+            Log.e(tag, "Exception (localizedMessage) -> homeApi: ${e.localizedMessage}")
+            Log.e(tag, "Exception (message) -> homeApi: ${e.message}")
+        }
+    }
+
+    suspend fun makeDefaultUserAddress(
+        token: String,
+        makeDefaultAddressRequest: MakeDefaultAddressRequest
+    ) {
+        try {
+            val response = apiService.makeDefaultUserAddress(token, makeDefaultAddressRequest)
+
+            makeDefaultUserAddressMutableLiveData.postValue(
+                ApiResponse(
+                    response = response.body(),
+                    errorBody = response.errorBody(),
+                    error = response.message()
+                )
+            )
+
+        } catch (e: Exception) {
+            Log.e(tag, "Exception (localizedMessage) -> homeApi: ${e.localizedMessage}")
+            Log.e(tag, "Exception (message) -> homeApi: ${e.message}")
+        }
+    }
+
+    suspend fun userAddress(
+        token: String,
+    ) {
+        try {
+            val response = apiService.userAddress(token)
+
+            userAddressMutableLiveData.postValue(
+                ApiResponse(
+                    response = response.body(),
+                    errorBody = response.errorBody(),
+                    error = response.message()
+                )
+            )
+
+        } catch (e: Exception) {
+            Log.e(tag, "Exception (localizedMessage) -> homeApi: ${e.localizedMessage}")
+            Log.e(tag, "Exception (message) -> homeApi: ${e.message}")
+        }
+    }
 
 }

@@ -10,7 +10,11 @@ data class LoginRequest(
     @SerializedName("longitude")
     val longitude: Double,
     @SerializedName("mobile_number")
-    val mobileNumber: String
+    val mobileNumber: String,
+    @SerializedName("fcm_token")
+    val fcmToken: String,
+    @SerializedName("device_type")
+    val deviceType: String
 )
 
 

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="dishItem"
+            type="com.ripenapps.ridechef.model.retrofit.models.Item" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/menuImage"
+            app:loadImageUrl="@{dishItem.menuDetails.image}"
+            android:layout_width="68dp"
+            android:layout_height="68dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/rest_placeholder"
+            android:theme="@style/roundedImageViewRounded_20"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/menuIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/veg_icon"
+            app:layout_constraintStart_toEndOf="@+id/menuImage"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/menuFoodName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="9dp"
+            android:layout_marginEnd="10dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/airbnb_cereal_medium"
+            android:maxLines="1"
+            android:text="@{dishItem.menuDetails.name}"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/menuIcon"
+            app:layout_constraintTop_toBottomOf="@+id/menuIcon"
+            tools:text="Kolkata Biryani" />
+
+        <TextView
+            android:id="@+id/menuFoodPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:fontFamily="@font/airbnb_cereal_book"
+            android:textColor="@color/grey"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="@+id/menuIcon"
+            app:layout_constraintTop_toBottomOf="@+id/menuFoodName"
+            app:setMenuPrice="@{dishItem.menuDetails.price}"
+            tools:text="$29.45" />
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/menuFoodName">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/minus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/button_red_25_op"
+                    android:fontFamily="@font/airbnb_cereal_medium"
+                    android:paddingHorizontal="8dp"
+                    android:text="@string/minus_sign"
+                    android:textColor="@color/button_red"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="12dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/airbnb_cereal_bold"
+                    tools:text="0"
+                    android:text="@{String.valueOf(dishItem.quantity)}"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/plus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/button_red_25_op"
+                    android:fontFamily="@font/airbnb_cereal_medium"
+                    android:paddingHorizontal="8dp"
+                    android:text="@string/plus_sign"
+                    android:textColor="@color/button_red"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

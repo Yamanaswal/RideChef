@@ -1,4 +1,5 @@
 package com.ripenapps.ridechef.model.retrofit.models
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 
 
@@ -94,7 +95,7 @@ data class Menu(
     val updatedAt: String
 )
 
-data class Coupons(
+data class Coupons (
     @SerializedName("coupon_code")
     val couponCode: String,
     @SerializedName("discount")
@@ -110,3 +111,4 @@ data class Coupons(
     @SerializedName("status")
     val status: Int
 )
+

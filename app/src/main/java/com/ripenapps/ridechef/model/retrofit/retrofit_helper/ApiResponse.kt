@@ -6,4 +6,3 @@ data class ApiResponse<T>(
     var response: T?,
     var errorBody: ResponseBody?,
     var error: String?)
-{}

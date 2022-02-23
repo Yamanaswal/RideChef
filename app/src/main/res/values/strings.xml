@@ -61,7 +61,6 @@
     <string name="delivery_location">Delivery location</string>
     <string name="restaurant">Restaurant</string>
     <string name="dishes">Dishes</string>
-    <string name="delivery_location">Delivery location</string>
     <string name="apply_coupon">Apply Coupon</string>
     <string name="add_a_tip_for_rider">Add a Tip for rider</string>
     <string name="enter_tip_amount">Enter tip amount</string>
@@ -70,4 +69,27 @@
     <string name="tax_fee"><![CDATA[Tax & Fee]]></string>
     <string name="coupon_discount">Coupon Discount</string>
     <string name="item_total">Item Total</string>
+    <string name="payable_amount">Payable Amount</string>
+    <string name="suggestions">Suggestions</string>
+    <string name="type_here">Type Here..</string>
+    <string name="enter_massage">ENTER MASSAGE</string>
+    <string name="check_out">Check Out</string>
+    <string name="my_cart">My Cart</string>
+    <string name="available_coupon">Available Coupon</string>
+    <string name="minus_sign">-</string>
+    <string name="plus_sign">+</string>
+    <string name="apply">Apply</string>
+    <string name="add_address">Add Address</string>
+    <string name="complete_address">COMPLETE ADDRESS</string>
+    <string name="house_no_flat_no_floor">House No. / Flat no. / Floor</string>
+    <string name="landmark_optional">LANDMARK (OPTIONAL)</string>
+    <string name="pincode">PINCODE</string>
+    <string name="near_about_you">Near about you</string>
+    <string name="home">Home</string>
+    <string name="save_location">Save Location</string>
+    <string name="save_as">Save as</string>
+    <string name="work">Work</string>
+    <string name="other">Other</string>
+    <string name="enter_address_details">Enter Address Details</string>
+    <string name="menu">Menu</string>
 </resources>

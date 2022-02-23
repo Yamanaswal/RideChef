@@ -14,7 +14,7 @@ import com.ripenapps.ridechef.databinding.DishHeaderBinding
 import com.ripenapps.ridechef.model.retrofit.models.DishListResponseDataData
 import com.ripenapps.ridechef.model.retrofit.models.MerchantMenu
 
-class DishSearchHeaderRecyclerViewAdapter(private val context: Context, val listener: () -> Unit) :
+class DishSearchHeaderRecyclerViewAdapter(private val context: Context, val listener: (DishListResponseDataData) -> Unit) :
     RecyclerView.Adapter<DishSearchHeaderRecyclerViewAdapter.ViewHolder>() {
 
     private val searchDishList = mutableListOf<DishListResponseDataData>()
@@ -31,9 +31,10 @@ class DishSearchHeaderRecyclerViewAdapter(private val context: Context, val list
         holder.binding?.recyclerView?.layoutManager = LinearLayoutManager(context)
         holder.binding?.recyclerView?.adapter = dishBodyAdapter
         dishBodyAdapter.updateList(searchDishList[position].merchantMenus)
-//        holder.binding?.dishCard?.setOnClickListener {
-//            listener(searchDishList[position])
-//        }
+
+        holder.binding?.restaurantHeader?.setOnClickListener {
+            listener(searchDishList[position])
+        }
     }
 
     override fun getItemCount(): Int {

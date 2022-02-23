@@ -7,24 +7,27 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.SnapHelper
+import coil.load
 import com.ripenapps.ridechef.R
 import com.ripenapps.ridechef.databinding.FragmentHomeScreenBinding
 import com.ripenapps.ridechef.model.HomeScreenType
+import com.ripenapps.ridechef.model.retrofit.models.CartInfo
 import com.ripenapps.ridechef.model.retrofit.models.HomeRequest
+import com.ripenapps.ridechef.utils.getUserData
 import com.ripenapps.ridechef.view.adapters.*
 import com.ripenapps.ridechef.view_model.HomeViewModel
 import com.yaman.progress_dialog.ProgressAnimatedDialog
 
-
 class HomeScreen : Fragment() {
 
-    val TAG = "HomeScreen"
+    private val TAG = "HomeScreen"
     lateinit var binding: FragmentHomeScreenBinding
     private lateinit var viewModel: HomeViewModel
 
@@ -33,25 +36,53 @@ class HomeScreen : Fragment() {
     private lateinit var featureRestaurantRecyclerViewAdapter: FeatureRestaurantRecyclerViewAdapter
     private lateinit var trendingRestaurantRecyclerViewAdapter: TrendingRestaurantRecyclerViewAdapter
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
-        if (!this::binding.isInitialized) {
+//        if (!this::binding.isInitialized) {
             // Inflate the layout for this fragment
             binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home_screen, container, false)
             viewModel = ViewModelProvider(this)[HomeViewModel::class.java]
-            viewModel.callApiHome(homeRequest = HomeRequest(23.77, 22.44))
 
-            Log.e(TAG, "onCreateView: ")
+            //Call Api For Home
+            val userdata = getUserData(requireContext())
+
+            viewModel.callApiHome(
+                homeRequest = HomeRequest(
+                    "23.77",
+                    "22.44",
+                    userdata?.id.toString()
+                )
+            )
+
             setRecyclerViews()
             setClicks()
             setObservers()
-        }
+
+            requireActivity().onBackPressedDispatcher.addCallback(this,object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+//                    requireActivity().onBackPressed()
+                    Log.e(TAG, "handleOnBackPressed: ", )
+                }
+            })
+//        }
 
         return binding.root
+    }
+
+    private fun setViewCart(cartInfo: CartInfo?) {
+        if (cartInfo != null) {
+            if (cartInfo.restaurantName != null) {
+                binding.viewCart.visibility = View.VISIBLE
+                binding.orderImage.load(cartInfo.image)
+                binding.restaurantName.text = cartInfo.restaurantName
+            } else {
+                binding.viewCart.visibility = View.GONE
+            }
+        } else {
+            binding.viewCart.visibility = View.GONE
+        }
     }
 
 
@@ -76,7 +107,9 @@ class HomeScreen : Fragment() {
             featureRestaurantRecyclerViewAdapter.updateList(res.response?.data?.featuredRestaurant)
             trendingRestaurantRecyclerViewAdapter.updateList(res.response?.data?.trendingRestaurant)
             progress.dismiss()
+            setViewCart(res.response?.data?.cartInfo)
         }
+
 
     }
 
@@ -112,6 +145,10 @@ class HomeScreen : Fragment() {
                 HomeScreenDirections.actionHomeScreenToHomeSearchScreen()
                     .setScreenType(HomeScreenType.TrendRestaurant)
             )
+        }
+
+        binding.viewButton.setOnClickListener {
+            this.findNavController().navigate(HomeScreenDirections.actionHomeScreenToMyCartScreen())
         }
     }
 
@@ -184,6 +221,5 @@ class HomeScreen : Fragment() {
         snapHelper.attachToRecyclerView(binding.topBannerRecyclerView)
         binding.topBannerRecyclerView.adapter = topBannerRecyclerViewAdapter
     }
-
 
 }

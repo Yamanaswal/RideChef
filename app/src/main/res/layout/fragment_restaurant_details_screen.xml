@@ -10,225 +10,263 @@
             type="com.ripenapps.ridechef.model.retrofit.models.RestaurantDetailsResponseData" />
     </data>
 
-    <ScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true"
-        tools:context=".view.screens.RestaurantDetailsScreen">
+        android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <ScrollView
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            tools:context=".view.screens.RestaurantDetailsScreen">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/backButtonId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:src="@mipmap/back_button"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/ratingText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:background="@drawable/round_green_background"
+                    android:drawablePadding="3dp"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="5dp"
+                    android:text="@{restaurantDetailsData.rating}"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    app:drawableTopCompat="@drawable/star_white"
+                    app:layout_constraintStart_toStartOf="@+id/backButtonId"
+                    app:layout_constraintTop_toBottomOf="@+id/backButtonId"
+                    tools:text="4.5" />
+
+                <TextView
+                    android:id="@+id/restaurantName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="8dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/airbnb_cereal_bold"
+                    android:maxLines="1"
+                    android:text="@{restaurantDetailsData.restaurantName}"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toEndOf="@+id/ratingText"
+                    app:layout_constraintTop_toBottomOf="@+id/backButtonId"
+                    tools:text="Celebration Restaurant" />
+
+                <TextView
+                    android:id="@+id/reviewText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="17dp"
+                    android:fontFamily="@font/airbnb_cereal_book"
+                    android:text="2394 Reviews"
+                    android:textColor="@color/grey"
+                    android:textSize="13sp"
+                    app:layout_constraintBottom_toTopOf="@+id/address"
+                    app:layout_constraintStart_toStartOf="@+id/restaurantName"
+                    app:layout_constraintTop_toBottomOf="@+id/restaurantName" />
+
+                <TextView
+                    android:id="@+id/address"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="13dp"
+                    android:layout_marginEnd="10dp"
+                    android:drawablePadding="6.5dp"
+                    android:fontFamily="@font/airbnb_cereal_medium"
+                    android:text="@{restaurantDetailsData.shopLocation}"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    app:drawableStartCompat="@drawable/location_red"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/backButtonId"
+                    app:layout_constraintTop_toBottomOf="@+id/ratingText"
+                    tools:text="4211 Sunburst Drive, Puerto Rico" />
+
+                <ImageView
+                    android:id="@+id/favIcon"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="20dp"
+                    android:src="@drawable/heart_black_border"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/restaurantName" />
+
+                <TextView
+                    android:id="@+id/distance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:drawablePadding="5dp"
+                    android:fontFamily="@font/airbnb_cereal_medium"
+                    android:text="2.5 km"
+                    android:textColor="@color/grey"
+                    android:textSize="12sp"
+                    app:drawableStartCompat="@drawable/distance"
+                    app:layout_constraintStart_toStartOf="@+id/backButtonId"
+                    app:layout_constraintTop_toBottomOf="@+id/address" />
+
+                <TextView
+                    android:id="@+id/time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:layout_marginTop="12dp"
+                    android:drawablePadding="5dp"
+                    android:fontFamily="@font/airbnb_cereal_medium"
+                    android:text="30 Min"
+                    android:textColor="@color/grey"
+                    android:textSize="12sp"
+                    app:drawableStartCompat="@drawable/clock_black"
+                    app:layout_constraintStart_toEndOf="@+id/distance"
+                    app:layout_constraintTop_toBottomOf="@+id/address" />
+
+                <TextView
+                    android:id="@+id/description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/airbnb_cereal_book"
+                    android:text="Best biryani made with home-made spices"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"
+                    app:layout_constraintStart_toStartOf="@+id/distance"
+                    app:layout_constraintTop_toBottomOf="@+id/distance" />
+
+                <View
+                    android:id="@+id/line"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/line_grey"
+                    app:layout_constraintTop_toBottomOf="@+id/description" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/couponRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:overScrollMode="never"
+                    app:layout_constraintTop_toBottomOf="@+id/line"
+                    tools:itemCount="3" />
+
+                <View
+                    android:id="@+id/lineTwo"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/line_grey"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@+id/couponRecyclerView" />
+
+                <TextView
+                    android:id="@+id/ourMenu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/airbnb_cereal_bold"
+                    android:text="@string/our_menu"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/lineTwo" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="17dp"
+                    android:layout_marginEnd="19dp"
+                    android:src="@drawable/search_white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/lineTwo" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/vegSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="13dp"
+                    android:minHeight="48dp"
+                    android:textOff="@string/veg"
+                    android:textOn="@string/veg"
+                    android:thumb="@drawable/round_switch_thumb"
+                    app:layout_constraintStart_toStartOf="@+id/ourMenu"
+                    app:layout_constraintTop_toBottomOf="@+id/ourMenu"
+                    app:track="@drawable/custom_switch_track_veg" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/nonVegSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:minHeight="48dp"
+                    android:textOff="@string/non_veg"
+                    android:textOn="@string/non_veg"
+                    android:thumb="@drawable/round_switch_thumb"
+                    app:layout_constraintStart_toEndOf="@+id/vegSwitch"
+                    app:layout_constraintTop_toTopOf="@+id/vegSwitch"
+                    app:track="@drawable/custom_switch_track_non_veg" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewMenuHeader"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="13dp"
+                    android:overScrollMode="never"
+                    app:layout_constraintTop_toBottomOf="@+id/vegSwitch" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/menuButton"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="60dp"
+            android:background="@drawable/round_button_red_menu"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingVertical="9dp"
+            android:paddingStart="17dp"
+            android:paddingEnd="1dp">
 
             <ImageView
-                android:id="@+id/backButtonId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:src="@mipmap/back_button"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:src="@drawable/res_menu_icon" />
 
             <TextView
-                android:id="@+id/ratingText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:background="@drawable/round_green_background"
-                android:drawablePadding="3dp"
-                android:paddingHorizontal="8dp"
-                android:paddingVertical="5dp"
-                android:text="@{restaurantDetailsData.rating}"
+                android:layout_marginStart="6dp"
+                android:layout_marginEnd="18dp"
+                android:fontFamily="@font/airbnb_cereal_medium"
+                android:text="@string/menu"
                 android:textColor="@color/white"
-                android:textSize="13sp"
-                app:drawableTopCompat="@drawable/star_white"
-                app:layout_constraintStart_toStartOf="@+id/backButtonId"
-                app:layout_constraintTop_toBottomOf="@+id/backButtonId"
-                tools:text="4.5" />
+                android:textSize="14sp" />
 
-            <TextView
-                android:id="@+id/restaurantName"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="8dp"
-                android:ellipsize="end"
-                android:fontFamily="@font/airbnb_cereal_bold"
-                android:maxLines="1"
-                android:text="@{restaurantDetailsData.restaurantName}"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                app:layout_constraintStart_toEndOf="@+id/ratingText"
-                app:layout_constraintTop_toBottomOf="@+id/backButtonId"
-                tools:text="Celebration Restaurant" />
+        </LinearLayout>
 
-            <TextView
-                android:id="@+id/reviewText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="17dp"
-                android:fontFamily="@font/airbnb_cereal_book"
-                android:text="2394 Reviews"
-                android:textColor="@color/grey"
-                android:textSize="13sp"
-                app:layout_constraintBottom_toTopOf="@+id/address"
-                app:layout_constraintStart_toStartOf="@+id/restaurantName"
-                app:layout_constraintTop_toBottomOf="@+id/restaurantName" />
+    </RelativeLayout>
 
-            <TextView
-                android:id="@+id/address"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="13dp"
-                android:layout_marginEnd="10dp"
-                android:drawablePadding="6.5dp"
-                android:fontFamily="@font/airbnb_cereal_medium"
-                android:text="@{restaurantDetailsData.shopLocation}"
-                android:textColor="@color/black"
-                android:textSize="12sp"
-                app:drawableStartCompat="@drawable/location_red"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/backButtonId"
-                app:layout_constraintTop_toBottomOf="@+id/ratingText"
-                tools:text="4211 Sunburst Drive, Puerto Rico" />
-
-            <ImageView
-                android:id="@+id/favIcon"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginEnd="20dp"
-                android:src="@drawable/heart_black_border"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/restaurantName" />
-
-            <TextView
-                android:id="@+id/distance"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:drawablePadding="5dp"
-                android:fontFamily="@font/airbnb_cereal_medium"
-                android:text="2.5 km"
-                android:textColor="@color/grey"
-                android:textSize="12sp"
-                app:drawableStartCompat="@drawable/distance"
-                app:layout_constraintStart_toStartOf="@+id/backButtonId"
-                app:layout_constraintTop_toBottomOf="@+id/address" />
-
-            <TextView
-                android:id="@+id/time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="14dp"
-                android:layout_marginTop="12dp"
-                android:drawablePadding="5dp"
-                android:fontFamily="@font/airbnb_cereal_medium"
-                android:text="30 Min"
-                android:textColor="@color/grey"
-                android:textSize="12sp"
-                app:drawableStartCompat="@drawable/clock_black"
-                app:layout_constraintStart_toEndOf="@+id/distance"
-                app:layout_constraintTop_toBottomOf="@+id/address" />
-
-            <TextView
-                android:id="@+id/description"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/airbnb_cereal_book"
-                android:text="Best biryani made with home-made spices"
-                android:textColor="@color/black"
-                android:textSize="13sp"
-                app:layout_constraintStart_toStartOf="@+id/distance"
-                app:layout_constraintTop_toBottomOf="@+id/distance" />
-
-            <View
-                android:id="@+id/line"
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:layout_marginTop="15dp"
-                android:background="@color/line_grey"
-                app:layout_constraintTop_toBottomOf="@+id/description" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/couponRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:overScrollMode="never"
-                app:layout_constraintTop_toBottomOf="@+id/line"
-                tools:itemCount="3" />
-
-            <View
-                android:id="@+id/lineTwo"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="10dp"
-                android:background="@color/line_grey"
-                app:layout_constraintTop_toBottomOf="@+id/couponRecyclerView" />
-
-            <TextView
-                android:id="@+id/ourMenu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/airbnb_cereal_bold"
-                android:text="@string/our_menu"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lineTwo" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="17dp"
-                android:layout_marginEnd="19dp"
-                android:src="@drawable/search_white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lineTwo" />
-
-            <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/vegSwitch"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="13dp"
-                android:minHeight="48dp"
-                android:textOff="@string/veg"
-                android:textOn="@string/veg"
-                android:thumb="@drawable/round_switch_thumb"
-                app:layout_constraintStart_toStartOf="@+id/ourMenu"
-                app:layout_constraintTop_toBottomOf="@+id/ourMenu"
-                app:track="@drawable/custom_switch_track_veg" />
-
-            <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/nonVegSwitch"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:minHeight="48dp"
-                android:textOff="@string/non_veg"
-                android:textOn="@string/non_veg"
-                android:thumb="@drawable/round_switch_thumb"
-                app:layout_constraintStart_toEndOf="@+id/vegSwitch"
-                app:layout_constraintTop_toTopOf="@+id/vegSwitch"
-                app:track="@drawable/custom_switch_track_non_veg" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewMenuHeader"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="13dp"
-                android:overScrollMode="never"
-                app:layout_constraintTop_toBottomOf="@+id/vegSwitch" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </ScrollView>
 </layout>

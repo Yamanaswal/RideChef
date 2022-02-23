@@ -5,9 +5,11 @@ import com.google.gson.annotations.SerializedName
 
 data class HomeRequest(
     @SerializedName("latitude")
-    val latitude: Double,
+    val latitude: String,
     @SerializedName("longitude")
-    val longitude: Double
+    val longitude: String,
+    @SerializedName("user_id")
+    val userId: String,
 )
 
 data class HomeResponse(
@@ -27,7 +29,16 @@ data class HomeResponseData(
     @SerializedName("featuredRestaurant")
     val featuredRestaurant: List<Restaurant>,
     @SerializedName("trendingdRestaurant")
-    val trendingRestaurant: List<Restaurant>
+    val trendingRestaurant: List<Restaurant>,
+    @SerializedName("cartInfo")
+    val cartInfo: CartInfo?
+)
+
+data class CartInfo(
+    @SerializedName("restaurant_name")
+    val restaurantName: String,
+    @SerializedName("image")
+    val image: String
 )
 
 data class AdminBanner(

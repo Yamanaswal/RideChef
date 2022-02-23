@@ -17,8 +17,7 @@ class AllFoodsRecyclerAdapter(private val context: Context,val listener: (Search
     private val searchDishList = mutableListOf<SearchDishHomeResponseDataData>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view: View = LayoutInflater.from(parent.context)
-            .inflate(R.layout.restaurant_food_item, parent, false)
+        val view: View = LayoutInflater.from(parent.context).inflate(R.layout.restaurant_food_item, parent, false)
         return ViewHolder(view)
     }
 

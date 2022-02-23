@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <data>
+
+        <variable
+            name="coupon"
+            type="com.ripenapps.ridechef.model.retrofit.models.Coupons" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/couponText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:drawablePadding="8dp"
+            android:fontFamily="@font/airbnb_cereal_bold"
+            android:letterSpacing="0.4"
+            android:text="HAPPYHOUR"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            app:drawableStartCompat="@drawable/coupon_offer"
+            app:layout_constraintEnd_toStartOf="@+id/applyButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textOnCoupon"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="20dp"
+            android:fontFamily="@font/airbnb_cereal_medium"
+            android:text="Get 60% OFF Off Valid on orders above $49.50"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/couponText" />
+
+        <TextView
+            android:id="@+id/couponMessage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="20dp"
+            android:alpha="0.6"
+            android:fontFamily="@font/airbnb_cereal_book"
+            android:text="Big Birthday Bash: Avail 60% OFF From Select Restaurants"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textOnCoupon" />
+
+        <TextView
+            android:id="@+id/applyButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:fontFamily="@font/airbnb_cereal_bold"
+            android:padding="3dp"
+            android:text="@string/apply"
+            android:textColor="@color/button_red"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="25dp"
+            android:background="@color/grey"
+            app:layout_constraintTop_toBottomOf="@+id/couponMessage" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
