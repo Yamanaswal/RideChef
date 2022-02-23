@@ -29,6 +29,7 @@ class RestaurantDetailsScreen : Fragment() {
 
     lateinit var menuHeaderAdapter: MenuHeaderAdapter
     lateinit var couponRecyclerViewAdapter: CouponRecyclerViewAdapter
+    var vegType = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,13 +54,54 @@ class RestaurantDetailsScreen : Fragment() {
                 menuType = "",
                 restaurantId = args.restaurantId,
                 search = "",
-                vegType = 1
+                vegType = vegType
             )
         )
+
+        vegAndNonVegListeners()
 
         setRecyclerViews()
         setObservers()
         return binding.root
+    }
+
+    private fun vegAndNonVegListeners() {
+        binding.vegSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
+            vegType = if (isChecked) {
+                "1"
+            } else {
+                ""
+            }
+
+            viewModel.callApiRestaurantDetails(
+                restaurantDetailsRequest = RestaurantDetailsRequest(
+                    menuType = "",
+                    restaurantId = args.restaurantId,
+                    search = "",
+                    vegType = vegType
+                )
+            )
+        }
+
+        binding.nonVegSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
+            vegType = if (isChecked) {
+                "2"
+            } else {
+                ""
+            }
+
+            viewModel.callApiRestaurantDetails(
+                restaurantDetailsRequest = RestaurantDetailsRequest(
+                    menuType = "",
+                    restaurantId = args.restaurantId,
+                    search = "",
+                    vegType = vegType
+                )
+            )
+        }
+
+
+
     }
 
     private fun setRecyclerViews() {
@@ -84,7 +126,8 @@ class RestaurantDetailsScreen : Fragment() {
         binding.recyclerViewMenuHeader.adapter = menuHeaderAdapter
 
         couponRecyclerViewAdapter = CouponRecyclerViewAdapter(requireContext())
-        binding.couponRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.couponRecyclerView.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.couponRecyclerView.adapter = couponRecyclerViewAdapter
 
     }
@@ -95,6 +138,7 @@ class RestaurantDetailsScreen : Fragment() {
             binding.restaurantDetailsData = res.response?.data
             menuHeaderAdapter.updateList(res.response?.data?.merchantMenuTypes)
             couponRecyclerViewAdapter.updateList(res.response?.data?.coupons)
+
             if (res.response?.data?.coupons?.size!! > 0) {
                 binding.lineTwo.visibility = View.VISIBLE
             } else {

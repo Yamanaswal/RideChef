@@ -14,6 +14,7 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.findNavController
 import com.google.android.gms.common.api.Status
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -75,12 +76,10 @@ class ChangeLocation : Fragment(), OnMapReadyCallback, OnMyLocationButtonClickLi
             DataBindingUtil.inflate(inflater, R.layout.fragment_change_location, container, false)
 
         // Construct a FusedLocationProviderClient.
-        fusedLocationProviderClient =
-            LocationServices.getFusedLocationProviderClient(requireActivity())
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireActivity())
 
         //Set Map
-        val mapFragment: SupportMapFragment =
-            childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
+        val mapFragment: SupportMapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
 
@@ -96,6 +95,8 @@ class ChangeLocation : Fragment(), OnMapReadyCallback, OnMyLocationButtonClickLi
         binding.confirmLocation.setOnClickListener {
             //set Location
             setLatLongAddress()
+            //Go to Login Screen
+            this.findNavController().navigate(ChangeLocationDirections.actionChangeLocationToLoginScreen())
         }
 
         return binding.root
@@ -143,7 +144,6 @@ class ChangeLocation : Fragment(), OnMapReadyCallback, OnMyLocationButtonClickLi
         this.googleMap = googleMap
         if (this::googleMap.isInitialized) {
 
-            Log.e(TAG, "onMapReady: $fullAddress")
             //Set Listeners
             this.googleMap.setOnMyLocationButtonClickListener(this)
             this.googleMap.setOnCameraIdleListener(this)
@@ -185,6 +185,8 @@ class ChangeLocation : Fragment(), OnMapReadyCallback, OnMyLocationButtonClickLi
                 fullAddress = address.getAddressLine(0) ?: ""
             }
         }
+
+        Log.e(TAG, "onCameraIdle: $fullAddress + $longitude + $latitude")
     }
 
     private fun setLatLongAddress() {

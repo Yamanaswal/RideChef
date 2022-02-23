@@ -41,6 +41,7 @@ class MenuHeaderAdapter(private val context: Context, val listener: (Menu) -> Un
     }
 
     fun updateList(list: List<MerchantMenuType>?) {
+        menuMerchantTypes.clear()
         menuMerchantTypes.addAll(list ?: emptyList())
         notifyDataSetChanged()
     }

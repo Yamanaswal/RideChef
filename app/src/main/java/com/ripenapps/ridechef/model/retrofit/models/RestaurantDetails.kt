@@ -11,7 +11,7 @@ data class RestaurantDetailsRequest(
     @SerializedName("search")
     val search: String,
     @SerializedName("veg_type")
-    val vegType: Int
+    val vegType: String
 )
 
 data class RestaurantDetailsResponse(
