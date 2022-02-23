@@ -1,6 +1,7 @@
 package com.ripenapps.ridechef.view.screens
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -28,9 +29,12 @@ class SearchRestaurantAndDishScreen : Fragment() {
                 container,
                 false
             )
-            if (args.searchText.isNotEmpty()) {
+            Log.e("TAG", "onCreateView: searchText: ${args.searchText}")
+            if (args.searchText!= "") {
                 binding.search.setText(args.searchText)
             }
+
+
             setClicks()
             setOnTabSelectedListeners()
         }

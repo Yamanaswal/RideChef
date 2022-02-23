@@ -1,5 +1,5 @@
 package com.ripenapps.ridechef.model.retrofit.models
-import android.os.Parcelable
+
 import com.google.gson.annotations.SerializedName
 
 

@@ -30,7 +30,8 @@ class LoginScreen : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login_screen, container, false)
+        binding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_login_screen, container, false)
         viewModel = ViewModelProvider(this)[LoginViewModel::class.java]
 
         setClicks()
@@ -55,28 +56,15 @@ class LoginScreen : Fragment() {
 
     private fun continueButtonClick() {
         val validMobile = validateMobileNumber(binding.mobileNumber.text.toString())
-        if(validMobile.validStatus){
-            this.findNavController().navigate(LoginScreenDirections.actionLoginScreenToOtpScreen().setMobileNumber(binding.countryCode.selectedCountryCode + "-" + binding.mobileNumber.text.toString()))
-        }else{
-            Snackbar.make(requireView(),validMobile.validReason,2000).show()
+        if (validMobile.validStatus) {
+            this.findNavController().navigate(
+                LoginScreenDirections.actionLoginScreenToOtpScreen()
+                    .setMobileNumber("+${binding.countryCode.selectedCountryCode} ${binding.mobileNumber.text}"))
+        } else {
+            Snackbar.make(requireView(), validMobile.validReason, 2000).show()
         }
 
     }
 
-//    fun validateMobileNumber(mobileNumber: String): Valid {
-//
-//        if (mobileNumber.isEmpty()) {
-//            return Valid(
-//                validStatus = false,
-//                validReason = "Please Enter Mobile Number."
-//            )
-//        } else if (mobileNumber.length < 9 || mobileNumber.length > 13) {
-//            return Valid(
-//                validStatus = false,
-//                validReason = "Please Enter Mobile Number Between 9 to 12."
-//            )
-//        }
-//
-//        return Valid(validStatus = true, validReason = "")
-//    }
+
 }

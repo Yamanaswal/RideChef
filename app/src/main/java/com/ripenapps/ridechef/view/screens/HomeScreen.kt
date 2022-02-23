@@ -20,6 +20,8 @@ import com.ripenapps.ridechef.databinding.FragmentHomeScreenBinding
 import com.ripenapps.ridechef.model.HomeScreenType
 import com.ripenapps.ridechef.model.retrofit.models.CartInfo
 import com.ripenapps.ridechef.model.retrofit.models.HomeRequest
+import com.ripenapps.ridechef.utils.PrefConstants
+import com.ripenapps.ridechef.utils.PreferencesUtil
 import com.ripenapps.ridechef.utils.getUserData
 import com.ripenapps.ridechef.view.adapters.*
 import com.ripenapps.ridechef.view_model.HomeViewModel
@@ -41,29 +43,40 @@ class HomeScreen : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 //        if (!this::binding.isInitialized) {
-            // Inflate the layout for this fragment
-            binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home_screen, container, false)
-            viewModel = ViewModelProvider(this)[HomeViewModel::class.java]
+        // Inflate the layout for this fragment
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home_screen, container, false)
+        viewModel = ViewModelProvider(this)[HomeViewModel::class.java]
 
-            //Call Api For Home
-            val userdata = getUserData(requireContext())
+        //Call Api For Home
+        val userdata = getUserData(requireContext())
 
-            viewModel.callApiHome(
-                homeRequest = HomeRequest(
-                    "23.77",
-                    "22.44",
-                    userdata?.id.toString()
-                )
+        val address = PreferencesUtil.getStringPreference(requireContext(), PrefConstants.ADDRESS)
+
+        //Set Address Home Page
+        if (address.isNullOrEmpty()) {
+            binding.deliveryAddress.text = "Not Available"
+        } else {
+            binding.deliveryAddress.text = address
+        }
+
+        //Call Api Home
+        viewModel.callApiHome(
+            homeRequest = HomeRequest(
+                "23.77",
+                "22.44",
+                userdata?.id.toString()
             )
+        )
 
-            setRecyclerViews()
-            setClicks()
-            setObservers()
+        setRecyclerViews()
+        setClicks()
+        setObservers()
 
-            requireActivity().onBackPressedDispatcher.addCallback(this,object : OnBackPressedCallback(true) {
+        requireActivity().onBackPressedDispatcher.addCallback(this,
+            object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
 //                    requireActivity().onBackPressed()
-                    Log.e(TAG, "handleOnBackPressed: ", )
+                    Log.e(TAG, "handleOnBackPressed: ")
                 }
             })
 //        }
@@ -204,8 +217,7 @@ class HomeScreen : Fragment() {
     private fun setCuisineRecyclerView() {
         cuisineRecyclerViewAdapter = CuisineRecyclerViewAdapter(requireContext()) { cuisineItem ->
             this.findNavController().navigate(
-                HomeScreenDirections.actionHomeScreenToSearchRestaurantAndDishScreen()
-                    .setCuisineId(cuisineItem.id.toString())
+                HomeScreenDirections.actionHomeScreenToSearchRestaurantAndDishScreen().setCuisineId(cuisineItem.id.toString()).setSearchText("")
             )
         }
         binding.trendingCuisineRecyclerView.layoutManager =

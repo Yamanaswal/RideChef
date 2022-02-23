@@ -49,6 +49,7 @@ class HomeSearchScreen : Fragment() {
         )
         viewModel = ViewModelProvider(this)[ViewAllViewModel::class.java]
 
+
         Log.e("TAG screenType: ", "onCreateView: ${args.screenType}")
 
         when (args.screenType) {
@@ -95,6 +96,7 @@ class HomeSearchScreen : Fragment() {
 
     private fun onSearchApi(type: Int) {
         Log.e("TAG", "onSearchApi: $type")
+
         binding.search.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
@@ -204,7 +206,7 @@ class HomeSearchScreen : Fragment() {
                 this.findNavController().navigate(
                     HomeSearchScreenDirections.actionHomeSearchScreenToSearchRestaurantAndDishScreen()
                         .setCuisineId(cuisineItem.id.toString())
-                        .setSearchText(binding.search.toString())
+                        .setSearchText(binding.search.text.toString())
                 )
             }
         binding.recyclerView.layoutManager = GridLayoutManager(requireContext(), 3)

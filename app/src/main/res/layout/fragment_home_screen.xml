@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -43,7 +42,7 @@
                 android:id="@+id/deliveryTo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
+                android:layout_marginStart="20dp"
                 android:drawablePadding="6dp"
                 android:fontFamily="@font/airbnb_cereal_book"
                 android:text="@string/deliver_to"
@@ -55,17 +54,20 @@
 
 
             <TextView
+                android:id="@+id/deliveryAddress"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginEnd="12dp"
+                android:ellipsize="end"
                 android:fontFamily="@font/airbnb_cereal_bold"
-                android:text="Emily Renzelli Boulevard "
+                android:maxLines="1"
                 android:textColor="@color/black"
                 android:textSize="17sp"
                 app:layout_constraintEnd_toStartOf="@+id/search"
                 app:layout_constraintStart_toStartOf="@+id/deliveryTo"
-                app:layout_constraintTop_toBottomOf="@+id/deliveryTo" />
+                app:layout_constraintTop_toBottomOf="@+id/deliveryTo"
+                tools:text="Emily Renzelli Boulevard " />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -222,9 +224,9 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/viewCart"
-            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="0dp"
             app:cardElevation="10dp">
@@ -242,10 +244,10 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="25dp"
                     android:scaleType="fitXY"
-                    tools:src="@mipmap/rest_placeholder"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@mipmap/rest_placeholder" />
 
                 <TextView
                     android:id="@+id/restaurantName"
@@ -254,12 +256,12 @@
                     android:layout_marginStart="12dp"
                     android:layout_marginEnd="10dp"
                     android:fontFamily="@font/airbnb_cereal_bold"
-                    tools:text="Celebration Restaurant"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toStartOf="@+id/viewButton"
                     app:layout_constraintStart_toEndOf="@+id/orderImage"
-                    app:layout_constraintTop_toTopOf="@+id/orderImage" />
+                    app:layout_constraintTop_toTopOf="@+id/orderImage"
+                    tools:text="Celebration Restaurant" />
 
                 <TextView
                     android:layout_width="0dp"

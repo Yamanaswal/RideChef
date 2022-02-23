@@ -12,7 +12,6 @@ class RestaurantAndDishViewModel : ViewModel() {
 
     private val mainRepo = MainRepo()
 
-
     val restaurantListResponse: LiveData<ApiResponse<RestaurantListResponse>>
         get() = mainRepo.restaurantListLiveData
 
