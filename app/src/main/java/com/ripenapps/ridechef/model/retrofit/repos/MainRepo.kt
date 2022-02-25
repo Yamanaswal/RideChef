@@ -106,6 +106,12 @@ class MainRepo {
     val userAddressLiveData: LiveData<ApiResponse<UserAddressesResponse>>
         get() = userAddressMutableLiveData
 
+    private val searchDishInsideRestResponseMutableLiveData =
+        MutableLiveData<ApiResponse<SearchDishHomeResponse>>()
+
+    val searchDishInsideRestResponseLiveData: LiveData<ApiResponse<SearchDishHomeResponse>>
+        get() = searchDishInsideRestResponseMutableLiveData
+
 
     /**********************************************************************************
      * Api Methods - Defined Here
@@ -386,6 +392,26 @@ class MainRepo {
             val response = apiService.userAddress(token)
 
             userAddressMutableLiveData.postValue(
+                ApiResponse(
+                    response = response.body(),
+                    errorBody = response.errorBody(),
+                    error = response.message()
+                )
+            )
+
+        } catch (e: Exception) {
+            Log.e(tag, "Exception (localizedMessage) -> homeApi: ${e.localizedMessage}")
+            Log.e(tag, "Exception (message) -> homeApi: ${e.message}")
+        }
+    }
+
+    suspend fun searchDishInsideRest(
+        searchDishInsideRestRequest : SearchDishInsideRestRequest
+    ) {
+        try {
+            val response = apiService.searchDishInsideRest(searchDishInsideRestRequest)
+
+            searchDishInsideRestResponseMutableLiveData.postValue(
                 ApiResponse(
                     response = response.body(),
                     errorBody = response.errorBody(),

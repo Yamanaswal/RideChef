@@ -1,6 +1,8 @@
 package com.ripenapps.ridechef.view.screens
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,6 +17,7 @@ import com.ripenapps.ridechef.R
 import com.ripenapps.ridechef.databinding.FragmentMyCartScreenBinding
 import com.ripenapps.ridechef.model.retrofit.models.Coupons
 import com.ripenapps.ridechef.model.retrofit.models.UpdateCartItemQuantityRequest
+import com.ripenapps.ridechef.utils.addSymbolBeforeEditText
 import com.ripenapps.ridechef.utils.getUserData
 import com.ripenapps.ridechef.view.adapters.DishMyCartRecyclerViewAdapter
 import com.ripenapps.ridechef.view_model.MyCartViewModel
@@ -47,6 +50,31 @@ class MyCartScreen : Fragment() {
             setClicks()
             setObservers()
 
+            binding.billDetailsEditText.addTextChangedListener(
+                object : TextWatcher {
+                    override fun beforeTextChanged(
+                        s: CharSequence?,
+                        start: Int,
+                        count: Int,
+                        after: Int
+                    ) {
+
+                    }
+
+                    override fun onTextChanged(
+                        s: CharSequence?,
+                        start: Int,
+                        before: Int,
+                        count: Int
+                    ) {
+
+                    }
+
+                    override fun afterTextChanged(editable: Editable?) {
+                        addSymbolBeforeEditText(editable)
+                    }
+                })
+
             this.findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<String>("applyCoupon")
                 ?.observe(viewLifecycleOwner) { data ->
                     // Do something with the data.
@@ -72,43 +100,63 @@ class MyCartScreen : Fragment() {
         dishMyCartRecyclerView = DishMyCartRecyclerViewAdapter { item, type ->
             if (type == "plus") {
 
-                if(item.variant != null){
+                if (item.variant != null) {
                     viewModel.callApiUpdateCartItemQuantity(
                         userdata?.tokenType + " " + userdata?.accessToken,
-                        UpdateCartItemQuantityRequest(getPlusValue(item.price,item.variant.price), item.quantity, item.id,type = "update")
+                        UpdateCartItemQuantityRequest(
+                            getPlusValue(item.price, item.variant.price),
+                            item.quantity,
+                            item.id,
+                            type = "update"
+                        )
                     )
-                }else{
+                } else {
                     viewModel.callApiUpdateCartItemQuantity(
                         userdata?.tokenType + " " + userdata?.accessToken,
-                        UpdateCartItemQuantityRequest(getPlusValue(item.price,item.menuDetails.price), item.quantity, item.id,type = "update")
+                        UpdateCartItemQuantityRequest(
+                            getPlusValue(
+                                item.price,
+                                item.menuDetails.price
+                            ), item.quantity, item.id, type = "update"
+                        )
                     )
                 }
 
             }
             //minus
-            else if (type == "minus"){
+            else if (type == "minus") {
 
-                if(item.variant != null){
+                if (item.variant != null) {
                     viewModel.callApiUpdateCartItemQuantity(
                         userdata?.tokenType + " " + userdata?.accessToken,
-                        UpdateCartItemQuantityRequest(getMinusValue(item.price,item.variant.price), item.quantity, item.id,type = "update")
+                        UpdateCartItemQuantityRequest(
+                            getMinusValue(item.price, item.variant.price),
+                            item.quantity,
+                            item.id,
+                            type = "update"
+                        )
                     )
-                }else{
+                } else {
                     viewModel.callApiUpdateCartItemQuantity(
                         userdata?.tokenType + " " + userdata?.accessToken,
-                        UpdateCartItemQuantityRequest(getMinusValue(item.price,item.menuDetails.price) , item.quantity, item.id,type = "update")
+                        UpdateCartItemQuantityRequest(
+                            getMinusValue(
+                                item.price,
+                                item.menuDetails.price
+                            ), item.quantity, item.id, type = "update"
+                        )
                     )
                 }
 
             }
             //At Delete Item.
-            else{
+            else {
                 viewModel.callApiUpdateCartItemQuantity(
                     userdata?.tokenType + " " + userdata?.accessToken,
-                    UpdateCartItemQuantityRequest("" , 0, item.id,type = "delete")
+                    UpdateCartItemQuantityRequest("", 0, item.id, type = "delete")
                 )
 
-                if(dishMyCartRecyclerView.itemCount == 0){
+                if (dishMyCartRecyclerView.itemCount == 0) {
                     requireActivity().onBackPressed()
                 }
             }
@@ -124,7 +172,7 @@ class MyCartScreen : Fragment() {
                 binding.myCartDetails = res.response?.data
                 dishMyCartRecyclerView.updateList(res.response?.data?.items)
                 couponList.clear()
-                if(!res.response?.data?.coupons.isNullOrEmpty()){
+                if (!res.response?.data?.coupons.isNullOrEmpty()) {
                     couponList.addAll(res.response?.data?.coupons!!)
                 }
             }

@@ -25,6 +25,8 @@ import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.ripenapps.ridechef.R
 import com.ripenapps.ridechef.databinding.FragmentAllowLocationScreenBinding
+import com.ripenapps.ridechef.utils.PrefConstants
+import com.ripenapps.ridechef.utils.PreferencesUtil
 import com.yaman.location_services.GpsUtils
 import com.yaman.location_services.OnGpsListener
 import com.yaman.location_services.getAddressFromLatLng
@@ -34,6 +36,10 @@ class AllowLocationScreen : Fragment() {
     lateinit var binding: FragmentAllowLocationScreenBinding
     val PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1
     var locationPermissionGranted = false
+
+    var latitude = ""
+    var longitude = ""
+    var fullAddress = ""
 
     // The entry point to the Fused Location Provider.
     private var fusedLocationProviderClient: FusedLocationProviderClient? = null
@@ -51,13 +57,17 @@ class AllowLocationScreen : Fragment() {
             false
         )
 
-
         // Construct a FusedLocationProviderClient.
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireActivity())
 
+        //Ask Permissions
         askLocationPermission()
 
+        //get Current Location
+        getDeviceCurrentLocation()
+
         binding.confirmLocation.setOnClickListener {
+            setLatLongAddress()
             this.findNavController()
                 .navigate(AllowLocationScreenDirections.actionAllowLocationScreenToLoginScreen())
         }
@@ -88,7 +98,6 @@ class AllowLocationScreen : Fragment() {
         ) {
             locationPermissionGranted = true
         } else {
-
             ActivityCompat.requestPermissions(
                 requireActivity(),
                 arrayOf(
@@ -97,18 +106,17 @@ class AllowLocationScreen : Fragment() {
                 ),
                 PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION
             )
-
         }
 
         GpsUtils(requireContext()).turnGPSOn(object : OnGpsListener {
             override fun gpsStatus(isGPSEnable: Boolean) {
-                if(isGPSEnable){
-                    getDeviceCurrentLocation()
-                }else{
+                if (!isGPSEnable) {
                     askLocationPermission()
                 }
             }
         })
+
+        getDeviceCurrentLocation()
 
     }
 
@@ -128,10 +136,18 @@ class AllowLocationScreen : Fragment() {
                             // Set the map's camera position to the current location of the device.
                             if (task.result != null) {
                                 Log.d(TAG, "getDeviceCurrentLocation: ${task.result}")
-                                val address : Address? = getAddressFromLatLng(requireContext(),task.result.latitude,task.result.longitude)
+                                val address: Address? = getAddressFromLatLng(
+                                    requireContext(),
+                                    task.result.latitude,
+                                    task.result.longitude
+                                )
 
-                                if(address != null){
+                                if (address != null) {
                                     binding.currentLocation.text = address.getAddressLine(0)
+                                    //set Current Location in Prefs
+                                    latitude = address.latitude.toString()
+                                    longitude = address.latitude.toString()
+                                    fullAddress = address.getAddressLine(0) ?: ""
                                 }
                             }
                         } else {
@@ -145,6 +161,12 @@ class AllowLocationScreen : Fragment() {
             Toast.makeText(requireContext(), "location is not available.", Toast.LENGTH_SHORT)
                 .show()
         }
+    }
+
+    private fun setLatLongAddress() {
+        PreferencesUtil.setStringPreference(requireContext(), PrefConstants.LATITUDE, latitude)
+        PreferencesUtil.setStringPreference(requireContext(), PrefConstants.LONGITUDE, longitude)
+        PreferencesUtil.setStringPreference(requireContext(), PrefConstants.ADDRESS, fullAddress)
     }
 
 }

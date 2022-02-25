@@ -172,6 +172,9 @@
         <action
             android:id="@+id/action_restaurantDetailsScreen_to_loginScreen"
             app:destination="@id/loginScreen" />
+        <action
+            android:id="@+id/action_restaurantDetailsScreen_to_myCartScreen"
+            app:destination="@id/myCartScreen" />
     </fragment>
 
     <fragment

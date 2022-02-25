@@ -11,7 +11,9 @@ data class RestaurantDetailsRequest(
     @SerializedName("search")
     val search: String,
     @SerializedName("veg_type")
-    val vegType: String
+    val vegType: String,
+    @SerializedName("user_id")
+    val userId: String?,
 )
 
 data class RestaurantDetailsResponse(
@@ -40,9 +42,15 @@ data class RestaurantDetailsResponseData(
     val restaurantName: String,
     @SerializedName("shop_location")
     val shopLocation: String,
+    @SerializedName("review")
+    val review: Int,
+    @SerializedName("total_cart_item")
+    val totalCartItem: String,
+    @SerializedName("total_cart_amount")
+    val totalCartAmount: String,
     @SerializedName("coupons")
-    val coupons: List<Coupons>
-)
+    val coupons: List<Coupons>,
+    )
 
 
 data class MerchantMenuType(
@@ -95,7 +103,7 @@ data class Menu(
     val updatedAt: String
 )
 
-data class Coupons (
+data class Coupons(
     @SerializedName("coupon_code")
     val couponCode: String,
     @SerializedName("discount")

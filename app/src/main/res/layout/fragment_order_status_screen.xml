@@ -1,0 +1,838 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!--  App Bar -->
+            <LinearLayout
+                android:id="@+id/backLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:padding="10dp"
+                    android:src="@mipmap/back_button" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="22dp"
+                    android:fontFamily="@font/airbnb_cereal_bold"
+                    android:text="@string/track_order"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="22dp"
+                android:src="@mipmap/order_placed_tick" />
+
+            <TextView
+                android:id="@+id/orderPlaced"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="22dp"
+                android:fontFamily="@font/airbnb_cereal_bold"
+                android:text="@string/order_successfully_placed"
+                android:textColor="#2D2D2D"
+                android:textSize="19sp" />
+
+            <TextView
+                android:id="@+id/waiting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/airbnb_cereal_book"
+                android:text="@string/waiting_for_the_restaurant_to_confirm_your_order"
+                android:textColor="#2D2D2D" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="35dp"
+                android:background="@color/line_grey" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16sp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/airbnb_cereal_medium"
+                    android:text="@string/your_otp"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/otp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:fontFamily="@font/airbnb_cereal_bold"
+                    android:text="1234"
+                    android:textColor="#EA1500"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/otp"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/airbnb_cereal_book"
+                    android:text="@string/please_provide_this_otp_our_delivery_executive_it_ll_help_us_validate_delivery"
+                    android:textColor="#989898"
+                    android:textSize="12sp" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/line_grey" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/delivery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/airbnb_cereal_bold"
+                    android:text="Delivery location"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/addressType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/delivery"
+                    android:layout_marginTop="14dp"
+                    android:fontFamily="@font/airbnb_cereal_medium"
+                    android:text="Home"
+                    android:textColor="#232633"
+                    android:textSize="17sp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/addressType"
+                    android:layout_marginTop="14dp">
+
+                    <ImageView
+                        android:id="@+id/locationIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/location_red" />
+
+                    <TextView
+                        android:id="@+id/address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="9dp"
+                        android:layout_toStartOf="@id/changeLocationButton"
+                        android:layout_toEndOf="@id/locationIcon"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/airbnb_cereal_book"
+                        android:maxLines="1"
+                        android:text="1373 Emily Renzelli Boulevard, M…"
+                        android:textColor="#54565D"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/changeLocationButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="9dp"
+                        android:textColor="@color/black"
+                        android:background="@drawable/round_gray_11dp"
+                        android:fontFamily="@font/airbnb_cereal_book"
+                        android:paddingHorizontal="12sp"
+                        android:paddingVertical="4dp"
+                        android:text="@string/change"
+                        android:textSize="11sp" />
+
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/line_grey" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/imageCard"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:cardBackgroundColor="@android:color/transparent"
+                    app:cardCornerRadius="11dp">
+
+                    <ImageView
+                        android:id="@+id/shopImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@mipmap/group" />
+
+                </androidx.cardview.widget.CardView>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12sp"
+                    android:layout_toEndOf="@id/imageCard">
+
+                    <TextView
+                        android:id="@+id/shopName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginEnd="10dp"
+                        android:layout_toStartOf="@id/deliveryTime"
+                        android:fontFamily="@font/airbnb_cereal_bold"
+                        android:text="Celebration Restaurant"
+                        android:textColor="@color/black"
+                        android:textSize="17dp" />
+
+                    <TextView
+                        android:id="@+id/deliveryTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:background="@drawable/round_white_11dp"
+                        android:drawablePadding="3dp"
+                        android:fontFamily="@font/airbnb_cereal_medium"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="5dp"
+                        android:text="@string/_30_min"
+                        android:textColor="#6A6A6A"
+                        android:textSize="12sp"
+                        app:drawableStartCompat="@drawable/clock_black" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/deliveryTime"
+                        android:layout_marginTop="2dp">
+
+                        <ImageView
+                            android:id="@+id/shopLocationIcon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/location_red" />
+
+                        <TextView
+                            android:id="@+id/shopAddress"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="9dp"
+                            android:layout_toEndOf="@id/shopLocationIcon"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/airbnb_cereal_book"
+                            android:maxLines="1"
+                            android:text="4211 Sunburst Drive, Puerto Rico"
+                            android:textColor="#54565D"
+                            android:textSize="15sp" />
+
+                    </RelativeLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/shopRateLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/imageCard"
+                    android:layout_marginTop="25dp">
+
+                    <RatingBar
+                        android:id="@+id/shopRatingBar"
+                        style="@style/Widget.AppCompat.RatingBar.Indicator"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:numStars="5" />
+
+                    <TextView
+                        android:id="@+id/submitShopRating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:fontFamily="@font/airbnb_cereal_bold"
+                        android:text="Submit Rating"
+                        android:textColor="#EA1500"
+                        android:textSize="13sp" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/line_grey" />
+
+            <RelativeLayout
+                android:id="@+id/deliveryBoyLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/deliveryBoy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/airbnb_cereal_bold"
+                    android:text="Delivery Boy"
+                    android:textColor="#232633"
+                    android:textSize="15sp" />
+
+                <RelativeLayout
+                    android:id="@+id/deliveryBoyNameLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/deliveryBoy">
+
+                    <TextView
+                        android:id="@+id/deliveryBoyName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:fontFamily="@font/airbnb_cereal_bold"
+                        android:text="Robert Kulmuk"
+                        android:textColor="@color/black"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:id="@+id/callButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/call_red"
+                        android:drawablePadding="5dp"
+                        android:fontFamily="@font/airbnb_cereal_medium"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="10dp"
+                        android:text="@string/call"
+                        android:textColor="@color/white"
+                        app:drawableStartCompat="@drawable/call_white" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/deliveyBoyRateLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/deliveryBoyNameLayout"
+                    android:layout_marginTop="25dp">
+
+                    <RatingBar
+                        android:id="@+id/boyRatingBar"
+                        style="@style/Widget.AppCompat.RatingBar.Indicator"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:numStars="5" />
+
+                    <TextView
+                        android:id="@+id/boyShopRating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:fontFamily="@font/airbnb_cereal_bold"
+                        android:text="@string/submit_rating"
+                        android:textColor="#EA1500"
+                        android:textSize="13sp" />
+
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/line_grey" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/orderStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/airbnb_cereal_bold"
+                    android:text="Order Status"
+                    android:textColor="#232633"
+                    android:textSize="15sp" />
+
+                <RelativeLayout
+                    android:id="@+id/progressLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/orderStatus"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginEnd="6dp"
+                    android:padding="10dp">
+
+                    <ImageView
+                        android:id="@+id/placedTick"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/status" />
+
+                    <ImageView
+                        android:id="@+id/placedLine"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/placedTick"
+                        android:layout_centerHorizontal="true"
+                        android:src="@mipmap/line_green" />
+
+                    <ImageView
+                        android:id="@+id/confirmedTick"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/placedLine"
+                        android:layout_centerHorizontal="true"
+                        android:src="@drawable/circle_status" />
+
+                    <ImageView
+                        android:id="@+id/confirmedLine"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/confirmedTick"
+                        android:layout_centerHorizontal="true"
+                        android:src="@mipmap/line_gray" />
+
+                    <ImageView
+                        android:id="@+id/preparingTick"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/confirmedLine"
+                        android:layout_centerHorizontal="true"
+                        android:src="@mipmap/ellipse" />
+
+                    <ImageView
+                        android:id="@+id/preparingLine"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/preparingTick"
+                        android:layout_centerHorizontal="true"
+                        android:src="@mipmap/line_gray" />
+
+                    <ImageView
+                        android:id="@+id/pickupdTick"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/preparingLine"
+                        android:layout_centerHorizontal="true"
+                        android:src="@mipmap/ellipse" />
+
+                    <ImageView
+                        android:id="@+id/pickupLine"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/pickupdTick"
+                        android:layout_centerHorizontal="true"
+                        android:src="@mipmap/line_gray" />
+
+                    <ImageView
+                        android:id="@+id/deliverTick"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/pickupLine"
+                        android:layout_centerHorizontal="true"
+                        android:src="@mipmap/ellipse" />
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/statusDetailLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/orderStatus"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_toEndOf="@id/progressLayout"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/places"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/airbnb_cereal_medium"
+                            android:text="Order Placed"
+                            android:textColor="@color/black"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:id="@+id/placedDetails"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/airbnb_cereal_book"
+                            android:maxLines="1"
+                            android:text="We have received your order"
+                            android:textColor="#6B6B6B"
+                            android:textSize="11sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15sp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/confirmed"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/airbnb_cereal_medium"
+                            android:text="Order Confirmed"
+                            android:textColor="@color/black"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:id="@+id/processDetail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha="0.74"
+                            android:fontFamily="@font/airbnb_cereal_book"
+                            android:maxLines="1"
+                            android:text="Waiting for the restaurant to confirm your order."
+                            android:textColor="#6B6B6B"
+                            android:textSize="11sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15sp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/preparing"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/airbnb_cereal_medium"
+                            android:text="Preparing"
+                            android:textColor="@color/black"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:id="@+id/prepareDetail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/airbnb_cereal_book"
+                            android:maxLines="1"
+                            android:text="We are ready your ordered item."
+                            android:textColor="#6B6B6B"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15sp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/pickUp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/airbnb_cereal_medium"
+                            android:text="Picked up"
+                            android:textColor="@color/black"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:id="@+id/pickupDetail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/airbnb_cereal_medium"
+                            android:maxLines="1"
+                            android:text="Picked up by delivery executive Ankush"
+                            android:textColor="#6B6B6B"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15sp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/delivered"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/airbnb_cereal_medium"
+                            android:text="Delivered"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:id="@+id/deliveredDetail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/airbnb_cereal_medium"
+                            android:maxLines="1"
+                            android:text="Your order was delivered by Ankush"
+                            android:textColor="#6B6B6B"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/buttonGray" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/airbnb_cereal_bold"
+                    android:text="Item Ordered"
+                    android:textColor="#232633"
+                    android:textSize="15sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/itemRecycler"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:itemCount="2"
+                    tools:listitem="@layout/item_recycler" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/buttonGray" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/airbnb_cereal_bold"
+                    android:text="@string/bill_details"
+                    android:textColor="#232633"
+                    android:textSize="15sp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:fontFamily="@font/airbnb_cereal_book"
+                        android:text="@string/item_total"
+                        android:textColor="#292629"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/itemPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:fontFamily="@font/airbnb_cereal_medium"
+                        android:text="$62.04"
+                        android:textColor="#292629"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:fontFamily="@font/airbnb_cereal_book"
+                        android:text="Delivery Charges"
+                        android:textColor="#292629"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/deliveryCharge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:fontFamily="@font/airbnb_cereal_medium"
+                        android:text="$9.32"
+                        android:textColor="#292629"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:fontFamily="@font/airbnb_cereal_book"
+                        android:text="Tax &amp; Fee"
+                        android:textColor="#292629"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/textFee"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:fontFamily="@font/airbnb_cereal_medium"
+                        android:text="$2.45"
+                        android:textColor="#292629"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:fontFamily="@font/airbnb_cereal_book"
+                        android:text="Coupon Discount"
+                        android:textColor="#292629"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/coupon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:fontFamily="@font/airbnb_cereal_medium"
+                        android:text="-$5.90"
+                        android:textColor="#00AB5C"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/buttonGray" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <RelativeLayout
+                    android:id="@+id/billDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/airbnb_cereal_bold"
+                        android:text="@string/payable_amount"
+                        android:textColor="#232633"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/totalBill"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:fontFamily="@font/airbnb_cereal_medium"
+                        android:textColor="#232633"
+                        android:textSize="16sp"
+                        tools:text="$67.91" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/savedPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/airbnb_cereal_medium"
+                    android:labelFor="@id/billDetails"
+                    android:text="You Saved $5.90"
+                    android:textColor="#00AB5C"
+                    android:textSize="9sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+</layout>

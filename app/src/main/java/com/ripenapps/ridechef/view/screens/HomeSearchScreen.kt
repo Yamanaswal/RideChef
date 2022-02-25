@@ -236,7 +236,7 @@ class HomeSearchScreen : Fragment() {
     }
 
     private fun setAllFoodsData() {
-        allFoodsRecyclerAdapter = AllFoodsRecyclerAdapter(requireContext()) {
+        allFoodsRecyclerAdapter = AllFoodsRecyclerAdapter() {
             this.findNavController().navigate(
                 HomeSearchScreenDirections.actionHomeSearchScreenToSearchRestaurantAndDishScreen().setSearchText(binding.search.text.toString())
             )

@@ -76,10 +76,12 @@ class ChangeLocation : Fragment(), OnMapReadyCallback, OnMyLocationButtonClickLi
             DataBindingUtil.inflate(inflater, R.layout.fragment_change_location, container, false)
 
         // Construct a FusedLocationProviderClient.
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireActivity())
+        fusedLocationProviderClient =
+            LocationServices.getFusedLocationProviderClient(requireActivity())
 
         //Set Map
-        val mapFragment: SupportMapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
+        val mapFragment: SupportMapFragment =
+            childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
 
@@ -96,7 +98,8 @@ class ChangeLocation : Fragment(), OnMapReadyCallback, OnMyLocationButtonClickLi
             //set Location
             setLatLongAddress()
             //Go to Login Screen
-            this.findNavController().navigate(ChangeLocationDirections.actionChangeLocationToLoginScreen())
+            this.findNavController()
+                .navigate(ChangeLocationDirections.actionChangeLocationToLoginScreen())
         }
 
         return binding.root

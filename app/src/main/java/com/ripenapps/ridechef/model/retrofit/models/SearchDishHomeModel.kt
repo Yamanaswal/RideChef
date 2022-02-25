@@ -48,7 +48,9 @@ data class SearchDishHomeResponseData(
     @SerializedName("to")
     val to: Int,
     @SerializedName("total")
-    val total: Int
+    val total: Int,
+    @SerializedName("data")
+    val dataInsideRest: List<MerchantMenu>,
 )
 
 data class SearchDishHomeResponseDataData(
@@ -89,4 +91,11 @@ data class MenuType(
     val status: Int,
     @SerializedName("updated_at")
     val updatedAt: String
+)
+
+data class SearchDishInsideRestRequest(
+    @SerializedName("merchant_id")
+    val merchantId: String,
+    @SerializedName("search")
+    val search: String
 )

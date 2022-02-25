@@ -92,4 +92,13 @@
     <string name="other">Other</string>
     <string name="enter_address_details">Enter Address Details</string>
     <string name="menu">Menu</string>
+    <string name="search_dishes">Search Dishes</string>
+    <string name="order_successfully_placed">Order Successfully Placed</string>
+    <string name="submit_rating">Submit Rating</string>
+    <string name="waiting_for_the_restaurant_to_confirm_your_order">Waiting for the restaurant to confirm your order.</string>
+    <string name="track_order">Track order</string>
+    <string name="please_provide_this_otp_our_delivery_executive_it_ll_help_us_validate_delivery">Please provide this OTP our delivery executive, It\'ll help us validate delivery</string>
+    <string name="your_otp">Your OTP</string>
+    <string name="call">Call</string>
+    <string name="_30_min">30 Min</string>
 </resources>

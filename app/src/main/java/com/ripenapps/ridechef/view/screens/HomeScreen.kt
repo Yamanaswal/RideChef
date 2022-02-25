@@ -163,6 +163,10 @@ class HomeScreen : Fragment() {
         binding.viewButton.setOnClickListener {
             this.findNavController().navigate(HomeScreenDirections.actionHomeScreenToMyCartScreen())
         }
+
+        binding.deliveryAddress.setOnClickListener {
+            this.findNavController().navigate(HomeScreenDirections.actionHomeScreenToChangeLocation())
+        }
     }
 
     private fun setRecyclerViews() {
@@ -203,12 +207,10 @@ class HomeScreen : Fragment() {
         featureRestaurantRecyclerViewAdapter =
             FeatureRestaurantRecyclerViewAdapter(requireContext()) { restaurantItem ->
                 this.findNavController().navigate(
-                    HomeScreenDirections.actionHomeScreenToRestaurantDetailsScreen()
-                        .setRestaurantId(restaurantItem.id)
+                    HomeScreenDirections.actionHomeScreenToRestaurantDetailsScreen().setRestaurantId(restaurantItem.id)
                 )
             }
-        binding.featuredRestaurantRecyclerView.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.featuredRestaurantRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         val snapHelper: SnapHelper = PagerSnapHelper()
         snapHelper.attachToRecyclerView(binding.featuredRestaurantRecyclerView)
         binding.featuredRestaurantRecyclerView.adapter = featureRestaurantRecyclerViewAdapter
@@ -220,8 +222,7 @@ class HomeScreen : Fragment() {
                 HomeScreenDirections.actionHomeScreenToSearchRestaurantAndDishScreen().setCuisineId(cuisineItem.id.toString()).setSearchText("")
             )
         }
-        binding.trendingCuisineRecyclerView.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.trendingCuisineRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.trendingCuisineRecyclerView.adapter = cuisineRecyclerViewAdapter
     }
 

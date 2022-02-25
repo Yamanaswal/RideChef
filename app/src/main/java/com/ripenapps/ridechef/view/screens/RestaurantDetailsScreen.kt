@@ -1,13 +1,11 @@
 package com.ripenapps.ridechef.view.screens
 
-import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CompoundButton
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -15,6 +13,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ripenapps.ridechef.R
 import com.ripenapps.ridechef.databinding.FragmentRestaurantDetailsScreenBinding
+import com.ripenapps.ridechef.model.retrofit.models.LoginResponseData
 import com.ripenapps.ridechef.model.retrofit.models.RestaurantDetailsRequest
 import com.ripenapps.ridechef.utils.getUserData
 import com.ripenapps.ridechef.view.adapters.CouponRecyclerViewAdapter
@@ -31,6 +30,7 @@ class RestaurantDetailsScreen : Fragment() {
     lateinit var couponRecyclerViewAdapter: CouponRecyclerViewAdapter
     var vegType = ""
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -43,29 +43,39 @@ class RestaurantDetailsScreen : Fragment() {
             false
         )
 
-        binding.backButtonId.setOnClickListener {
-            requireActivity().onBackPressed()
-        }
-
         viewModel = ViewModelProvider(this)[RestaurantDetailsViewModel::class.java]
+
+        val userData = getUserData(requireContext())
 
         viewModel.callApiRestaurantDetails(
             restaurantDetailsRequest = RestaurantDetailsRequest(
                 menuType = "",
                 restaurantId = args.restaurantId,
                 search = "",
-                vegType = vegType
+                vegType = vegType,
+                userId = userData?.id.toString()
             )
         )
 
-        vegAndNonVegListeners()
-
-        setRecyclerViews()
-        setObservers()
+        vegAndNonVegListeners(userData)
+        setClicks()
+        setRecyclerViews(userData)
+        setObservers(userData)
         return binding.root
     }
 
-    private fun vegAndNonVegListeners() {
+    private fun setClicks() {
+        binding.backButtonId.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
+
+        binding.goToCartButton.setOnClickListener {
+            this.findNavController()
+                .navigate(RestaurantDetailsScreenDirections.actionRestaurantDetailsScreenToMyCartScreen())
+        }
+    }
+
+    private fun vegAndNonVegListeners(userData: LoginResponseData?) {
         binding.vegSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
             vegType = if (isChecked) {
                 "1"
@@ -78,7 +88,8 @@ class RestaurantDetailsScreen : Fragment() {
                     menuType = "",
                     restaurantId = args.restaurantId,
                     search = "",
-                    vegType = vegType
+                    vegType = vegType,
+                    userId = userData?.id.toString()
                 )
             )
         }
@@ -95,25 +106,31 @@ class RestaurantDetailsScreen : Fragment() {
                     menuType = "",
                     restaurantId = args.restaurantId,
                     search = "",
-                    vegType = vegType
+                    vegType = vegType,
+                    userId = userData?.id.toString()
                 )
             )
         }
 
-
-
     }
 
-    private fun setRecyclerViews() {
+    private fun setRecyclerViews(loginResponseData: LoginResponseData?) {
 
-        val loginResponseData = getUserData(requireContext())
         Log.e("TAG", "onCreateView: ${loginResponseData?.accessToken}")
 
         menuHeaderAdapter = MenuHeaderAdapter(requireContext()) { menu ->
             //Open Add To Cart
             if (loginResponseData?.accessToken?.isNotEmpty() == true) {
-                val addToCartBottomSheet = AddToCartBottomSheet(menu) {
-                    it.totalCartItem
+                val addToCartBottomSheet = AddToCartBottomSheet(menu) { menuItem ->
+                    viewModel.callApiRestaurantDetails(
+                        restaurantDetailsRequest = RestaurantDetailsRequest(
+                            menuType = "",
+                            restaurantId = args.restaurantId,
+                            search = "",
+                            vegType = vegType,
+                            userId = loginResponseData.id.toString()
+                        )
+                    )
                 }
                 addToCartBottomSheet.show(parentFragmentManager, "addToCartBottomSheet")
             } else {
@@ -132,7 +149,7 @@ class RestaurantDetailsScreen : Fragment() {
 
     }
 
-    private fun setObservers() {
+    private fun setObservers(userData: LoginResponseData?) {
         viewModel.restaurantDetailsResponse.observe(this) { res ->
             //Set Restaurant Details
             binding.restaurantDetailsData = res.response?.data
@@ -144,6 +161,31 @@ class RestaurantDetailsScreen : Fragment() {
             } else {
                 binding.lineTwo.visibility = View.GONE
             }
+
+
+            //Set Menu Click with Data
+            binding.menuButton.setOnClickListener {
+                val bottomSheetMenuSearch =
+                    MenuTypeBottomSheet(res.response?.data?.merchantMenuTypes)
+                bottomSheetMenuSearch.show(parentFragmentManager, "bottomSheetMenuSearch")
+            }
+
+            //Set Search Click with Data
+            binding.searchMenu.setOnClickListener {
+                val bottomSheetDishSearch = SearchDishBottomSheet(res.response?.data?.id)
+                bottomSheetDishSearch.show(parentFragmentManager, "bottomSheetDishSearch")
+            }
+
+            if (userData?.accessToken?.isNotEmpty() == true) {
+
+                if (res.response?.data?.totalCartItem?.toInt() == 0) {
+                    binding.goToCartButton.visibility = View.GONE
+                } else {
+                    binding.goToCartButton.visibility = View.VISIBLE
+                    binding.goToCartButton.text = "${res.response?.data?.totalCartItem.toString()} Items - $${res.response?.data?.totalCartAmount.toString()}"
+                }
+            }
+
         }
     }
 

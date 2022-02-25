@@ -76,12 +76,13 @@
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="17dp"
                     android:fontFamily="@font/airbnb_cereal_book"
-                    android:text="2394 Reviews"
                     android:textColor="@color/grey"
                     android:textSize="13sp"
                     app:layout_constraintBottom_toTopOf="@+id/address"
                     app:layout_constraintStart_toStartOf="@+id/restaurantName"
-                    app:layout_constraintTop_toBottomOf="@+id/restaurantName" />
+                    app:layout_constraintTop_toBottomOf="@+id/restaurantName"
+                    app:setReviews="@{String.valueOf(restaurantDetailsData.review)}"
+                    tools:text="2394 Reviews" />
 
                 <TextView
                     android:id="@+id/address"
@@ -190,10 +191,12 @@
                     app:layout_constraintTop_toBottomOf="@+id/lineTwo" />
 
                 <ImageView
+                    android:id="@+id/searchMenu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="17dp"
                     android:layout_marginEnd="19dp"
+                    android:padding="5dp"
                     android:src="@drawable/search_white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/lineTwo" />
@@ -232,17 +235,31 @@
                     android:overScrollMode="never"
                     app:layout_constraintTop_toBottomOf="@+id/vegSwitch" />
 
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </ScrollView>
 
+        <Button
+            android:id="@+id/goToCartButton"
+            style="@style/buttonStyleRed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="20dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:text="2 Items - $67.91" />
+
+        <!-- Menu Button -->
         <LinearLayout
             android:id="@+id/menuButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="60dp"
+            android:layout_marginBottom="70dp"
             android:background="@drawable/round_button_red_menu"
             android:gravity="center"
             android:orientation="horizontal"

@@ -1,6 +1,9 @@
 package com.ripenapps.ridechef.utils
 
+import android.app.Activity
 import android.content.Context
+import android.text.Editable
+import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
@@ -96,3 +99,22 @@ fun getUserData(context: Context): LoginResponseData? {
     )
 }
 
+fun makeTransparentStatusBar(activity: Activity, isTransparent: Boolean) {
+    if (isTransparent) {
+        activity.window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        activity.window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION)
+    } else {
+        activity.window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        activity.window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION)
+    }
+}
+
+
+fun addSymbolBeforeEditText(editable: Editable?) {
+    when {
+        editable.isNullOrEmpty() -> return
+        Regex("\\$\\d+").matches(editable.toString()) -> return
+        editable.toString() == "$" -> editable.clear()
+        editable.startsWith("$").not() -> editable.insert(0, "$")
+    }
+}

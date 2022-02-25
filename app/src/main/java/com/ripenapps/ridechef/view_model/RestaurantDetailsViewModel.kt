@@ -5,6 +5,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ripenapps.ridechef.model.retrofit.models.RestaurantDetailsRequest
 import com.ripenapps.ridechef.model.retrofit.models.RestaurantDetailsResponse
+import com.ripenapps.ridechef.model.retrofit.models.SearchDishHomeResponse
+import com.ripenapps.ridechef.model.retrofit.models.SearchDishInsideRestRequest
 import com.ripenapps.ridechef.model.retrofit.repos.MainRepo
 import com.ripenapps.ridechef.model.retrofit.retrofit_helper.ApiResponse
 import kotlinx.coroutines.launch
@@ -19,6 +21,17 @@ class RestaurantDetailsViewModel : ViewModel() {
     fun callApiRestaurantDetails(token: String? = null,restaurantDetailsRequest: RestaurantDetailsRequest) {
         viewModelScope.launch {
             mainRepo.restaurantDetails(token,restaurantDetailsRequest)
+        }
+    }
+
+
+
+    val dishInsideRestResponse: LiveData<ApiResponse<SearchDishHomeResponse>>
+        get() = mainRepo.searchDishInsideRestResponseLiveData
+
+    fun callApiSearchDishInsideRest(searchDishInsideRestRequest : SearchDishInsideRestRequest) {
+        viewModelScope.launch {
+            mainRepo.searchDishInsideRest(searchDishInsideRestRequest)
         }
     }
 

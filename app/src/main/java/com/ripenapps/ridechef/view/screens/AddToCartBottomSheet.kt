@@ -92,6 +92,7 @@ class AddToCartBottomSheet(val menu: Menu,val listener : (AddToCartResponseData)
 
     private fun setClicks() {
         val loginData = getUserData(requireContext())
+
         binding.addToCartButton.setOnClickListener {
             viewModel.callApiAddToCart(
                 loginData?.tokenType + " " + loginData?.accessToken,

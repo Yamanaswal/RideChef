@@ -1,6 +1,5 @@
 package com.ripenapps.ridechef.view.adapters
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +10,7 @@ import com.ripenapps.ridechef.databinding.RestaurantFoodItemBinding
 import com.ripenapps.ridechef.model.retrofit.models.SearchDishHomeResponseDataData
 
 
-class AllFoodsRecyclerAdapter(private val context: Context,val listener: (SearchDishHomeResponseDataData) -> Unit ) :
+class AllFoodsRecyclerAdapter(val listener: (SearchDishHomeResponseDataData) -> Unit) :
     RecyclerView.Adapter<AllFoodsRecyclerAdapter.ViewHolder>() {
 
     private val searchDishList = mutableListOf<SearchDishHomeResponseDataData>()

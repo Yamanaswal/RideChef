@@ -30,8 +30,7 @@ class LoginScreen : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_login_screen, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login_screen, container, false)
         viewModel = ViewModelProvider(this)[LoginViewModel::class.java]
 
         setClicks()

@@ -64,7 +64,7 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.8'
 
     //Coroutines
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0'
 
     // Image Handler
     implementation("io.coil-kt:coil:1.4.0")
@@ -80,6 +80,10 @@ dependencies {
     implementation 'com.google.android.gms:play-services-location:19.0.1'
     implementation 'com.google.android.libraries.places:places:2.5.0'
 
+    // Stripe SDK
+    implementation 'com.stripe:stripe-android:19.2.0'
+
+    // CUSTOM LIBS
     implementation 'com.github.Yamanaswal:Library_Store:1.0.2'
 
 }

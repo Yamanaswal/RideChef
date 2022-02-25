@@ -89,6 +89,10 @@ interface ApiService {
         @Header("Authorization") token: String,
     ): Response<UserAddressesResponse>
 
+    @GET("api/user/search-dish-inside-restro")
+    suspend fun searchDishInsideRest(
+        @Body searchDishInsideRestRequest: SearchDishInsideRestRequest
+    ): Response<SearchDishHomeResponse>
 
 }
 
