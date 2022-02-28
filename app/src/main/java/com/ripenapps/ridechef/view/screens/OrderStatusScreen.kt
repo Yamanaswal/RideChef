@@ -6,12 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import com.ripenapps.ridechef.R
 import com.ripenapps.ridechef.databinding.FragmentOrderStatusScreenBinding
+import com.ripenapps.ridechef.view_model.OrderStatusViewModel
 
 class OrderStatusScreen : Fragment() {
 
     lateinit var binding: FragmentOrderStatusScreenBinding
+    lateinit var viewModel: OrderStatusViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,7 +27,7 @@ class OrderStatusScreen : Fragment() {
             container,
             false
         )
-
+        viewModel = ViewModelProvider(this)[OrderStatusViewModel::class.java]
         return binding.root
     }
 

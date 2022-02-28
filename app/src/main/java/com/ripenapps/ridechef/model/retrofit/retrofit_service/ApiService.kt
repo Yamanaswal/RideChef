@@ -83,7 +83,6 @@ interface ApiService {
         @Body makeDefaultAddressRequest: MakeDefaultAddressRequest
     ): Response<EmptyResponse>
 
-
     @GET("api/user/user-address")
     suspend fun userAddress(
         @Header("Authorization") token: String,
@@ -93,6 +92,20 @@ interface ApiService {
     suspend fun searchDishInsideRest(
         @Body searchDishInsideRestRequest: SearchDishInsideRestRequest
     ): Response<SearchDishHomeResponse>
+
+    @Multipart
+    @POST("api/user/update-user-profile")
+    suspend fun updateUserProfile(
+        @Header("Authorization") token: String,
+        @PartMap() updateUserProfileRequest: UpdateUserProfileRequest
+    ): Response<EmptyResponse>
+
+    @GET("api/user/get-user-profile")
+    suspend fun getUserProfile(
+        @Header("Authorization") token: String
+    ): Response<GetUserProfileResponse>
+
+
 
 }
 

@@ -134,8 +134,7 @@ class HomeScreen : Fragment() {
 
         binding.search.setOnClickListener {
             this.findNavController().navigate(
-                HomeScreenDirections.actionHomeScreenToHomeSearchScreen()
-                    .setScreenType(HomeScreenType.All)
+                HomeScreenDirections.actionHomeScreenToHomeSearchScreen().setScreenType(HomeScreenType.All)
             )
         }
 

@@ -7,28 +7,37 @@ data class MakeDefaultAddressRequest(
     val userAddressId: String
 )
 
-data class SaveUserAddressRequest(
+class SaveUserAddressRequest {
     @SerializedName("address")
-    val address: String,
+    var address: String = ""
+
     @SerializedName("default")
-    val default: String,
+    var default: String = ""
+
     @SerializedName("full_address")
-    val fullAddress: String,
+    var fullAddress: String = ""
+
     @SerializedName("landmark")
-    val landmark: String,
+    var landmark: String = ""
+
     @SerializedName("latitude")
-    val latitude: String,
+    var latitude: String = ""
+
     @SerializedName("longitude")
-    val longitude: String,
+    var longitude: String = ""
+
     @SerializedName("pincode")
-    val pinCode: String,
+    var pinCode: String = ""
+
     @SerializedName("request_type")
-    val requestType: String,
+    var requestType: String = ""
+
     @SerializedName("type")
-    val type: String,
+    var type: String = ""
+
     @SerializedName("user_address_id")
-    val userAddressId: String
-)
+    var userAddressId: String = ""
+}
 
 data class UserAddressesResponse(
     @SerializedName("data")

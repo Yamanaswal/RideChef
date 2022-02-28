@@ -4,10 +4,9 @@
 
     <data></data>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         tools:context=".view.screens.SavedAddressScreen">
 
         <include
@@ -18,7 +17,20 @@
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_above="@+id/addAddressButton"
+            android:layout_below="@+id/appBarId"
             android:overScrollMode="never" />
 
-    </LinearLayout>
+        <Button
+            android:id="@+id/addAddressButton"
+            style="@style/buttonStyleRed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:text="@string/add_address" />
+
+    </RelativeLayout>
 </layout>

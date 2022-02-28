@@ -112,6 +112,18 @@ class MainRepo {
     val searchDishInsideRestResponseLiveData: LiveData<ApiResponse<SearchDishHomeResponse>>
         get() = searchDishInsideRestResponseMutableLiveData
 
+    private val updateUserProfileResponseMutableLiveData =
+        MutableLiveData<ApiResponse<EmptyResponse>>()
+
+    val updateUserProfileResponseLiveData: LiveData<ApiResponse<EmptyResponse>>
+        get() = updateUserProfileResponseMutableLiveData
+
+    private val getUserProfileResponseResponseMutableLiveData =
+        MutableLiveData<ApiResponse<GetUserProfileResponse>>()
+
+    val getUserProfileResponseResponseLiveData: LiveData<ApiResponse<GetUserProfileResponse>>
+        get() = getUserProfileResponseResponseMutableLiveData
+
 
     /**********************************************************************************
      * Api Methods - Defined Here
@@ -173,8 +185,8 @@ class MainRepo {
             )
 
         } catch (e: Exception) {
-            Log.e(tag, "Exception (localizedMessage) -> homeApi: ${e.localizedMessage}")
-            Log.e(tag, "Exception (message) -> homeApi: ${e.message}")
+            Log.e(tag, "Exception (localizedMessage) -> viewAllApi: ${e.localizedMessage}")
+            Log.e(tag, "Exception (message) -> viewAllApi: ${e.message}")
         }
     }
 
@@ -192,8 +204,8 @@ class MainRepo {
             )
 
         } catch (e: Exception) {
-            Log.e(tag, "Exception (localizedMessage) -> homeApi: ${e.localizedMessage}")
-            Log.e(tag, "Exception (message) -> homeApi: ${e.message}")
+            Log.e(tag, "Exception (localizedMessage) -> searchDishHomeApi: ${e.localizedMessage}")
+            Log.e(tag, "Exception (message) -> searchDishHomeApi: ${e.message}")
         }
     }
 
@@ -210,8 +222,8 @@ class MainRepo {
             )
 
         } catch (e: Exception) {
-            Log.e(tag, "Exception (localizedMessage) -> homeApi: ${e.localizedMessage}")
-            Log.e(tag, "Exception (message) -> homeApi: ${e.message}")
+            Log.e(tag, "Exception (localizedMessage) -> restaurantList: ${e.localizedMessage}")
+            Log.e(tag, "Exception (message) -> restaurantList: ${e.message}")
         }
     }
 
@@ -229,8 +241,8 @@ class MainRepo {
             )
 
         } catch (e: Exception) {
-            Log.e(tag, "Exception (localizedMessage) -> homeApi: ${e.localizedMessage}")
-            Log.e(tag, "Exception (message) -> homeApi: ${e.message}")
+            Log.e(tag, "Exception (localizedMessage) -> dishList: ${e.localizedMessage}")
+            Log.e(tag, "Exception (message) -> dishList: ${e.message}")
         }
     }
 
@@ -251,8 +263,8 @@ class MainRepo {
             )
 
         } catch (e: Exception) {
-            Log.e(tag, "Exception (localizedMessage) -> homeApi: ${e.localizedMessage}")
-            Log.e(tag, "Exception (message) -> homeApi: ${e.message}")
+            Log.e(tag, "Exception (localizedMessage) -> restaurantDetails: ${e.localizedMessage}")
+            Log.e(tag, "Exception (message) -> restaurantDetails: ${e.message}")
         }
     }
 
@@ -273,8 +285,8 @@ class MainRepo {
             )
 
         } catch (e: Exception) {
-            Log.e(tag, "Exception (localizedMessage) -> homeApi: ${e.localizedMessage}")
-            Log.e(tag, "Exception (message) -> homeApi: ${e.message}")
+            Log.e(tag, "Exception (localizedMessage) -> addToCart: ${e.localizedMessage}")
+            Log.e(tag, "Exception (message) -> addToCart: ${e.message}")
         }
     }
 
@@ -294,8 +306,8 @@ class MainRepo {
             )
 
         } catch (e: Exception) {
-            Log.e(tag, "Exception (localizedMessage) -> homeApi: ${e.localizedMessage}")
-            Log.e(tag, "Exception (message) -> homeApi: ${e.message}")
+            Log.e(tag, "Exception (localizedMessage) -> cartDetails: ${e.localizedMessage}")
+            Log.e(tag, "Exception (message) -> cartDetails: ${e.message}")
         }
     }
 
@@ -316,8 +328,8 @@ class MainRepo {
             )
 
         } catch (e: Exception) {
-            Log.e(tag, "Exception (localizedMessage) -> homeApi: ${e.localizedMessage}")
-            Log.e(tag, "Exception (message) -> homeApi: ${e.message}")
+            Log.e(tag, "Exception (localizedMessage) -> dishDetails: ${e.localizedMessage}")
+            Log.e(tag, "Exception (message) -> dishDetails: ${e.message}")
         }
     }
 
@@ -337,8 +349,11 @@ class MainRepo {
             )
 
         } catch (e: Exception) {
-            Log.e(tag, "Exception (localizedMessage) -> homeApi: ${e.localizedMessage}")
-            Log.e(tag, "Exception (message) -> homeApi: ${e.message}")
+            Log.e(
+                tag,
+                "Exception (localizedMessage) -> updateCartItemQuantity: ${e.localizedMessage}"
+            )
+            Log.e(tag, "Exception (message) -> updateCartItemQuantity: ${e.message}")
         }
     }
 
@@ -359,8 +374,8 @@ class MainRepo {
             )
 
         } catch (e: Exception) {
-            Log.e(tag, "Exception (localizedMessage) -> homeApi: ${e.localizedMessage}")
-            Log.e(tag, "Exception (message) -> homeApi: ${e.message}")
+            Log.e(tag, "Exception (localizedMessage) -> saveUserAddress: ${e.localizedMessage}")
+            Log.e(tag, "Exception (message) -> saveUserAddress: ${e.message}")
         }
     }
 
@@ -380,8 +395,11 @@ class MainRepo {
             )
 
         } catch (e: Exception) {
-            Log.e(tag, "Exception (localizedMessage) -> homeApi: ${e.localizedMessage}")
-            Log.e(tag, "Exception (message) -> homeApi: ${e.message}")
+            Log.e(
+                tag,
+                "Exception (localizedMessage) -> makeDefaultUserAddress: ${e.localizedMessage}"
+            )
+            Log.e(tag, "Exception (message) -> makeDefaultUserAddress: ${e.message}")
         }
     }
 
@@ -400,13 +418,13 @@ class MainRepo {
             )
 
         } catch (e: Exception) {
-            Log.e(tag, "Exception (localizedMessage) -> homeApi: ${e.localizedMessage}")
-            Log.e(tag, "Exception (message) -> homeApi: ${e.message}")
+            Log.e(tag, "Exception (localizedMessage) -> userAddress: ${e.localizedMessage}")
+            Log.e(tag, "Exception (message) -> userAddress: ${e.message}")
         }
     }
 
     suspend fun searchDishInsideRest(
-        searchDishInsideRestRequest : SearchDishInsideRestRequest
+        searchDishInsideRestRequest: SearchDishInsideRestRequest
     ) {
         try {
             val response = apiService.searchDishInsideRest(searchDishInsideRestRequest)
@@ -420,8 +438,52 @@ class MainRepo {
             )
 
         } catch (e: Exception) {
-            Log.e(tag, "Exception (localizedMessage) -> homeApi: ${e.localizedMessage}")
-            Log.e(tag, "Exception (message) -> homeApi: ${e.message}")
+            Log.e(
+                tag,
+                "Exception (localizedMessage) -> searchDishInsideRest: ${e.localizedMessage}"
+            )
+            Log.e(tag, "Exception (message) -> searchDishInsideRest: ${e.message}")
+        }
+    }
+
+    suspend fun updateUserProfile(
+        token: String,
+        updateUserProfileRequest: UpdateUserProfileRequest
+    ) {
+        try {
+            val response = apiService.updateUserProfile(token, updateUserProfileRequest)
+
+            updateUserProfileResponseMutableLiveData.postValue(
+                ApiResponse(
+                    response = response.body(),
+                    errorBody = response.errorBody(),
+                    error = response.message()
+                )
+            )
+
+        } catch (e: Exception) {
+            Log.e(tag, "Exception (localizedMessage) -> updateUserProfile: ${e.localizedMessage}")
+            Log.e(tag, "Exception (message) -> updateUserProfile: ${e.message}")
+        }
+    }
+
+    suspend fun getUserProfile(
+        token: String
+    ) {
+        try {
+            val response = apiService.getUserProfile(token)
+
+            getUserProfileResponseResponseMutableLiveData.postValue(
+                ApiResponse(
+                    response = response.body(),
+                    errorBody = response.errorBody(),
+                    error = response.message()
+                )
+            )
+
+        } catch (e: Exception) {
+            Log.e(tag, "Exception (localizedMessage) -> getUserProfile: ${e.localizedMessage}")
+            Log.e(tag, "Exception (message) -> getUserProfile: ${e.message}")
         }
     }
 

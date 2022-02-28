@@ -80,12 +80,16 @@ fun setCouponText(textView: TextView, value: String) {
 
 @BindingAdapter(value = ["setAddressType"])
 fun setAddressType(textView: TextView, value: Int) {
-    if (value == 1) {
-        textView.text = "HOME"
-    } else if (value == 2) {
-        textView.text = "WORK"
-    } else {
-        textView.text = "OTHER"
+    when (value) {
+        1 -> {
+            textView.text = "HOME"
+        }
+        2 -> {
+            textView.text = "WORK"
+        }
+        else -> {
+            textView.text = "OTHER"
+        }
     }
 }
 

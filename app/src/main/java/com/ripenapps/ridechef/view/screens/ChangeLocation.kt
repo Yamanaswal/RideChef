@@ -15,6 +15,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.google.android.gms.common.api.Status
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -49,6 +50,7 @@ class ChangeLocation : Fragment(), OnMapReadyCallback, OnMyLocationButtonClickLi
     private val PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 123
 
     lateinit var binding: FragmentChangeLocationBinding
+    private val args: ChangeLocationArgs by navArgs()
     private lateinit var googleMap: GoogleMap
     var marker: Marker? = null
 
@@ -98,8 +100,33 @@ class ChangeLocation : Fragment(), OnMapReadyCallback, OnMyLocationButtonClickLi
             //set Location
             setLatLongAddress()
             //Go to Login Screen
-            this.findNavController()
-                .navigate(ChangeLocationDirections.actionChangeLocationToLoginScreen())
+            when (args.requestType) {
+                "add" -> {
+                    val bottomSheet = EnterAddressBottomSheet(args) { res ->
+                        if (res.status == 200) {
+                            requireActivity().onBackPressed()
+                        } else {
+                            Toast.makeText(requireContext(), res.message, Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                    bottomSheet.show(parentFragmentManager, "EnterAddressBottomSheet")
+                }
+                "update" -> {
+                    val bottomSheet = EnterAddressBottomSheet(args) { res ->
+                        if (res.status == 200) {
+                            requireActivity().onBackPressed()
+                        } else {
+                            Toast.makeText(requireContext(), res.message, Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                    bottomSheet.show(parentFragmentManager, "EnterAddressBottomSheet")
+                }
+                else -> {
+                    this.findNavController()
+                        .navigate(ChangeLocationDirections.actionChangeLocationToLoginScreen())
+
+                }
+            }
         }
 
         return binding.root

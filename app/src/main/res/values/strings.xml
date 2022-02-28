@@ -79,7 +79,7 @@
     <string name="minus_sign">-</string>
     <string name="plus_sign">+</string>
     <string name="apply">Apply</string>
-    <string name="add_address">Add Address</string>
+    <string name="add_address">+ Add Address</string>
     <string name="complete_address">COMPLETE ADDRESS</string>
     <string name="house_no_flat_no_floor">House No. / Flat no. / Floor</string>
     <string name="landmark_optional">LANDMARK (OPTIONAL)</string>
@@ -101,4 +101,18 @@
     <string name="your_otp">Your OTP</string>
     <string name="call">Call</string>
     <string name="_30_min">30 Min</string>
+    <string name="order_placed">Order Placed</string>
+    <string name="order_confirmed">Order Confirmed</string>
+    <string name="preparing">Preparing</string>
+    <string name="item_ordered">Item Ordered</string>
+    <string name="half">Half</string>
+    <string name="order_status">Order Status</string>
+    <string name="picked_up">Picked up</string>
+    <string name="delivery_from">Deliver from</string>
+    <string name="personal_details">Personal Details</string>
+    <string name="enter_name">ENTER NAME</string>
+    <string name="enter_dob">ENTER DOB</string>
+    <string name="email_address">EMAIL ADDRESS</string>
+    <string name="mobile_number">MOBILE NUMBER</string>
+    <string name="done">Done</string>
 </resources>

@@ -25,6 +25,14 @@
             app:destination="@id/loginScreen"
             app:popUpTo="@id/changeLocation"
             app:popUpToInclusive="true" />
+        <argument
+            android:name="requestType"
+            app:argType="string"
+            android:defaultValue='""' />
+        <argument
+            android:name="editAddress"
+            app:argType="string"
+            android:defaultValue='""' />
     </fragment>
 
     <fragment
@@ -223,7 +231,11 @@
         android:id="@+id/savedAddressScreen"
         android:name="com.ripenapps.ridechef.view.screens.SavedAddressScreen"
         android:label="fragment_saved_address_screen"
-        tools:layout="@layout/fragment_saved_address_screen" />
+        tools:layout="@layout/fragment_saved_address_screen" >
+        <action
+            android:id="@+id/action_savedAddressScreen_to_changeLocation"
+            app:destination="@id/changeLocation" />
+    </fragment>
 
     <fragment
         android:id="@+id/termsConditionsScreen"
@@ -280,6 +292,9 @@
         <action
             android:id="@+id/action_myCartScreen_to_couponScreen"
             app:destination="@id/couponScreen" />
+        <action
+            android:id="@+id/action_myCartScreen_to_changeLocation"
+            app:destination="@id/changeLocation" />
     </fragment>
 
 </navigation>

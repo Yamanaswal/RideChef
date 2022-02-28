@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="myCartDetails"
             type="com.ripenapps.ridechef.model.retrofit.models.CartDetailsResponseData" />
@@ -74,41 +76,62 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="18dp"
                         android:layout_marginTop="20dp"
-                        android:visibility="gone"
                         android:fontFamily="@font/airbnb_cereal_medium"
-                        android:text="Home"
                         android:textColor="@color/black"
                         android:textSize="17sp"
+                        android:visibility="@{myCartDetails.address == null ? View.GONE : View.VISIBLE }"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:setAddressType="@{myCartDetails.address.type}"
+                        tools:text="HOME" />
 
                     <TextView
+                        android:id="@+id/fullAddress"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="9dp"
                         android:drawablePadding="8dp"
-                        android:visibility="gone"
                         android:fontFamily="@font/airbnb_cereal_book"
-                        android:text="1373 Emily Renzelli Boulevard, M…"
+                        android:text="@{myCartDetails.address.fullAddress}"
                         android:textColor="@color/black"
                         android:textSize="15sp"
+                        android:visibility="@{myCartDetails.address == null ? View.GONE : View.VISIBLE }"
                         app:drawableStartCompat="@drawable/location_red"
                         app:layout_constraintStart_toStartOf="@+id/textView5"
+                        app:layout_constraintTop_toBottomOf="@+id/textView5"
+                        tools:text="User Address Here." />
+
+
+                    <Button
+                        android:id="@+id/changeAddress"
+                        style="@style/buttonStyleBrown"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="20dp"
+                        android:background="@drawable/round_brown_border_background"
+                        android:fontFamily="@font/airbnb_cereal_book"
+                        android:paddingVertical="6dp"
+                        android:text="@string/change"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:visibility="@{myCartDetails.address == null ? View.GONE : View.VISIBLE }"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
                     <Button
-                        android:text="@string/add_address"
+                        android:id="@+id/buttonSavedAddress"
                         style="@style/buttonStyleRed"
-                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="18dp"
                         android:layout_marginTop="20dp"
                         android:layout_marginEnd="20dp"
+                        android:text="@string/add_address"
+                        android:visibility="@{myCartDetails.address == null ? View.VISIBLE : View.GONE }"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:id="@+id/buttonSavedAddress"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        app:layout_constraintTop_toTopOf="parent" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -124,7 +147,6 @@
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/shapeableImageView"
-                    app:loadImageUrl="@{myCartDetails.restaurantDetails.restaurantImages.get(0).image}"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginStart="20dp"
@@ -133,8 +155,8 @@
                     android:theme="@style/roundedImageViewRounded_20"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/lineOne"
+                    app:loadImageUrl="@{myCartDetails.restaurantDetails.restaurantImages.get(0).image}"
                     tools:src="@mipmap/rest_placeholder" />
-
 
                 <TextView
                     android:id="@+id/textView6"
@@ -158,9 +180,9 @@
                     android:layout_marginEnd="20dp"
                     android:drawablePadding="8dp"
                     android:ellipsize="end"
-                    android:maxLines="1"
                     android:fontFamily="@font/airbnb_cereal_book"
-                    android:text="@{myCartDetails.restaurantDetails.shopLocation}"
+                    android:maxLines="1"
+                    android:text="@{myCartDetails.restaurantDetails.restaurantAddress}"
                     android:textColor="@color/black"
                     android:textSize="15sp"
                     app:drawableStartCompat="@drawable/location_red"
@@ -265,12 +287,12 @@
                     android:layout_height="match_parent"
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="16dp"
-                    android:inputType="number"
-                    android:digits="$1234567890"
-                    android:maxLines="1"
                     android:background="@drawable/round_background_tip"
+                    android:digits="$1234567890"
                     android:fontFamily="@font/airbnb_cereal_medium"
                     android:hint="@string/enter_tip_amount"
+                    android:inputType="number"
+                    android:maxLines="1"
                     android:paddingHorizontal="16dp"
                     android:paddingVertical="14dp"
                     android:textColor="@color/black"
@@ -359,9 +381,9 @@
                     android:layout_marginEnd="20dp"
                     android:fontFamily="@font/airbnb_cereal_medium"
                     android:textColor="@color/black"
-                    app:setMenuPrice='@{myCartDetails.shippingCharge + ""}'
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/itemTotal"
+                    app:setMenuPrice='@{myCartDetails.shippingCharge + ""}'
                     tools:text="$9.32" />
 
                 <TextView
@@ -370,10 +392,10 @@
                     android:layout_marginTop="14dp"
                     android:layout_marginEnd="20dp"
                     android:fontFamily="@font/airbnb_cereal_medium"
-                    app:setMenuPrice='@{myCartDetails.tax + ""}'
                     android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/deliveryText"
+                    app:setMenuPrice='@{myCartDetails.tax + ""}'
                     tools:text="$9.32" />
 
                 <TextView
@@ -476,6 +498,7 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <Button
+                android:id="@+id/checkoutButton"
                 style="@style/buttonStyleRed"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

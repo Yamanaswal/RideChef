@@ -1,5 +1,6 @@
 package com.ripenapps.ridechef.view.screens
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -17,6 +18,7 @@ import com.ripenapps.ridechef.R
 import com.ripenapps.ridechef.databinding.FragmentMyCartScreenBinding
 import com.ripenapps.ridechef.model.retrofit.models.Coupons
 import com.ripenapps.ridechef.model.retrofit.models.UpdateCartItemQuantityRequest
+import com.ripenapps.ridechef.stripe_payment.StripePaymentHostActivity
 import com.ripenapps.ridechef.utils.addSymbolBeforeEditText
 import com.ripenapps.ridechef.utils.getUserData
 import com.ripenapps.ridechef.view.adapters.DishMyCartRecyclerViewAdapter
@@ -34,7 +36,7 @@ class MyCartScreen : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        if (!this::binding.isInitialized) {
+//        if (!this::binding.isInitialized) {
             // Inflate the layout for this fragment
             binding = DataBindingUtil.inflate(
                 inflater,
@@ -80,7 +82,7 @@ class MyCartScreen : Fragment() {
                     // Do something with the data.
                     Log.e("currentBackStackEntry", "onCreateView: $data")
                 }
-        }
+//        }
 
         return binding.root
     }
@@ -90,6 +92,15 @@ class MyCartScreen : Fragment() {
             this.findNavController().navigate(
                 MyCartScreenDirections.actionMyCartScreenToCouponScreen(Gson().toJson(couponList))
             )
+        }
+
+        binding.checkoutButton.setOnClickListener {
+            startActivity(Intent(requireContext(), StripePaymentHostActivity::class.java))
+        }
+
+
+        binding.buttonSavedAddress.setOnClickListener {
+            this.findNavController().navigate(MyCartScreenDirections.actionMyCartScreenToChangeLocation().setRequestType("add"))
         }
     }
 

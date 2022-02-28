@@ -7,13 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.gson.Gson
 import com.ripenapps.ridechef.R
 import com.ripenapps.ridechef.databinding.FragmentSavedAddressScreenBinding
 import com.ripenapps.ridechef.utils.getUserData
-import com.ripenapps.ridechef.view.adapters.MyOrderRecyclerViewAdapter
 import com.ripenapps.ridechef.view.adapters.SavedAddressRecyclerViewAdapter
-import com.ripenapps.ridechef.view_model.LoginViewModel
 import com.ripenapps.ridechef.view_model.SavedAddressViewModel
 
 
@@ -39,8 +39,18 @@ class SavedAddressScreen : Fragment() {
         viewModel.callApiUserAddress(userData?.tokenType + " " + userData?.accessToken)
         setAppBar()
         setRecyclerView()
+        setClicks()
         setObservers()
         return binding.root
+    }
+
+    private fun setClicks() {
+        binding.addAddressButton.setOnClickListener {
+            this.findNavController().navigate(
+                SavedAddressScreenDirections.actionSavedAddressScreenToChangeLocation()
+                    .setRequestType("add")
+            )
+        }
     }
 
     private fun setObservers() {
@@ -52,7 +62,13 @@ class SavedAddressScreen : Fragment() {
     }
 
     private fun setRecyclerView() {
-        savedAddressRecyclerAdapter = SavedAddressRecyclerViewAdapter(requireContext())
+        savedAddressRecyclerAdapter = SavedAddressRecyclerViewAdapter() { editAddress ->
+            this.findNavController().navigate(
+                SavedAddressScreenDirections.actionSavedAddressScreenToChangeLocation()
+                    .setRequestType("update")
+                    .setEditAddress(Gson().toJson(editAddress))
+            )
+        }
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = savedAddressRecyclerAdapter
     }

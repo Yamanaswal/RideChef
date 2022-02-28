@@ -1,6 +1,5 @@
 package com.ripenapps.ridechef.view.adapters
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,13 +7,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.ripenapps.ridechef.R
 import com.ripenapps.ridechef.databinding.SavedAddressItemBinding
-import com.ripenapps.ridechef.model.retrofit.models.SearchDishHomeResponseDataData
 import com.ripenapps.ridechef.model.retrofit.models.UserAddressesData
-import com.ripenapps.ridechef.model.retrofit.models.UserAddressesResponse
-import com.ripenapps.ridechef.view_model.SavedAddressViewModel
 
 
-class SavedAddressRecyclerViewAdapter(private val context: Context) : RecyclerView.Adapter<SavedAddressRecyclerViewAdapter.ViewHolder>() {
+class SavedAddressRecyclerViewAdapter(val listener: (UserAddressesData) -> Unit) : RecyclerView.Adapter<SavedAddressRecyclerViewAdapter.ViewHolder>() {
 
     var savedAddressList = mutableListOf<UserAddressesData>()
 
@@ -25,6 +21,10 @@ class SavedAddressRecyclerViewAdapter(private val context: Context) : RecyclerVi
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.binding?.savedAddress = savedAddressList[position]
+
+        holder.binding?.editButton?.setOnClickListener {
+            listener(savedAddressList[position])
+        }
     }
 
     override fun getItemCount(): Int {
