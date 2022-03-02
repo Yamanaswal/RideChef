@@ -3,7 +3,9 @@ package com.ripenapps.ridechef.utils
 import android.app.Activity
 import android.content.Context
 import android.text.Editable
+import android.text.TextUtils
 import android.view.WindowManager
+import android.webkit.MimeTypeMap
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
@@ -12,6 +14,10 @@ import com.google.gson.Gson
 import com.ripenapps.ridechef.R
 import com.ripenapps.ridechef.model.retrofit.models.LoginResponseData
 import com.ripenapps.ridechef.model.retrofit.models.MerchantCusine
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import java.io.File
 import java.text.DecimalFormat
 
 @BindingAdapter(value = ["loadImageUrl"])
@@ -121,4 +127,31 @@ fun addSymbolBeforeEditText(editable: Editable?) {
         editable.toString() == "$" -> editable.clear()
         editable.startsWith("$").not() -> editable.insert(0, "$")
     }
+}
+
+fun getMultipartBodyIMG(uploaded_File: String?, keyName: String): MultipartBody.Part? {
+    if (!TextUtils.isEmpty(uploaded_File)) {
+        if (!(uploaded_File!!.contains("https://"))) {
+            val file = File(uploaded_File)
+            val image = file.asRequestBody(
+                getMimeType(
+                    uploaded_File
+                )?.toMediaTypeOrNull()
+            )
+            return MultipartBody.Part.createFormData(keyName, file.name, image)
+        }
+        return null
+    } else
+        return null
+}
+
+fun getMimeType(url: String): String? {
+    var type: String? = null
+    val extension = MimeTypeMap.getFileExtensionFromUrl(url)
+
+    if (extension != null) {
+        type = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension)
+    }
+
+    return type
 }

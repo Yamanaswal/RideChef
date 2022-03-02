@@ -115,4 +115,6 @@
     <string name="email_address">EMAIL ADDRESS</string>
     <string name="mobile_number">MOBILE NUMBER</string>
     <string name="done">Done</string>
+    <string name="select_image">Select Image</string>
+    <string name="enter_email">ENTER EMAIL</string>
 </resources>

@@ -3,7 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data></data>
+    <data>
+
+        <variable
+            name="userdata"
+            type="com.ripenapps.ridechef.model.retrofit.models.GetUserProfileResponseData" />
+    </data>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,6 +36,7 @@
                 android:layout_centerHorizontal="true"
                 android:scaleType="fitXY"
                 android:src="@mipmap/person_placeholder"
+                app:loadImageUrl="@{userdata.profileImage}"
                 app:shapeAppearanceOverlay="@style/roundedImageViewRounded" />
 
             <com.google.android.material.imageview.ShapeableImageView
@@ -46,49 +52,65 @@
 
 
         <EditText
+            android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="14dp"
             android:background="@drawable/round_profile_background"
+            android:hint="@string/enter_name"
             android:paddingVertical="12dp"
             android:paddingStart="16dp"
             android:paddingEnd="12dp"
-            android:hint="Enter Name"
-            android:text="Raymundo M. McNitt" />
+            android:text="@{userdata.name}"
+            android:textColor="@color/black"
+            tools:text="Raymundo M. McNitt" />
 
         <EditText
+            android:id="@+id/dob"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="14dp"
             android:background="@drawable/round_profile_background"
             android:drawableEnd="@drawable/birthday_icon"
+            android:enabled="false"
             android:paddingVertical="12dp"
             android:paddingStart="16dp"
-            android:hint="Enter Mobile Number"
-            android:text="+1 723 473 6835" />
+            android:paddingEnd="16dp"
+            android:text="@{userdata.dob}"
+            android:textColor="@color/black"
+            tools:text="02-Jan-2022" />
 
         <EditText
+            android:id="@+id/mobile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="14dp"
             android:background="@drawable/round_profile_background"
+            android:enabled="false"
             android:paddingVertical="12dp"
-            android:hint="Enter Date Of Birth"
             android:paddingStart="16dp"
-            android:text="July 27, 1989" />
+            android:paddingEnd="1dp"
+            android:text="@{userdata.mobileNumber}"
+            android:textColor="@color/black"
+            tools:text="+1 9124422442424" />
 
         <EditText
+            android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="14dp"
             android:background="@drawable/round_profile_background"
+            android:hint="@string/enter_email"
             android:paddingVertical="12dp"
             android:paddingStart="16dp"
-            android:text="raymundom.072@gmail.com" />
+            android:paddingEnd="1dp"
+            android:text="@{userdata.email}"
+            android:textColor="@color/black"
+            tools:text="raymundom.072@gmail.com" />
 
         <View
             android:layout_width="match_parent"
@@ -96,6 +118,7 @@
             android:layout_weight="1" />
 
         <Button
+            android:id="@+id/saveChanges"
             style="@style/buttonStyleRed"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

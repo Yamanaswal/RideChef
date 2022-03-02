@@ -2,16 +2,17 @@ package com.ripenapps.ridechef.model.retrofit.models
 
 import com.google.gson.annotations.SerializedName
 
+
 data class EmptyResponse(
 
-    @field:SerializedName(value = "status")
-    val status: Int = 0,
+    @SerializedName("status")
+    val status: Int,
 
-    @field:SerializedName("message")
-    val message: String = "",
+    @SerializedName("message")
+    val message: String,
 
-    @field:SerializedName("data")
-    val data: EmptyResponseData? = EmptyResponseData()
+    @SerializedName("data")
+    val data: EmptyResponseData = EmptyResponseData()
 
 )
 

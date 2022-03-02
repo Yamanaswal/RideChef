@@ -39,8 +39,8 @@ object RetrofitClient {
                 .addNetworkInterceptor(Interceptor { chain: Interceptor.Chain ->
                     val request: Request.Builder = chain.request().newBuilder()
                     request.method(chain.request().method, chain.request().body)
-                    request.addHeader("Content-Type", "application/json")
-                    request.addHeader("Accept", "application/json")
+//                    request.addHeader("Content-Type", "application/json")
+//                    request.addHeader("Accept", "application/json")
                     request.build()
                     chain.proceed(request.build())
                 })
@@ -57,4 +57,6 @@ object RetrofitServiceGenerator {
     fun <S> createService(serviceClass: Class<S>): S {
         return RetrofitClient.getAPIClient(BASE_URL)!!.create(serviceClass)
     }
+
+
 }

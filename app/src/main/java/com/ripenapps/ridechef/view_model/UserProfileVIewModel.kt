@@ -9,6 +9,10 @@ import com.ripenapps.ridechef.model.retrofit.models.UpdateUserProfileRequest
 import com.ripenapps.ridechef.model.retrofit.repos.MainRepo
 import com.ripenapps.ridechef.model.retrofit.retrofit_helper.ApiResponse
 import kotlinx.coroutines.launch
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import java.io.File
 
 class UserProfileVIewModel : ViewModel() {
 
@@ -32,9 +36,28 @@ class UserProfileVIewModel : ViewModel() {
         token: String,
         updateUserProfileRequest: UpdateUserProfileRequest
     ) {
-        viewModelScope.launch {
-            mainRepo.updateUserProfile(token, updateUserProfileRequest)
+        val builder = MultipartBody.Builder()
+        builder.setType(MultipartBody.FORM)
+
+        builder.addFormDataPart("name", updateUserProfileRequest.name)
+        builder.addFormDataPart("dob", updateUserProfileRequest.dob)
+        builder.addFormDataPart("email", updateUserProfileRequest.email)
+
+        if (updateUserProfileRequest.profileImage != null) {
+            val fileCoverImage = File(updateUserProfileRequest.profileImage!!)
+            builder.addFormDataPart(
+                "profile_image",
+                fileCoverImage.name + System.currentTimeMillis(),
+                RequestBody.create("multipart/form-data".toMediaTypeOrNull(), fileCoverImage)
+            )
+
         }
+        val requestBody: MultipartBody = builder.build()
+
+        viewModelScope.launch {
+            mainRepo.updateUserProfile(token, requestBody)
+        }
+
     }
 
 }

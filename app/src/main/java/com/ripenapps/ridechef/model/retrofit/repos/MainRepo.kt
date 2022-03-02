@@ -5,10 +5,12 @@ import androidx.lifecycle.MutableLiveData
 import com.ripenapps.ridechef.model.retrofit.retrofit_helper.RetrofitServiceGenerator
 import com.ripenapps.ridechef.model.retrofit.retrofit_service.ApiService
 import androidx.lifecycle.LiveData
-import com.android.volley.NetworkError
 import com.ripenapps.ridechef.model.retrofit.models.*
 import com.ripenapps.ridechef.model.retrofit.retrofit_helper.ApiResponse
-import kotlinx.coroutines.coroutineScope
+import okhttp3.MultipartBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MainRepo {
 
@@ -448,10 +450,14 @@ class MainRepo {
 
     suspend fun updateUserProfile(
         token: String,
-        updateUserProfileRequest: UpdateUserProfileRequest
+        requestBody: MultipartBody,
     ) {
         try {
-            val response = apiService.updateUserProfile(token, updateUserProfileRequest)
+            Log.e("TAG", "updateUserProfile: $requestBody")
+            Log.e("TAG", "updateUserProfile: ${requestBody.size}")
+            Log.e("TAG", "updateUserProfile: $token")
+
+            val response = apiService.updateUserProfile(token, requestBody)
 
             updateUserProfileResponseMutableLiveData.postValue(
                 ApiResponse(
@@ -460,6 +466,7 @@ class MainRepo {
                     error = response.message()
                 )
             )
+
 
         } catch (e: Exception) {
             Log.e(tag, "Exception (localizedMessage) -> updateUserProfile: ${e.localizedMessage}")

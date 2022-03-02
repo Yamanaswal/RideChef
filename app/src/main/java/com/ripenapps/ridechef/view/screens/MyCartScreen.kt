@@ -95,7 +95,9 @@ class MyCartScreen : Fragment() {
         }
 
         binding.checkoutButton.setOnClickListener {
-            startActivity(Intent(requireContext(), StripePaymentHostActivity::class.java))
+            val personalDetailsBottomSheet = PersonalDetailsBottomSheet()
+            personalDetailsBottomSheet.show(parentFragmentManager,"personalDetailsBottomSheet")
+//            startActivity(Intent(requireContext(), StripePaymentHostActivity::class.java))
         }
 
 

@@ -58,25 +58,6 @@ data class Item(
     val variant: Variant?
 )
 
-data class RestaurantDetails(
-    @SerializedName("id")
-    val id: Int,
-    @SerializedName("latitude")
-    val latitude: String,
-    @SerializedName("longitude")
-    val longitude: String,
-    @SerializedName("rating")
-    val rating: String,
-    @SerializedName("restaurant_address")
-    val restaurantAddress: String,
-    @SerializedName("restaurant_images")
-    val restaurantImages: List<RestaurantImage>,
-    @SerializedName("restaurant_name")
-    val restaurantName: String,
-    @SerializedName("shop_location")
-    val shopLocation: String
-)
-
 data class AddOnsList(
     @SerializedName("addon")
     val addon: Addon,
@@ -96,39 +77,6 @@ data class AddOnsList(
     val userCartId: Int,
     @SerializedName("user_id")
     val userId: Int
-)
-
-data class MenuDetails(
-    @SerializedName("created_at")
-    val createdAt: String,
-    @SerializedName("deleted_at")
-    val deletedAt: Any?,
-    @SerializedName("description")
-    val description: String,
-    @SerializedName("discount")
-    val discount: Int,
-    @SerializedName("final_price")
-    val finalPrice: String,
-    @SerializedName("id")
-    val id: Int,
-    @SerializedName("image")
-    val image: String,
-    @SerializedName("is_available")
-    val isAvailable: Int,
-    @SerializedName("menu_type_id")
-    val menuTypeId: Int,
-    @SerializedName("merchant_id")
-    val merchantId: Int,
-    @SerializedName("name")
-    val name: String,
-    @SerializedName("price")
-    val price: String,
-    @SerializedName("status")
-    val status: Int,
-    @SerializedName("type")
-    val type: Int,
-    @SerializedName("updated_at")
-    val updatedAt: String
 )
 
 data class Variant(

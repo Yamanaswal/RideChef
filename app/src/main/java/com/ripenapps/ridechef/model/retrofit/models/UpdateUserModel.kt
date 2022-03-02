@@ -10,7 +10,7 @@ data class UpdateUserProfileRequest(
     @SerializedName("name")
     var name: String,
     @SerializedName("profile_image")
-    var profileImage: String
+    var profileImage: String?
 )
 
 data class GetUserProfileResponse(

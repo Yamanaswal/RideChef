@@ -1,6 +1,10 @@
 package com.ripenapps.ridechef.model.retrofit.retrofit_service
 
 import com.ripenapps.ridechef.model.retrofit.models.*
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import okhttp3.ResponseBody
+import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -93,11 +97,10 @@ interface ApiService {
         @Body searchDishInsideRestRequest: SearchDishInsideRestRequest
     ): Response<SearchDishHomeResponse>
 
-    @Multipart
     @POST("api/user/update-user-profile")
     suspend fun updateUserProfile(
         @Header("Authorization") token: String,
-        @PartMap() updateUserProfileRequest: UpdateUserProfileRequest
+        @Body file: RequestBody,
     ): Response<EmptyResponse>
 
     @GET("api/user/get-user-profile")
@@ -105,6 +108,29 @@ interface ApiService {
         @Header("Authorization") token: String
     ): Response<GetUserProfileResponse>
 
+    @POST("api/user/order-status-details")
+    suspend fun orderStatusDetails(
+        @Header("Authorization") token: String,
+        @Body orderStatusDetailsRequest: OrderStatusDetailsRequest
+    ): Response<OrderStatusDetailsResponse>
+
+    @POST("api/user/place-order")
+    suspend fun placeOrder(
+        @Header("Authorization") token: String,
+        @Body placeOrderRequest: PlaceOrderRequest
+    ): Response<EmptyResponse>
+
+    @POST("api/user/rate-driver-merchant")
+    suspend fun rateDriverMerchant(
+        @Header("Authorization") token: String,
+        @Body rateDriverMerchantRequest: RateDriverMerchantRequest
+    ): Response<EmptyResponse>
+
+    @POST("api/user/make-favorite-restaurant")
+    suspend fun makeFavoriteRestaurant(
+        @Header("Authorization") token: String,
+        @Body makeFavoriteRequest: MakeFavoriteRequest
+    ): Response<EmptyResponse>
 
 
 }
