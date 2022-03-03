@@ -118,7 +118,7 @@ interface ApiService {
     suspend fun placeOrder(
         @Header("Authorization") token: String,
         @Body placeOrderRequest: PlaceOrderRequest
-    ): Response<EmptyResponse>
+    ): Response<PlaceOrderResponse>
 
     @POST("api/user/rate-driver-merchant")
     suspend fun rateDriverMerchant(
@@ -131,6 +131,11 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Body makeFavoriteRequest: MakeFavoriteRequest
     ): Response<EmptyResponse>
+
+    @GET("api/user/get-favorite-restaurants")
+    suspend fun getFavoriteRestaurants(
+        @Header("Authorization") token: String
+    ): Response<RestaurantDetailsResponse>
 
 
 }

@@ -98,8 +98,10 @@
         <entry key="app/src/main/res/layout/fragment_my_favourite_screen.xml" value="0.315625" />
         <entry key="app/src/main/res/layout/fragment_my_orders_screen.xml" value="0.315625" />
         <entry key="app/src/main/res/layout/fragment_notification_screen.xml" value="0.315625" />
-        <entry key="app/src/main/res/layout/fragment_order_status_screen.xml" value="0.45" />
+        <entry key="app/src/main/res/layout/fragment_order_placed_success_screen.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/fragment_order_status_screen.xml" value="0.21523708044752266" />
         <entry key="app/src/main/res/layout/fragment_otp_screen.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_payment_screen.xml" value="0.21041666666666667" />
         <entry key="app/src/main/res/layout/fragment_privacy_policy.xml" value="0.524074074074074" />
         <entry key="app/src/main/res/layout/fragment_profile_settings_screen.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_restaurant_banner_screen.xml" value="0.315625" />

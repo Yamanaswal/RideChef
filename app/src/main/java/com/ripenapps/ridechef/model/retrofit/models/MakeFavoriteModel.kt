@@ -4,7 +4,8 @@ import com.google.gson.annotations.SerializedName
 
 data class MakeFavoriteRequest(
     @SerializedName("merchant_id")
-    val merchantId: Int
+    val merchantId: String
 )
+
 
 

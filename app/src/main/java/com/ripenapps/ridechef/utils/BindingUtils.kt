@@ -100,6 +100,15 @@ fun setAddressType(textView: TextView, value: Int) {
 }
 
 
+@BindingAdapter(value = ["setFavIcon"])
+fun setFavIcon(image: ImageView, fav: Int) {
+    if (fav == 0) {
+        image.setImageResource(R.drawable.heart_white_border)
+    } else {
+        image.setImageResource(R.drawable.heart_black_border)
+    }
+}
+
 fun getUserData(context: Context): LoginResponseData? {
     return Gson().fromJson(
         PreferencesUtil.getStringPreference(
@@ -155,3 +164,4 @@ fun getMimeType(url: String): String? {
 
     return type
 }
+

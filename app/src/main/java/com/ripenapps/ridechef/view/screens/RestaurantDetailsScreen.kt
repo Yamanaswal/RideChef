@@ -14,7 +14,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.ripenapps.ridechef.R
 import com.ripenapps.ridechef.databinding.FragmentRestaurantDetailsScreenBinding
 import com.ripenapps.ridechef.model.retrofit.models.LoginResponseData
+import com.ripenapps.ridechef.model.retrofit.models.MakeFavoriteRequest
 import com.ripenapps.ridechef.model.retrofit.models.RestaurantDetailsRequest
+import com.ripenapps.ridechef.model.retrofit.models.RestaurantDetailsResponse
+import com.ripenapps.ridechef.model.retrofit.retrofit_helper.ApiResponse
 import com.ripenapps.ridechef.utils.getUserData
 import com.ripenapps.ridechef.view.adapters.CouponRecyclerViewAdapter
 import com.ripenapps.ridechef.view.adapters.MenuHeaderAdapter
@@ -29,7 +32,6 @@ class RestaurantDetailsScreen : Fragment() {
     lateinit var menuHeaderAdapter: MenuHeaderAdapter
     lateinit var couponRecyclerViewAdapter: CouponRecyclerViewAdapter
     var vegType = ""
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,8 +59,8 @@ class RestaurantDetailsScreen : Fragment() {
             )
         )
 
-        vegAndNonVegListeners(userData)
         setClicks()
+        vegAndNonVegListeners(userData)
         setRecyclerViews(userData)
         setObservers(userData)
         return binding.root
@@ -73,6 +75,7 @@ class RestaurantDetailsScreen : Fragment() {
             this.findNavController()
                 .navigate(RestaurantDetailsScreenDirections.actionRestaurantDetailsScreenToMyCartScreen())
         }
+
     }
 
     private fun vegAndNonVegListeners(userData: LoginResponseData?) {
@@ -162,31 +165,69 @@ class RestaurantDetailsScreen : Fragment() {
                 binding.lineTwo.visibility = View.GONE
             }
 
-
-            //Set Menu Click with Data
-            binding.menuButton.setOnClickListener {
-                val bottomSheetMenuSearch =
-                    MenuTypeBottomSheet(res.response?.data?.merchantMenuTypes)
-                bottomSheetMenuSearch.show(parentFragmentManager, "bottomSheetMenuSearch")
-            }
-
-            //Set Search Click with Data
-            binding.searchMenu.setOnClickListener {
-                val bottomSheetDishSearch = SearchDishBottomSheet(res.response?.data?.id)
-                bottomSheetDishSearch.show(parentFragmentManager, "bottomSheetDishSearch")
-            }
+            setClicksEvents(res, userData)
 
             if (userData?.accessToken?.isNotEmpty() == true) {
-
                 if (res.response?.data?.totalCartItem?.toInt() == 0) {
                     binding.goToCartButton.visibility = View.GONE
                 } else {
                     binding.goToCartButton.visibility = View.VISIBLE
-                    binding.goToCartButton.text = "${res.response?.data?.totalCartItem.toString()} Items - $${res.response?.data?.totalCartAmount.toString()}"
+                    binding.goToCartButton.text =
+                        "${res.response?.data?.totalCartItem.toString()} Items - $${res.response?.data?.totalCartAmount.toString()}"
                 }
             }
-
         }
     }
+
+
+    private fun setClicksEvents(
+        res: ApiResponse<RestaurantDetailsResponse>,
+        userData: LoginResponseData?
+    ) {
+
+        //Set Menu Click with Data
+        binding.menuButton.setOnClickListener {
+            val bottomSheetMenuSearch = MenuTypeBottomSheet(res.response?.data?.merchantMenuTypes)
+            bottomSheetMenuSearch.show(parentFragmentManager, "bottomSheetMenuSearch")
+        }
+
+        //Set Search Click with Data
+        binding.searchMenu.setOnClickListener {
+            val bottomSheetDishSearch = SearchDishBottomSheet(res.response?.data?.id)
+            bottomSheetDishSearch.show(parentFragmentManager, "bottomSheetDishSearch")
+        }
+
+        //Set Click on Favorite Icon
+        binding.favIcon.setOnClickListener {
+
+            if (userData?.accessToken != null) {
+
+                if (res.response?.data?.favorite == 0) {
+                    res.response?.data?.favorite = 1
+                    binding.favIcon.setImageResource(R.drawable.heart_white_border)
+
+                    viewModel.callApiMyFavourite(
+                        userData.tokenType + " " + userData.accessToken,
+                        MakeFavoriteRequest(res.response?.data?.id.toString())
+                    )
+                }
+                else {
+                    binding.favIcon.setImageResource(R.drawable.heart_black_border)
+                    res.response?.data?.favorite = 0
+
+                    viewModel.callApiMyFavourite(
+                        userData.tokenType + " " + userData.accessToken,
+                        MakeFavoriteRequest(res.response?.data?.id.toString())
+                    )
+                }
+
+            } else {
+                this.findNavController()
+                    .navigate(RestaurantDetailsScreenDirections.actionRestaurantDetailsScreenToLoginScreen())
+            }
+        }
+
+    }
+
 
 }

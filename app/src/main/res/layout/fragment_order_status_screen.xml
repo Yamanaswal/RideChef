@@ -3,7 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data></data>
+    <data>
+
+        <variable
+            name="orderDetail"
+            type="com.ripenapps.ridechef.model.retrofit.models.OrderStatusDetailsResponseData" />
+    </data>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -97,9 +102,10 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:fontFamily="@font/airbnb_cereal_bold"
-                    android:text="1234"
+                    android:text="@{orderDetail.otp}"
                     android:textColor="#EA1500"
-                    android:textSize="17sp" />
+                    android:textSize="17sp"
+                    tools:text="1234" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -197,6 +203,7 @@
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/restImage"
+                    loadImageUrl="@{orderDetail.restaurantDetails.restaurantImages[0].image}"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:layout_below="@+id/deliveryLocation"
@@ -218,9 +225,10 @@
                         android:layout_marginEnd="10dp"
                         android:layout_toStartOf="@id/deliveryTime"
                         android:fontFamily="@font/airbnb_cereal_bold"
-                        android:text="Celebration Restaurant"
+                        android:text="@{orderDetail.restaurantDetails.restaurantName}"
                         android:textColor="@color/black"
-                        android:textSize="17dp" />
+                        android:textSize="17sp"
+                        tools:text="Celebration Restaurant" />
 
                     <TextView
                         android:id="@+id/deliveryTime"
@@ -260,11 +268,13 @@
                             android:ellipsize="end"
                             android:fontFamily="@font/airbnb_cereal_book"
                             android:maxLines="1"
-                            android:text="4211 Sunburst Drive, Puerto Rico"
+                            android:text="@{orderDetail.restaurantDetails.restaurantAddress}"
                             android:textColor="#54565D"
-                            android:textSize="15sp" />
+                            android:textSize="15sp"
+                            tools:text="4211 Sunburst Drive, Puerto Rico" />
 
                     </RelativeLayout>
+
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -708,9 +718,10 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:fontFamily="@font/airbnb_cereal_medium"
-                        android:text="$62.04"
                         android:textColor="#292629"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        tools:text="$62.04" />
+
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -723,7 +734,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:fontFamily="@font/airbnb_cereal_book"
-                        android:text="Delivery Charges"
+                        android:text="@string/delivery_charges"
                         android:textColor="#292629"
                         android:textSize="12sp" />
 
@@ -749,7 +760,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:fontFamily="@font/airbnb_cereal_book"
-                        android:text="Tax &amp; Fee"
+                        android:text="@string/tax_fee"
                         android:textColor="#292629"
                         android:textSize="12sp" />
 

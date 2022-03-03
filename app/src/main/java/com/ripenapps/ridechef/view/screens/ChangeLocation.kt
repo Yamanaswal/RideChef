@@ -74,8 +74,7 @@ class ChangeLocation : Fragment(), OnMapReadyCallback, OnMyLocationButtonClickLi
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_change_location, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_change_location, container, false)
 
         // Construct a FusedLocationProviderClient.
         fusedLocationProviderClient =
@@ -85,7 +84,6 @@ class ChangeLocation : Fragment(), OnMapReadyCallback, OnMyLocationButtonClickLi
         val mapFragment: SupportMapFragment =
             childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
-
 
         askLocationPermission()
 
@@ -226,7 +224,7 @@ class ChangeLocation : Fragment(), OnMapReadyCallback, OnMyLocationButtonClickLi
     }
 
     override fun onCameraMove() {
-        Log.d(TAG, "onCameraMove..");
+        Log.d(TAG, "onCameraMove..")
         //set marker on current location.
         setMarker()
     }

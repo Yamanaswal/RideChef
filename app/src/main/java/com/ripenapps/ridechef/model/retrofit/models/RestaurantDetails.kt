@@ -50,7 +50,9 @@ data class RestaurantDetailsResponseData(
     val totalCartAmount: String,
     @SerializedName("coupons")
     val coupons: List<Coupons>,
-    )
+    @SerializedName("favorite")
+    var favorite: Int
+)
 
 
 data class MerchantMenuType(

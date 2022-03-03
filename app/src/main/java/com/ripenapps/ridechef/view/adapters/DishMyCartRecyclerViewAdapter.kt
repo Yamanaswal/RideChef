@@ -30,14 +30,16 @@ class DishMyCartRecyclerViewAdapter(val listener: (Item, String) -> Unit) :
         }
 
         holder.binding?.minus?.setOnClickListener {
-            if (searchDishList[position].quantity > 0) {
+            if (searchDishList[position].quantity > 1) {
                 listener(searchDishList[position], "minus")
                 searchDishList[position].quantity--
+                notifyItemChanged(position)
             }else{
-                listener(searchDishList[position], "zero")
+                listener(searchDishList[position], "one")
+                searchDishList[position].quantity--
                 searchDishList.removeAt(position)
+                notifyItemRemoved(position)
             }
-            notifyItemChanged(position)
         }
     }
 

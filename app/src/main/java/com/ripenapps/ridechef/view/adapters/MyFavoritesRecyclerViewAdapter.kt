@@ -1,6 +1,5 @@
 package com.ripenapps.ridechef.view.adapters
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ripenapps.ridechef.R
 import com.ripenapps.ridechef.databinding.RestaurantItemFavBinding
 
-class MyFavoritesRecyclerViewAdapter(private val context: Context) : RecyclerView.Adapter<MyFavoritesRecyclerViewAdapter.ViewHolder>() {
+class MyFavoritesRecyclerViewAdapter : RecyclerView.Adapter<MyFavoritesRecyclerViewAdapter.ViewHolder>() {
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view: View = LayoutInflater.from(parent.context).inflate(R.layout.restaurant_item_fav, parent, false)
@@ -30,10 +30,6 @@ class MyFavoritesRecyclerViewAdapter(private val context: Context) : RecyclerVie
         init {
             // Define click listener for the ViewHolder's View
         }
-    }
-
-    init {
-//        this.faqListResponseList = faqListResponseList
     }
 }
 

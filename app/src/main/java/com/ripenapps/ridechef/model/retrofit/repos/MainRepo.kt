@@ -120,12 +120,41 @@ class MainRepo {
     val updateUserProfileResponseLiveData: LiveData<ApiResponse<EmptyResponse>>
         get() = updateUserProfileResponseMutableLiveData
 
-    private val getUserProfileResponseResponseMutableLiveData =
+    private val getUserProfileResponseMutableLiveData =
         MutableLiveData<ApiResponse<GetUserProfileResponse>>()
 
-    val getUserProfileResponseResponseLiveData: LiveData<ApiResponse<GetUserProfileResponse>>
-        get() = getUserProfileResponseResponseMutableLiveData
+    val getUserProfileResponseLiveData: LiveData<ApiResponse<GetUserProfileResponse>>
+        get() = getUserProfileResponseMutableLiveData
 
+    private val placeOrderMutableLiveData =
+        MutableLiveData<ApiResponse<PlaceOrderResponse>>()
+
+    val placeOrderResponseLiveData: LiveData<ApiResponse<PlaceOrderResponse>>
+        get() = placeOrderMutableLiveData
+
+    private val rateDriverMerchantResponseMutableLiveData =
+        MutableLiveData<ApiResponse<EmptyResponse>>()
+
+    val rateDriverMerchantResponseLiveData: LiveData<ApiResponse<EmptyResponse>>
+        get() = rateDriverMerchantResponseMutableLiveData
+
+    private val orderStatusResponseMutableLiveData =
+        MutableLiveData<ApiResponse<OrderStatusDetailsResponse>>()
+
+    val orderStatusResponseResponseLiveData: LiveData<ApiResponse<OrderStatusDetailsResponse>>
+        get() = orderStatusResponseMutableLiveData
+
+    private val makeFavoriteRestaurantResponseMutableLiveData =
+        MutableLiveData<ApiResponse<EmptyResponse>>()
+
+    val makeFavoriteRestaurantResponseLiveData: LiveData<ApiResponse<EmptyResponse>>
+        get() = makeFavoriteRestaurantResponseMutableLiveData
+
+    private val getFavoriteRestaurantsResponseMutableLiveData =
+        MutableLiveData<ApiResponse<RestaurantDetailsResponse>>()
+
+    val getFavoriteRestaurantsResponseLiveData: LiveData<ApiResponse<RestaurantDetailsResponse>>
+        get() = getFavoriteRestaurantsResponseMutableLiveData
 
     /**********************************************************************************
      * Api Methods - Defined Here
@@ -480,7 +509,7 @@ class MainRepo {
         try {
             val response = apiService.getUserProfile(token)
 
-            getUserProfileResponseResponseMutableLiveData.postValue(
+            getUserProfileResponseMutableLiveData.postValue(
                 ApiResponse(
                     response = response.body(),
                     errorBody = response.errorBody(),
@@ -493,5 +522,114 @@ class MainRepo {
             Log.e(tag, "Exception (message) -> getUserProfile: ${e.message}")
         }
     }
+
+    suspend fun placeOrder(
+        token: String,
+        placeOrderRequest: PlaceOrderRequest
+    ) {
+        try {
+            val response = apiService.placeOrder(token, placeOrderRequest)
+
+            placeOrderMutableLiveData.postValue(
+                ApiResponse(
+                    response = response.body(),
+                    errorBody = response.errorBody(),
+                    error = response.message()
+                )
+            )
+
+        } catch (e: Exception) {
+            Log.e(tag, "Exception (localizedMessage) -> getUserProfile: ${e.localizedMessage}")
+            Log.e(tag, "Exception (message) -> getUserProfile: ${e.message}")
+        }
+    }
+
+
+    suspend fun orderStatusDetails(
+        token: String,
+        orderStatusDetailsRequest: OrderStatusDetailsRequest
+    ) {
+        try {
+            val response = apiService.orderStatusDetails(token, orderStatusDetailsRequest)
+
+            orderStatusResponseMutableLiveData.postValue(
+                ApiResponse(
+                    response = response.body(),
+                    errorBody = response.errorBody(),
+                    error = response.message()
+                )
+            )
+
+        } catch (e: Exception) {
+            Log.e(tag, "Exception (localizedMessage) -> getUserProfile: ${e.localizedMessage}")
+            Log.e(tag, "Exception (message) -> getUserProfile: ${e.message}")
+        }
+    }
+
+
+    suspend fun rateDriverMerchant(
+        token: String,
+        rateDriverMerchantRequest: RateDriverMerchantRequest
+    ) {
+        try {
+            val response = apiService.rateDriverMerchant(token, rateDriverMerchantRequest)
+
+            rateDriverMerchantResponseMutableLiveData.postValue(
+                ApiResponse(
+                    response = response.body(),
+                    errorBody = response.errorBody(),
+                    error = response.message()
+                )
+            )
+
+        } catch (e: Exception) {
+            Log.e(tag, "Exception (localizedMessage) -> getUserProfile: ${e.localizedMessage}")
+            Log.e(tag, "Exception (message) -> getUserProfile: ${e.message}")
+        }
+    }
+
+
+    suspend fun makeFavoriteRestaurant(
+        token: String,
+        makeFavoriteRequest: MakeFavoriteRequest
+    ) {
+        try {
+            val response = apiService.makeFavoriteRestaurant(token, makeFavoriteRequest)
+
+            makeFavoriteRestaurantResponseMutableLiveData.postValue(
+                ApiResponse(
+                    response = response.body(),
+                    errorBody = response.errorBody(),
+                    error = response.message()
+                )
+            )
+
+        } catch (e: Exception) {
+            Log.e(tag, "Exception (localizedMessage) -> getUserProfile: ${e.localizedMessage}")
+            Log.e(tag, "Exception (message) -> getUserProfile: ${e.message}")
+        }
+    }
+
+
+    suspend fun getFavoriteRestaurants(
+        token: String
+    ) {
+        try {
+            val response = apiService.getFavoriteRestaurants(token)
+
+            getFavoriteRestaurantsResponseMutableLiveData.postValue(
+                ApiResponse(
+                    response = response.body(),
+                    errorBody = response.errorBody(),
+                    error = response.message()
+                )
+            )
+
+        } catch (e: Exception) {
+            Log.e(tag, "Exception (localizedMessage) -> getUserProfile: ${e.localizedMessage}")
+            Log.e(tag, "Exception (message) -> getUserProfile: ${e.message}")
+        }
+    }
+
 
 }

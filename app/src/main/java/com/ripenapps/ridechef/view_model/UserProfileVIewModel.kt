@@ -18,16 +18,14 @@ class UserProfileVIewModel : ViewModel() {
 
     val mainRepo = MainRepo()
 
-
     val getUserProfileResponse: LiveData<ApiResponse<GetUserProfileResponse>>
-        get() = mainRepo.getUserProfileResponseResponseLiveData
+        get() = mainRepo.getUserProfileResponseLiveData
 
     fun callApiGetUserProfile(token: String) {
         viewModelScope.launch {
             mainRepo.getUserProfile(token)
         }
     }
-
 
     val updateUserProfileResponse: LiveData<ApiResponse<EmptyResponse>>
         get() = mainRepo.updateUserProfileResponseLiveData
@@ -50,7 +48,6 @@ class UserProfileVIewModel : ViewModel() {
                 fileCoverImage.name + System.currentTimeMillis(),
                 RequestBody.create("multipart/form-data".toMediaTypeOrNull(), fileCoverImage)
             )
-
         }
         val requestBody: MultipartBody = builder.build()
 

@@ -12,7 +12,9 @@
         tools:layout="@layout/fragment_splash_screen">
         <action
             android:id="@+id/action_splashScreen_to_allowLocationScreen"
-            app:destination="@id/allowLocationScreen" />
+            app:destination="@id/allowLocationScreen"
+            app:popUpTo="@id/splashScreen"/>
+
     </fragment>
 
     <fragment
@@ -93,6 +95,9 @@
         <action
             android:id="@+id/action_homeScreen_to_myCartScreen"
             app:destination="@id/myCartScreen" />
+        <action
+            android:id="@+id/action_homeScreen_to_orderStatusScreen"
+            app:destination="@id/orderStatusScreen" />
     </fragment>
 
     <fragment
@@ -295,6 +300,46 @@
         <action
             android:id="@+id/action_myCartScreen_to_changeLocation"
             app:destination="@id/changeLocation" />
+        <action
+            android:id="@+id/action_myCartScreen_to_paymentScreen"
+            app:destination="@id/paymentScreen" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/orderStatusScreen"
+        android:name="com.ripenapps.ridechef.view.screens.OrderStatusScreen"
+        android:label="OrderStatusScreen"
+        tools:layout="@layout/fragment_order_status_screen" >
+        <argument
+            android:name="order_id"
+            app:argType="integer" />
+        <argument
+            android:name="isOrderPlaced"
+            app:argType="boolean"
+            android:defaultValue="false" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/paymentScreen"
+        android:name="com.ripenapps.ridechef.view.screens.PaymentScreen"
+        android:label="PaymentScreen"
+        tools:layout="@layout/fragment_payment_screen" >
+        <action
+            android:id="@+id/action_paymentScreen_to_orderPlacedSuccessScreen"
+            app:destination="@id/orderPlacedSuccessScreen" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/orderPlacedSuccessScreen"
+        android:name="com.ripenapps.ridechef.view.screens.OrderPlacedSuccessScreen"
+        android:label="OrderPlacedSuccessScreen"
+        tools:layout="@layout/fragment_order_placed_success_screen">
+        <action
+            android:id="@+id/action_orderPlacedSuccessScreen_to_orderStatusScreen"
+            app:destination="@id/orderStatusScreen" />
+        <argument
+            android:name="order_id"
+            app:argType="integer" />
     </fragment>
 
 </navigation>

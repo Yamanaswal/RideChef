@@ -18,7 +18,7 @@ import com.ripenapps.ridechef.view_model.UserProfileVIewModel
 import com.yaman.validations.validateName
 
 
-class PersonalDetailsBottomSheet : BottomSheetDialogFragment() {
+class PersonalDetailsBottomSheet(val listener: (Int) -> Unit) : BottomSheetDialogFragment() {
 
     lateinit var binding: PersonalDetailsBottomSheetBinding
     lateinit var viewModel: UserProfileVIewModel
@@ -62,6 +62,7 @@ class PersonalDetailsBottomSheet : BottomSheetDialogFragment() {
         //Update Profile Response
         viewModel.updateUserProfileResponse.observe(this) { res ->
             if (res.response?.status == 200) {
+                listener(res.response?.status!!)
                 Toast.makeText(requireContext(), res.response?.message, Toast.LENGTH_SHORT).show()
             } else {
                 Log.e("updateUserProfile", "Error: ${res.response?.message}")

@@ -30,7 +30,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:layout_marginTop="20dp"
+                    android:paddingStart="5dp"
+                    android:paddingTop="20dp"
+                    android:paddingEnd="10dp"
+                    android:paddingBottom="4dp"
                     android:src="@mipmap/back_button"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -103,12 +106,13 @@
 
                 <ImageView
                     android:id="@+id/favIcon"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:layout_marginEnd="20dp"
-                    android:src="@drawable/heart_white_border"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/restaurantName" />
+                    app:layout_constraintTop_toTopOf="@+id/restaurantName"
+                    app:setFavIcon="@{restaurantDetailsData.favorite}"
+                    tools:src="@drawable/heart_white_border" />
 
                 <TextView
                     android:id="@+id/distance"

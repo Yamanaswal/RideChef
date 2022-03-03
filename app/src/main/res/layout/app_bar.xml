@@ -19,7 +19,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="12dp"
                 android:padding="10dp"
                 android:src="@mipmap/back_button" />
 
@@ -28,7 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginStart="24dp"
+                android:layout_marginStart="20dp"
                 android:layout_toEndOf="@+id/backButtonId"
                 android:fontFamily="@font/airbnb_cereal_bold"
                 android:text="Title"

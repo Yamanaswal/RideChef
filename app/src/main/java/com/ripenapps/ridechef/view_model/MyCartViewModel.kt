@@ -3,9 +3,7 @@ package com.ripenapps.ridechef.view_model
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ripenapps.ridechef.model.retrofit.models.CartDetailsResponse
-import com.ripenapps.ridechef.model.retrofit.models.UpdateCartItemQuantityRequest
-import com.ripenapps.ridechef.model.retrofit.models.UpdateCartItemQuantityResponse
+import com.ripenapps.ridechef.model.retrofit.models.*
 import com.ripenapps.ridechef.model.retrofit.repos.MainRepo
 import com.ripenapps.ridechef.model.retrofit.retrofit_helper.ApiResponse
 import kotlinx.coroutines.launch
@@ -23,7 +21,6 @@ class MyCartViewModel : ViewModel() {
         }
     }
 
-
     val updateCartItemQuantityResponse: LiveData<ApiResponse<UpdateCartItemQuantityResponse>>
         get() = mainRepo.updateCartItemQuantityLiveData
 
@@ -34,10 +31,6 @@ class MyCartViewModel : ViewModel() {
         viewModelScope.launch {
             mainRepo.updateCartItemQuantity(token, updateCartItemQuantityRequest)
         }
-    }
-
-    override fun onCleared() {
-        super.onCleared()
     }
 
 }
