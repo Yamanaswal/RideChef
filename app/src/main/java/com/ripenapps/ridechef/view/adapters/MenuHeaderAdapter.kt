@@ -1,6 +1,7 @@
 package com.ripenapps.ridechef.view.adapters
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,14 +20,17 @@ class MenuHeaderAdapter(private val context: Context, val listener: (Menu) -> Un
     private lateinit var menuItemAdapter: MenuItemAdapter
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view: View =
-            LayoutInflater.from(parent.context).inflate(R.layout.menu_header, parent, false)
+        val view: View = LayoutInflater.from(parent.context).inflate(R.layout.menu_header, parent, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.binding?.menuMerchantType = menuMerchantTypes[position]
         setRecyclerView(holder, menuMerchantTypes[position])
+
+        holder.binding?.menuHeader?.setOnClickListener {
+            multipleSelection(position, holder = holder)
+        }
     }
 
     private fun setRecyclerView(holder: ViewHolder, merchantMenuType: MerchantMenuType) {
@@ -46,12 +50,20 @@ class MenuHeaderAdapter(private val context: Context, val listener: (Menu) -> Un
         notifyDataSetChanged()
     }
 
+    private fun multipleSelection(position: Int, holder: ViewHolder) {
+        if (menuMerchantTypes[position].isOpen) {
+            menuMerchantTypes[position].isOpen = false
+        } else {
+            menuMerchantTypes[position].isOpen = true
+            Log.e("TAG", "onBindViewHolder: selectionType 2:  $position")
+        }
+        notifyItemChanged(position)
+    }
+
+
+
     inner class ViewHolder(view: View?) : RecyclerView.ViewHolder(view!!) {
         var binding: MenuHeaderBinding? = DataBindingUtil.bind(view!!)
-
-        init {
-            // Define click listener for the ViewHolder's View
-        }
     }
 
 }

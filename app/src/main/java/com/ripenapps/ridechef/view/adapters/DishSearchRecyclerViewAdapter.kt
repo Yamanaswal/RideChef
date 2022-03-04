@@ -4,7 +4,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -27,7 +26,7 @@ class DishSearchHeaderRecyclerViewAdapter(private val context: Context, val list
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.binding?.dishHeader = searchDishList[position]
 //
-        val dishBodyAdapter = DishSearchBodyRecyclerViewAdapter(context) {}
+        val dishBodyAdapter = DishSearchBodyRecyclerViewAdapter() {}
         holder.binding?.recyclerView?.layoutManager = LinearLayoutManager(context)
         holder.binding?.recyclerView?.adapter = dishBodyAdapter
         dishBodyAdapter.updateList(searchDishList[position].merchantMenus)
@@ -59,7 +58,7 @@ class DishSearchHeaderRecyclerViewAdapter(private val context: Context, val list
 }
 
 
-class DishSearchBodyRecyclerViewAdapter(private val context: Context, val listener: () -> Unit) :
+class DishSearchBodyRecyclerViewAdapter(val listener: (MerchantMenu) -> Unit) :
     RecyclerView.Adapter<DishSearchBodyRecyclerViewAdapter.ViewHolder>() {
 
     private val searchDishList = mutableListOf<MerchantMenu>()
@@ -72,9 +71,9 @@ class DishSearchBodyRecyclerViewAdapter(private val context: Context, val listen
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.binding?.dishBody = searchDishList[position]
 //
-//        holder.binding?.dishCard?.setOnClickListener {
-//            listener(searchDishList[position])
-//        }
+        holder.binding?.addItem?.setOnClickListener {
+            listener(searchDishList[position])
+        }
     }
 
     override fun getItemCount(): Int {
@@ -90,10 +89,6 @@ class DishSearchBodyRecyclerViewAdapter(private val context: Context, val listen
 
     inner class ViewHolder(view: View?) : RecyclerView.ViewHolder(view!!) {
         var binding: DishBodyBinding? = DataBindingUtil.bind(view!!)
-
-        init {
-            // Define click listener for the ViewHolder's View
-        }
     }
 
 }

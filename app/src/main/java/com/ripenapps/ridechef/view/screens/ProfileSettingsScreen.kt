@@ -1,5 +1,7 @@
 package com.ripenapps.ridechef.view.screens
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +10,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
@@ -117,5 +121,29 @@ class ProfileSettingsScreen : Fragment() {
             requireActivity().onBackPressed()
         }
     }
+
+//    fun askPermission() : Boolean {
+//        if (ContextCompat.checkSelfPermission(
+//                requireActivity(),
+//                Manifest.permission.READ_EXTERNAL_STORAGE
+//            ) == PackageManager.PERMISSION_GRANTED &&
+//            ContextCompat.checkSelfPermission(
+//                requireActivity(),
+//                Manifest.permission.WRITE_EXTERNAL_STORAGE
+//            ) == PackageManager.PERMISSION_GRANTED
+//        ) {
+//            return true
+//        } else {
+//            ActivityCompat.requestPermissions(
+//                requireActivity(),
+//                arrayOf(
+//                    Manifest.permission.ACCESS_FINE_LOCATION,
+//                    Manifest.permission.ACCESS_COARSE_LOCATION
+//                ),
+//
+//            )
+//            return false
+//        }
+//    }
 
 }

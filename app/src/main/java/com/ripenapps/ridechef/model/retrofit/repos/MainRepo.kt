@@ -8,9 +8,6 @@ import androidx.lifecycle.LiveData
 import com.ripenapps.ridechef.model.retrofit.models.*
 import com.ripenapps.ridechef.model.retrofit.retrofit_helper.ApiResponse
 import okhttp3.MultipartBody
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class MainRepo {
 
@@ -109,9 +106,9 @@ class MainRepo {
         get() = userAddressMutableLiveData
 
     private val searchDishInsideRestResponseMutableLiveData =
-        MutableLiveData<ApiResponse<SearchDishHomeResponse>>()
+        MutableLiveData<ApiResponse<SearchDishInsideRestResponse>>()
 
-    val searchDishInsideRestResponseLiveData: LiveData<ApiResponse<SearchDishHomeResponse>>
+    val searchDishInsideRestResponseLiveData: LiveData<ApiResponse<SearchDishInsideRestResponse>>
         get() = searchDishInsideRestResponseMutableLiveData
 
     private val updateUserProfileResponseMutableLiveData =
@@ -155,6 +152,18 @@ class MainRepo {
 
     val getFavoriteRestaurantsResponseLiveData: LiveData<ApiResponse<MyFavouriteResponse>>
         get() = getFavoriteRestaurantsResponseMutableLiveData
+
+    private val myOrdersResponseMutableLiveData =
+        MutableLiveData<ApiResponse<MyOrderResponse>>()
+
+    val myOrdersResponseLiveData: LiveData<ApiResponse<MyOrderResponse>>
+        get() = myOrdersResponseMutableLiveData
+
+    private val cmsResponseMutableLiveData =
+        MutableLiveData<ApiResponse<CmsResponse>>()
+
+    val cmsResponseLiveData: LiveData<ApiResponse<CmsResponse>>
+        get() = cmsResponseMutableLiveData
 
     /**********************************************************************************
      * Api Methods - Defined Here
@@ -631,5 +640,45 @@ class MainRepo {
         }
     }
 
+    suspend fun myOrders(
+        token: String
+    ) {
+        try {
+            val response = apiService.myOrders(token)
+
+            myOrdersResponseMutableLiveData.postValue(
+                ApiResponse(
+                    response = response.body(),
+                    errorBody = response.errorBody(),
+                    error = response.message()
+                )
+            )
+
+        } catch (e: Exception) {
+            Log.e(tag, "Exception (localizedMessage) -> getUserProfile: ${e.localizedMessage}")
+            Log.e(tag, "Exception (message) -> getUserProfile: ${e.message}")
+        }
+    }
+
+    suspend fun getCms(
+        token: String,
+        cmsRequest: CmsRequest
+    ) {
+        try {
+            val response = apiService.getCms(token,cmsRequest)
+
+            cmsResponseMutableLiveData.postValue(
+                ApiResponse(
+                    response = response.body(),
+                    errorBody = response.errorBody(),
+                    error = response.message()
+                )
+            )
+
+        } catch (e: Exception) {
+            Log.e(tag, "Exception (localizedMessage) -> getUserProfile: ${e.localizedMessage}")
+            Log.e(tag, "Exception (message) -> getUserProfile: ${e.message}")
+        }
+    }
 
 }

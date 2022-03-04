@@ -102,7 +102,7 @@
         <entry key="app/src/main/res/layout/fragment_order_status_screen.xml" value="0.21523708044752266" />
         <entry key="app/src/main/res/layout/fragment_otp_screen.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_payment_screen.xml" value="0.21041666666666667" />
-        <entry key="app/src/main/res/layout/fragment_privacy_policy.xml" value="0.524074074074074" />
+        <entry key="app/src/main/res/layout/fragment_privacy_policy.xml" value="0.40159045725646125" />
         <entry key="app/src/main/res/layout/fragment_profile_settings_screen.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_restaurant_banner_screen.xml" value="0.315625" />
         <entry key="app/src/main/res/layout/fragment_restaurant_details_screen.xml" value="0.42083333333333334" />
@@ -110,7 +110,7 @@
         <entry key="app/src/main/res/layout/fragment_saved_address_screen.xml" value="0.315625" />
         <entry key="app/src/main/res/layout/fragment_search_dish_bottom_sheet.xml" value="0.21041666666666667" />
         <entry key="app/src/main/res/layout/fragment_search_restaurant_and_dish_screen.xml" value="0.10416666666666667" />
-        <entry key="app/src/main/res/layout/fragment_side_menu_screen.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/fragment_side_menu_screen.xml" value="0.42083333333333334" />
         <entry key="app/src/main/res/layout/fragment_splash_screen.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_terms_conditions_screen.xml" value="0.315625" />
         <entry key="app/src/main/res/layout/menu_header.xml" value="0.45" />

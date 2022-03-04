@@ -48,7 +48,7 @@ class SearchDishBottomSheet(private val merchant_id: Int?) : BottomSheetDialogFr
 
     private fun setObservers() {
         viewModel.dishInsideRestResponse.observe(this) { res ->
-            dishSearchRecyclerViewAdapter.updateList(res.response?.data?.dataInsideRest)
+            dishSearchRecyclerViewAdapter.updateList(res.response?.dataRest?.data)
         }
     }
 
@@ -66,6 +66,13 @@ class SearchDishBottomSheet(private val merchant_id: Int?) : BottomSheetDialogFr
                             s.toString()
                         )
                     )
+                }else{
+                    viewModel.callApiSearchDishInsideRest(
+                        SearchDishInsideRestRequest(
+                            merchant_id.toString(),
+                            ""
+                        )
+                    )
                 }
             }
 
@@ -76,7 +83,7 @@ class SearchDishBottomSheet(private val merchant_id: Int?) : BottomSheetDialogFr
     }
 
     private fun setRecyclerView() {
-        dishSearchRecyclerViewAdapter = DishSearchBodyRecyclerViewAdapter(requireContext()) {
+        dishSearchRecyclerViewAdapter = DishSearchBodyRecyclerViewAdapter() {
 
         }
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())

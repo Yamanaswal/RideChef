@@ -12,20 +12,52 @@ data class SearchHomeRequest(
     val search: String
 )
 
-
 data class SearchDishHomeResponse(
     @SerializedName("data")
     val data: SearchDishHomeResponseData,
     @SerializedName("message")
-    val message: String,
+    val message: String = "",
     @SerializedName("status")
     val status: Int
 )
 
-data class SearchDishHomeResponseData(
-    @SerializedName("current_page")
-    val currentPage: Int,
+data class SearchDishInsideRestResponse(
     @SerializedName("data")
+    val dataRest: SearchRestInsideResponseData,
+    @SerializedName("message")
+    val message: String = "",
+    @SerializedName("status")
+    val status: Int
+)
+
+data class SearchRestInsideResponseData(
+    @SerializedName("data")
+    val data: List<MerchantMenu>,
+    @SerializedName("first_page_url")
+    val firstPageUrl: String,
+    @SerializedName("from")
+    val from: Int,
+    @SerializedName("last_page")
+    val lastPage: Int,
+    @SerializedName("last_page_url")
+    val lastPageUrl: String,
+    @SerializedName("links")
+    val links: List<Link>,
+    @SerializedName("next_page_url")
+    val nextPageUrl: Any?,
+    @SerializedName("path")
+    val path: String,
+    @SerializedName("per_page")
+    val perPage: Int,
+    @SerializedName("prev_page_url")
+    val prevPageUrl: Any?,
+    @SerializedName("to")
+    val to: Int,
+    @SerializedName("total")
+    val total: Int
+)
+
+data class SearchDishHomeResponseData(
     val data: List<SearchDishHomeResponseDataData>,
     @SerializedName("first_page_url")
     val firstPageUrl: String,
@@ -49,8 +81,6 @@ data class SearchDishHomeResponseData(
     val to: Int,
     @SerializedName("total")
     val total: Int,
-    @SerializedName("data")
-    val dataInsideRest: List<MerchantMenu>,
 )
 
 data class SearchDishHomeResponseDataData(

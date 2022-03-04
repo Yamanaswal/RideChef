@@ -113,7 +113,7 @@ data class MerchantRating(
 
 data class OrderItem(
     @SerializedName("add_ons")
-    val addOns: List<Any>,
+    val addOns: List<Addon>,
     @SerializedName("created_at")
     val createdAt: String,
     @SerializedName("id")
@@ -123,9 +123,9 @@ data class OrderItem(
     @SerializedName("menu_id")
     val menuId: Int,
     @SerializedName("menu_sub_variants_id")
-    val menuSubVariantsId: Any?,
+    val menuSubVariantsId: String,
     @SerializedName("menu_variant_details")
-    val menuVariantDetails: Any?,
+    val menuVariantDetails: MenuVariantDetails?,
     @SerializedName("order_id")
     val orderId: Int,
     @SerializedName("price")
@@ -163,7 +163,7 @@ data class MenuDetails(
     @SerializedName("created_at")
     val createdAt: String,
     @SerializedName("deleted_at")
-    val deletedAt: Any?,
+    val deletedAt: String?,
     @SerializedName("description")
     val description: String,
     @SerializedName("discount")
@@ -192,3 +192,25 @@ data class MenuDetails(
     val updatedAt: String
 )
 
+data class MenuVariantDetails(
+    @SerializedName("created_at")
+    val createdAt: String,
+    @SerializedName("deleted_at")
+    val deletedAt: Any?,
+    @SerializedName("id")
+    val id: Int,
+    @SerializedName("image")
+    val image: Any?,
+    @SerializedName("is_default")
+    val isDefault: Int,
+    @SerializedName("menu_id")
+    val menuId: Int,
+    @SerializedName("menu_variant_id")
+    val menuVariantId: Int,
+    @SerializedName("name")
+    val name: String,
+    @SerializedName("price")
+    val price: String,
+    @SerializedName("updated_at")
+    val updatedAt: String
+)

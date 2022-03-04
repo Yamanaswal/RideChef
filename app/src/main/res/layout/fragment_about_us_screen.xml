@@ -17,37 +17,36 @@
             android:id="@+id/appBarId"
             layout="@layout/app_bar" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="60dp"
-            android:src="@mipmap/ride_chef_red" />
-
         <TextView
+            android:id="@+id/privacyPolicyText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
+            android:layout_below="@+id/appBarId"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="10dp"
             android:fontFamily="@font/airbnb_cereal_bold"
-            android:text="@string/ridechef"
+            android:text="@string/privacy_policy"
             android:textColor="@color/black"
-            android:textSize="26dp" />
+            android:textSize="24sp" />
 
         <TextView
+            android:id="@+id/policyDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:fontFamily="@font/airbnb_cereal_book"
-            android:text="Version 1.05959"
-            android:textColor="@color/black"
+            android:layout_below="@+id/privacyPolicyText"
+            android:layout_marginStart="15dp"
+            android:fontFamily="@font/airbnb_cereal_medium"
+            android:text="Last update on Nov 15, 2020 at 03:09 PM"
+            android:textColor="@color/black_66_op"
             android:textSize="13sp" />
 
         <WebView
+            android:id="@+id/webView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_below="@+id/policyDate"
+            android:layout_marginTop="30dp" />
 
     </LinearLayout>
 </layout>

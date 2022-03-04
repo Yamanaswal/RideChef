@@ -204,16 +204,16 @@ class RestaurantDetailsScreen : Fragment() {
 
                 if (res.response?.data?.favorite == 0) {
                     res.response?.data?.favorite = 1
-                    binding.favIcon.setImageResource(R.drawable.heart_white_border)
+                    binding.favIcon.setImageResource(R.drawable.heart_black_border)
 
                     viewModel.callApiMyFavourite(
                         userData.tokenType + " " + userData.accessToken,
                         MakeFavoriteRequest(res.response?.data?.id.toString())
                     )
-                }
-                else {
-                    binding.favIcon.setImageResource(R.drawable.heart_black_border)
+                } else {
+                    binding.favIcon.setImageResource(R.drawable.heart_white_border)
                     res.response?.data?.favorite = 0
+
 
                     viewModel.callApiMyFavourite(
                         userData.tokenType + " " + userData.accessToken,

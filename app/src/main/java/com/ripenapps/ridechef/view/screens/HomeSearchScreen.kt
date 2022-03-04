@@ -57,7 +57,8 @@ class HomeSearchScreen : Fragment() {
                 setCuisineRecyclerView()
                 binding.searchTitle.text = getString(R.string.trending_cuisines)
                 binding.search.hint = getString(R.string.search_cuisines)
-                viewModel.callApiViewAll(viewAllRequest = ViewAllRequest("24.34", "24.2323", "", 1))
+                viewModel.callApiViewAll(viewAllRequest = ViewAllRequest(
+                    "24.34", "24.2323", "", 1))
                 onSearchApi(1)
             }
             HomeScreenType.FeaturedRestaurant -> {
@@ -79,8 +80,8 @@ class HomeSearchScreen : Fragment() {
                 binding.searchTitle.text = ""
                 viewModel.callApiSearchDishHome(
                     searchHomeRequest = SearchHomeRequest(
-                        "23.99",
-                        "23.88",
+                        "24.34",
+                        "24.2323",
                         ""
                     )
                 )

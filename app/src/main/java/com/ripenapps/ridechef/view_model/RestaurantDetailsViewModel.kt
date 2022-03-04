@@ -25,7 +25,7 @@ class RestaurantDetailsViewModel : ViewModel() {
     }
 
 
-    val dishInsideRestResponse: LiveData<ApiResponse<SearchDishHomeResponse>>
+    val dishInsideRestResponse: LiveData<ApiResponse<SearchDishInsideRestResponse>>
         get() = mainRepo.searchDishInsideRestResponseLiveData
 
     fun callApiSearchDishInsideRest(searchDishInsideRestRequest: SearchDishInsideRestRequest) {

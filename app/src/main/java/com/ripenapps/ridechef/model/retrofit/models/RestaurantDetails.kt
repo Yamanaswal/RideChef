@@ -71,7 +71,8 @@ data class MerchantMenuType(
     @SerializedName("status")
     val status: Int,
     @SerializedName("updated_at")
-    val updatedAt: String
+    val updatedAt: String,
+    var isOpen: Boolean = false
 )
 
 data class Menu(

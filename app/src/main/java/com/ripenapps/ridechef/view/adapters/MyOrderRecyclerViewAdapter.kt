@@ -13,6 +13,7 @@ import com.ripenapps.ridechef.databinding.MyOrderItemBinding
 
 class MyOrderRecyclerViewAdapter(private val context: Context) : RecyclerView.Adapter<MyOrderRecyclerViewAdapter.ViewHolder>() {
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view: View = LayoutInflater.from(parent.context).inflate(R.layout.my_order_item, parent, false)
         return ViewHolder(view)
@@ -42,9 +43,6 @@ class MyOrderRecyclerViewAdapter(private val context: Context) : RecyclerView.Ad
 
     }
 
-    init {
-//        this.faqListResponseList = faqListResponseList
-    }
 }
 
 

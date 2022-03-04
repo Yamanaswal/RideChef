@@ -1,10 +1,7 @@
 package com.ripenapps.ridechef.model.retrofit.retrofit_service
 
 import com.ripenapps.ridechef.model.retrofit.models.*
-import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import okhttp3.ResponseBody
-import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -92,10 +89,10 @@ interface ApiService {
         @Header("Authorization") token: String,
     ): Response<UserAddressesResponse>
 
-    @GET("api/user/search-dish-inside-restro")
+    @POST("api/user/search-dish-inside-restro")
     suspend fun searchDishInsideRest(
         @Body searchDishInsideRestRequest: SearchDishInsideRestRequest
-    ): Response<SearchDishHomeResponse>
+    ): Response<SearchDishInsideRestResponse>
 
     @POST("api/user/update-user-profile")
     suspend fun updateUserProfile(
@@ -132,11 +129,21 @@ interface ApiService {
         @Body makeFavoriteRequest: MakeFavoriteRequest
     ): Response<EmptyResponse>
 
-    @Headers("Accept:application/json","Content-Type:application/json")
     @GET("api/user/get-favorite-restaurants")
     suspend fun getFavoriteRestaurants(
         @Header("Authorization") token: String
     ): Response<MyFavouriteResponse>
+
+    @GET("api/user/my-orders")
+    suspend fun myOrders(
+        @Header("Authorization") token: String
+    ): Response<MyOrderResponse>
+
+    @POST("api/user/get-cms")
+    suspend fun getCms(
+        @Header("Authorization") token: String,
+        @Body cmsRequest: CmsRequest,
+    ): Response<CmsResponse>
 
 
 }
