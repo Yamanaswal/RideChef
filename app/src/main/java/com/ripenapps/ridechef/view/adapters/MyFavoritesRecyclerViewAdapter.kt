@@ -7,8 +7,13 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.ripenapps.ridechef.R
 import com.ripenapps.ridechef.databinding.RestaurantItemFavBinding
+import com.ripenapps.ridechef.model.retrofit.models.MyFavouriteResponse
+import com.ripenapps.ridechef.model.retrofit.models.MyFavouriteResponseData
+import com.ripenapps.ridechef.model.retrofit.models.SearchDishHomeResponseDataData
 
 class MyFavoritesRecyclerViewAdapter : RecyclerView.Adapter<MyFavoritesRecyclerViewAdapter.ViewHolder>() {
+
+    private val myFavList = mutableListOf<MyFavouriteResponseData>()
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -17,11 +22,17 @@ class MyFavoritesRecyclerViewAdapter : RecyclerView.Adapter<MyFavoritesRecyclerV
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
+        holder.binding?.restItem = myFavList[position]
     }
 
     override fun getItemCount(): Int {
-        return 10
+        return myFavList.size
+    }
+
+    fun updateList(list: List<MyFavouriteResponseData>?) {
+        myFavList.clear()
+        myFavList.addAll(list ?: emptyList())
+        notifyDataSetChanged()
     }
 
     inner class ViewHolder(view: View?) : RecyclerView.ViewHolder(view!!) {

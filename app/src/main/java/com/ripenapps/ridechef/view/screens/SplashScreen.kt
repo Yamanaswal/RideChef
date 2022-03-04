@@ -12,6 +12,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.ripenapps.ridechef.R
 import com.ripenapps.ridechef.databinding.FragmentSplashScreenBinding
+import com.ripenapps.ridechef.utils.PrefConstants
+import com.ripenapps.ridechef.utils.PreferencesUtil
 import com.ripenapps.ridechef.utils.makeTransparentStatusBar
 import com.ripenapps.ridechef.view_model.SplashViewModel
 
@@ -36,22 +38,31 @@ class SplashScreen : Fragment() {
         val splashViewModel = ViewModelProvider(this)[SplashViewModel::class.java]
         splashViewModel.splashStatus.observe(viewLifecycleOwner, { status ->
             if (status) {
-                this.findNavController()
-                    .navigate(SplashScreenDirections.actionSplashScreenToAllowLocationScreen())
+                val isUser = PreferencesUtil.getStringPreference(
+                    requireContext(),
+                    PrefConstants.IS_USER_LOGIN
+                )
+
+                if (isUser == "true") {
+                    this.findNavController()
+                        .navigate(SplashScreenDirections.actionSplashScreenToHomeScreen())
+                } else {
+                    this.findNavController()
+                        .navigate(SplashScreenDirections.actionSplashScreenToAllowLocationScreen())
+                }
             }
         })
     }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        makeTransparentStatusBar(requireActivity(),true)
+        makeTransparentStatusBar(requireActivity(), true)
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        makeTransparentStatusBar(requireActivity(),false)
+        makeTransparentStatusBar(requireActivity(), false)
     }
-
 
 
 }

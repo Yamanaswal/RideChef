@@ -14,7 +14,9 @@
             android:id="@+id/action_splashScreen_to_allowLocationScreen"
             app:destination="@id/allowLocationScreen"
             app:popUpTo="@id/splashScreen"/>
-
+        <action
+            android:id="@+id/action_splashScreen_to_homeScreen"
+            app:destination="@id/homeScreen" />
     </fragment>
 
     <fragment
@@ -336,7 +338,8 @@
         tools:layout="@layout/fragment_order_placed_success_screen">
         <action
             android:id="@+id/action_orderPlacedSuccessScreen_to_orderStatusScreen"
-            app:destination="@id/orderStatusScreen" />
+            app:destination="@id/orderStatusScreen"
+            />
         <argument
             android:name="order_id"
             app:argType="integer" />

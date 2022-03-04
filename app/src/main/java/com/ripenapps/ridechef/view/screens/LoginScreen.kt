@@ -16,6 +16,8 @@ import com.ripenapps.ridechef.R
 import com.ripenapps.ridechef.databinding.FragmentLoginScreenBinding
 import com.ripenapps.ridechef.model.retrofit.models.LoginRequest
 import com.ripenapps.ridechef.model.retrofit.retrofit_helper.InternetConnection
+import com.ripenapps.ridechef.utils.PrefConstants
+import com.ripenapps.ridechef.utils.PreferencesUtil
 import com.ripenapps.ridechef.view_model.LoginViewModel
 import com.yaman.validations.validateImage
 import com.yaman.validations.validateMobileNumber
@@ -49,6 +51,7 @@ class LoginScreen : Fragment() {
         }
 
         binding.skipButton.setOnClickListener {
+            PreferencesUtil.setStringPreference(requireContext(),PrefConstants.IS_SKIPPED,"true")
             this.findNavController().navigate(LoginScreenDirections.actionLoginScreenToHomeScreen())
         }
     }

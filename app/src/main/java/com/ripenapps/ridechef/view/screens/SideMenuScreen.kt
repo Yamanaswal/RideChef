@@ -96,8 +96,7 @@ class SideMenuScreen : Fragment() {
         }
 
         binding.logout.sideMenuRow.setOnClickListener {
-            PreferencesUtil.removePreference(requireContext(), PrefConstants.USERDATA)
-            PreferencesUtil.removePreference(requireContext(), PrefConstants.IS_USER_LOGIN)
+            removeLocalData()
             this.findNavController()
                 .navigate(SideMenuScreenDirections.actionSideMenuScreenToLoginScreen())
         }
@@ -106,5 +105,11 @@ class SideMenuScreen : Fragment() {
     }
 
 
+    private fun removeLocalData(){
+        PreferencesUtil.removePreference(requireContext(), PrefConstants.USERDATA)
+        PreferencesUtil.removePreference(requireContext(), PrefConstants.IS_USER_LOGIN)
+    }
+
+    
 }
 

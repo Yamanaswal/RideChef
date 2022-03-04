@@ -151,9 +151,9 @@ class MainRepo {
         get() = makeFavoriteRestaurantResponseMutableLiveData
 
     private val getFavoriteRestaurantsResponseMutableLiveData =
-        MutableLiveData<ApiResponse<RestaurantDetailsResponse>>()
+        MutableLiveData<ApiResponse<MyFavouriteResponse>>()
 
-    val getFavoriteRestaurantsResponseLiveData: LiveData<ApiResponse<RestaurantDetailsResponse>>
+    val getFavoriteRestaurantsResponseLiveData: LiveData<ApiResponse<MyFavouriteResponse>>
         get() = getFavoriteRestaurantsResponseMutableLiveData
 
     /**********************************************************************************

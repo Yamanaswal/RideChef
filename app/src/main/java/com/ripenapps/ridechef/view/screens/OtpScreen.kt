@@ -66,26 +66,17 @@ class OtpScreen : Fragment() {
             if (res.response?.status == 200) {
                 Log.e("TAG", "setObservers: ${res.response?.message}")
 
-                val isUser = PreferencesUtil.getBooleanPreference(
-                    requireContext(),
-                    PrefConstants.IS_USER_LOGIN
-                )
-
                 // Save User Data
                 saveLocalData(res.response)
-                //Navigate to Home
-                this.findNavController().navigate(OtpScreenDirections.actionOtpScreenToHomeScreen())
 
-                //User Login Flow Change
-//                if (isUser) {
-//                    this.findNavController().navigate(OtpScreenDirections.actionOtpScreenToHomeScreen())
-//                }
-//                //Guest Flow
-//                else {
-//                    // Save User Data
-//                    saveLocalData(res.response)
-//                    this.findNavController().navigate(OtpScreenDirections.actionOtpScreenToHomeScreen())
-//                }
+                val isSkip = PreferencesUtil.getStringPreference(requireContext(),PrefConstants.IS_SKIPPED)
+
+                if(isSkip == "true"){
+                    this.findNavController().popBackStack(R.id.loginScreen,true)
+                }else{
+                    //Navigate to Home
+                    this.findNavController().navigate(OtpScreenDirections.actionOtpScreenToHomeScreen())
+                }
 
             }
         }
@@ -98,11 +89,10 @@ class OtpScreen : Fragment() {
             Gson().toJson(response?.data)
         )
 
-        PreferencesUtil.setBooleanPreference(
+        PreferencesUtil.setStringPreference(
             requireContext(),
-            PrefConstants.IS_USER_LOGIN, true
+            PrefConstants.IS_USER_LOGIN, "true"
         )
-
     }
 
 }

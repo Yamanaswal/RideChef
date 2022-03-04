@@ -19,6 +19,7 @@ class MyFavouriteScreen : Fragment() {
 
     lateinit var binding: FragmentMyFavouriteScreenBinding
     lateinit var viewModel: MyFavouriteViewModel
+    lateinit var myFavoritesRecyclerViewAdapter : MyFavoritesRecyclerViewAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,7 +34,7 @@ class MyFavouriteScreen : Fragment() {
         )
         viewModel = ViewModelProvider(this)[MyFavouriteViewModel::class.java]
         val user = getUserData(requireContext())
-        viewModel.callApiMyFavourite(user?.tokenType + user?.accessToken)
+        viewModel.callApiMyFavourite(user?.tokenType + " " + user?.accessToken)
         setMyFavouritesRecyclerView()
 
         setObservers()
@@ -42,12 +43,12 @@ class MyFavouriteScreen : Fragment() {
 
     private fun setObservers() {
         viewModel.getFavoriteRestaurantsResponse.observe(this) { res ->
-
+            myFavoritesRecyclerViewAdapter.updateList(res.response?.data)
         }
     }
 
     private fun setMyFavouritesRecyclerView() {
-        val myFavoritesRecyclerViewAdapter = MyFavoritesRecyclerViewAdapter()
+        myFavoritesRecyclerViewAdapter = MyFavoritesRecyclerViewAdapter()
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = myFavoritesRecyclerViewAdapter
     }

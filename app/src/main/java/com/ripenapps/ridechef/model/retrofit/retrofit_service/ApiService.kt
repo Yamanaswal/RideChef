@@ -132,10 +132,11 @@ interface ApiService {
         @Body makeFavoriteRequest: MakeFavoriteRequest
     ): Response<EmptyResponse>
 
+    @Headers("Accept:application/json","Content-Type:application/json")
     @GET("api/user/get-favorite-restaurants")
     suspend fun getFavoriteRestaurants(
         @Header("Authorization") token: String
-    ): Response<RestaurantDetailsResponse>
+    ): Response<MyFavouriteResponse>
 
 
 }
