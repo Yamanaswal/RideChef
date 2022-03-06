@@ -8,11 +8,13 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.ripenapps.ridechef.R
 import com.ripenapps.ridechef.databinding.FragmentSavedAddressScreenBinding
 import com.ripenapps.ridechef.utils.getUserData
+import com.ripenapps.ridechef.view.adapters.AddressButtonType
 import com.ripenapps.ridechef.view.adapters.SavedAddressRecyclerViewAdapter
 import com.ripenapps.ridechef.view_model.SavedAddressViewModel
 
@@ -22,6 +24,7 @@ class SavedAddressScreen : Fragment() {
     lateinit var binding: FragmentSavedAddressScreenBinding
     lateinit var viewModel: SavedAddressViewModel
     lateinit var savedAddressRecyclerAdapter: SavedAddressRecyclerViewAdapter
+    val args: SavedAddressScreenArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,12 +48,16 @@ class SavedAddressScreen : Fragment() {
     }
 
     private fun setClicks() {
+
+        // Add New Address
         binding.addAddressButton.setOnClickListener {
             this.findNavController().navigate(
                 SavedAddressScreenDirections.actionSavedAddressScreenToChangeLocation()
                     .setRequestType("add")
             )
         }
+
+
     }
 
     private fun setObservers() {
@@ -62,13 +69,20 @@ class SavedAddressScreen : Fragment() {
     }
 
     private fun setRecyclerView() {
-        savedAddressRecyclerAdapter = SavedAddressRecyclerViewAdapter() { editAddress ->
-            this.findNavController().navigate(
-                SavedAddressScreenDirections.actionSavedAddressScreenToChangeLocation()
-                    .setRequestType("update")
-                    .setEditAddress(Gson().toJson(editAddress))
-            )
-        }
+        savedAddressRecyclerAdapter =
+            SavedAddressRecyclerViewAdapter { editAddressItem, buttonType ->
+                if (buttonType == AddressButtonType.Edit) {
+                    this.findNavController().navigate(
+                        SavedAddressScreenDirections.actionSavedAddressScreenToChangeLocation()
+                            .setRequestType("update")
+                            .setEditAddress(Gson().toJson(editAddressItem))
+                    )
+                } else {
+                    if (args.change) {
+                        this.findNavController().popBackStack(R.id.myCartScreen,true)
+                    }
+                }
+            }
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = savedAddressRecyclerAdapter
     }

@@ -52,9 +52,8 @@ class SideMenuScreen : Fragment() {
         }
 
         binding.notification.sideMenuRow.setOnClickListener {
-            if (userdata?.accessToken != null) {
-                this.findNavController()
-                    .navigate(SideMenuScreenDirections.actionSideMenuScreenToMyOrdersScreen())
+            if (userdata?.accessToken == null) {
+                this.findNavController().navigate(SideMenuScreenDirections.actionSideMenuScreenToLoginScreen())
             } else {
                 this.findNavController()
                     .navigate(SideMenuScreenDirections.actionSideMenuScreenToNotificationScreen())
@@ -62,9 +61,8 @@ class SideMenuScreen : Fragment() {
         }
 
         binding.profileSettings.sideMenuRow.setOnClickListener {
-            if (userdata?.accessToken != null) {
-                this.findNavController()
-                    .navigate(SideMenuScreenDirections.actionSideMenuScreenToMyOrdersScreen())
+            if (userdata?.accessToken == null) {
+                this.findNavController().navigate(SideMenuScreenDirections.actionSideMenuScreenToLoginScreen())
             } else {
                 this.findNavController()
                     .navigate(SideMenuScreenDirections.actionSideMenuScreenToProfileSettingsScreen())
@@ -73,9 +71,8 @@ class SideMenuScreen : Fragment() {
         }
 
         binding.myFavorites.sideMenuRow.setOnClickListener {
-            if (userdata?.accessToken != null) {
-                this.findNavController()
-                    .navigate(SideMenuScreenDirections.actionSideMenuScreenToMyOrdersScreen())
+            if (userdata?.accessToken == null) {
+                this.findNavController().navigate(SideMenuScreenDirections.actionSideMenuScreenToLoginScreen())
             } else {
                 this.findNavController()
                     .navigate(SideMenuScreenDirections.actionSideMenuScreenToMyFavouriteScreen())
@@ -84,23 +81,20 @@ class SideMenuScreen : Fragment() {
         }
 
         binding.myOrders.sideMenuRow.setOnClickListener {
-            if (userdata?.accessToken != null) {
-                this.findNavController()
-                    .navigate(SideMenuScreenDirections.actionSideMenuScreenToMyOrdersScreen())
+            if (userdata?.accessToken == null) {
+                this.findNavController().navigate(SideMenuScreenDirections.actionSideMenuScreenToLoginScreen())
             } else {
                 this.findNavController()
-                    .navigate(SideMenuScreenDirections.actionSideMenuScreenToLoginScreen())
+                    .navigate(SideMenuScreenDirections.actionSideMenuScreenToMyOrdersScreen())
             }
 
         }
 
         binding.savedAddress.sideMenuRow.setOnClickListener {
-            if (userdata?.accessToken != null) {
-                this.findNavController()
-                    .navigate(SideMenuScreenDirections.actionSideMenuScreenToSavedAddressScreen())
+            if (userdata?.accessToken == null) {
+                this.findNavController().navigate(SideMenuScreenDirections.actionSideMenuScreenToLoginScreen())
             } else {
-                this.findNavController()
-                    .navigate(SideMenuScreenDirections.actionSideMenuScreenToLoginScreen())
+                this.findNavController().navigate(SideMenuScreenDirections.actionSideMenuScreenToSavedAddressScreen())
             }
         }
 

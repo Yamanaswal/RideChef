@@ -226,7 +226,11 @@
         android:id="@+id/myFavouriteScreen"
         android:name="com.ripenapps.ridechef.view.screens.MyFavouriteScreen"
         android:label="fragment_my_favourite_screen"
-        tools:layout="@layout/fragment_my_favourite_screen" />
+        tools:layout="@layout/fragment_my_favourite_screen" >
+        <action
+            android:id="@+id/action_myFavouriteScreen_to_restaurantDetailsScreen"
+            app:destination="@id/restaurantDetailsScreen" />
+    </fragment>
 
     <fragment
         android:id="@+id/profileSettingsScreen"
@@ -242,6 +246,10 @@
         <action
             android:id="@+id/action_savedAddressScreen_to_changeLocation"
             app:destination="@id/changeLocation" />
+        <argument
+            android:name="change"
+            app:argType="boolean"
+            android:defaultValue="false" />
     </fragment>
 
     <fragment
@@ -305,6 +313,9 @@
         <action
             android:id="@+id/action_myCartScreen_to_paymentScreen"
             app:destination="@id/paymentScreen" />
+        <action
+            android:id="@+id/action_myCartScreen_to_savedAddressScreen"
+            app:destination="@id/savedAddressScreen" />
     </fragment>
 
     <fragment

@@ -1,6 +1,5 @@
 package com.ripenapps.ridechef.view.screens
 
-import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -16,8 +15,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.ripenapps.ridechef.R
 import com.ripenapps.ridechef.databinding.FragmentMyCartScreenBinding
-import com.ripenapps.ridechef.model.retrofit.models.Coupons
-import com.ripenapps.ridechef.model.retrofit.models.UpdateCartItemQuantityRequest
 import com.ripenapps.ridechef.utils.addSymbolBeforeEditText
 import com.ripenapps.ridechef.utils.getUserData
 import com.ripenapps.ridechef.view.adapters.DishMyCartRecyclerViewAdapter
@@ -25,6 +22,8 @@ import com.ripenapps.ridechef.view_model.MyCartViewModel
 import com.ripenapps.ridechef.view_model.UserProfileVIewModel
 
 import androidx.recyclerview.widget.SimpleItemAnimator
+import com.google.android.material.snackbar.Snackbar
+import com.ripenapps.ridechef.model.retrofit.models.*
 
 
 class MyCartScreen : Fragment() {
@@ -49,14 +48,13 @@ class MyCartScreen : Fragment() {
             container,
             false
         )
-        viewModel = ViewModelProvider(this)[MyCartViewModel::class.java]
-        viewModelUser = ViewModelProvider(this)[UserProfileVIewModel::class.java]
+        //Set ViewModels
         val userdata = getUserData(requireContext())
+        setViewModels(userdata)
         viewModel.callApiCartDetails(userdata?.tokenType + " " + userdata?.accessToken)
         viewModelUser.callApiGetUserProfile(userdata?.tokenType + " " + userdata?.accessToken)
         setAppBar()
         setRecyclerView()
-        setClicks()
         setObservers()
 
         binding.billDetailsEditText.addTextChangedListener(
@@ -94,8 +92,33 @@ class MyCartScreen : Fragment() {
         return binding.root
     }
 
-    private fun setClicks() {
+    private fun setViewModels(userdata: LoginResponseData?) {
+        viewModel = ViewModelProvider(this)[MyCartViewModel::class.java]
+        viewModelUser = ViewModelProvider(this)[UserProfileVIewModel::class.java]
+    }
 
+    private fun setClicks(response: CartDetailsResponseData?) {
+        checkoutButton(response)
+        addAddressButton()
+        changeAddressButton(response)
+    }
+
+    private fun changeAddressButton(response: CartDetailsResponseData?) {
+        binding.changeAddress.setOnClickListener {
+            this.findNavController().navigate(MyCartScreenDirections.actionMyCartScreenToSavedAddressScreen().setChange(true))
+        }
+    }
+
+    private fun addAddressButton() {
+        //Go To Saved Address - Add
+        binding.buttonSavedAddress.setOnClickListener {
+            this.findNavController().navigate(
+                MyCartScreenDirections.actionMyCartScreenToChangeLocation().setRequestType("add")
+            )
+        }
+    }
+
+    private fun checkoutButton(response: CartDetailsResponseData?) {
         //On Checkout Click
         binding.checkoutButton.setOnClickListener {
             if (isProfile) {
@@ -106,18 +129,13 @@ class MyCartScreen : Fragment() {
                     }
                 }
                 personalDetailsBottomSheet.show(parentFragmentManager, "personalDetailsBottomSheet")
+            }else if(response?.address == null){
+                Snackbar.make(requireView(),"Please Add Address",Snackbar.LENGTH_SHORT).show()
             }
             else {
                 this.findNavController()
                     .navigate(MyCartScreenDirections.actionMyCartScreenToPaymentScreen())
             }
-        }
-
-        //Go To Saved Address - Add
-        binding.buttonSavedAddress.setOnClickListener {
-            this.findNavController().navigate(
-                MyCartScreenDirections.actionMyCartScreenToChangeLocation().setRequestType("add")
-            )
         }
     }
 
@@ -206,6 +224,7 @@ class MyCartScreen : Fragment() {
 
         viewModel.getCartDetailsResponse.observe(this) { res ->
             if (res.response?.status == 200) {
+
                 binding.myCartDetails = res.response?.data
                 dishMyCartRecyclerView.updateList(res.response?.data?.items)
                 couponList.clear()
@@ -227,6 +246,9 @@ class MyCartScreen : Fragment() {
                 } else {
                     binding.appleCouponCard.isEnabled = false
                 }
+
+                //Set Click Events
+                setClicks(res.response?.data)
             }
         }
 

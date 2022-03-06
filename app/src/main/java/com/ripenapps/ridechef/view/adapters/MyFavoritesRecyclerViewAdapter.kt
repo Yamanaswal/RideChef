@@ -11,10 +11,9 @@ import com.ripenapps.ridechef.model.retrofit.models.MyFavouriteResponse
 import com.ripenapps.ridechef.model.retrofit.models.MyFavouriteResponseData
 import com.ripenapps.ridechef.model.retrofit.models.SearchDishHomeResponseDataData
 
-class MyFavoritesRecyclerViewAdapter : RecyclerView.Adapter<MyFavoritesRecyclerViewAdapter.ViewHolder>() {
+class MyFavoritesRecyclerViewAdapter(val listener: (MyFavouriteResponseData) -> Unit) : RecyclerView.Adapter<MyFavoritesRecyclerViewAdapter.ViewHolder>() {
 
     private val myFavList = mutableListOf<MyFavouriteResponseData>()
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view: View = LayoutInflater.from(parent.context).inflate(R.layout.restaurant_item_fav, parent, false)
@@ -23,6 +22,10 @@ class MyFavoritesRecyclerViewAdapter : RecyclerView.Adapter<MyFavoritesRecyclerV
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.binding?.restItem = myFavList[position]
+
+        holder.binding?.restaurantCard?.setOnClickListener {
+            listener(myFavList[position])
+        }
     }
 
     override fun getItemCount(): Int {
@@ -37,11 +40,5 @@ class MyFavoritesRecyclerViewAdapter : RecyclerView.Adapter<MyFavoritesRecyclerV
 
     inner class ViewHolder(view: View?) : RecyclerView.ViewHolder(view!!) {
         var binding: RestaurantItemFavBinding? = DataBindingUtil.bind(view!!)
-
-        init {
-            // Define click listener for the ViewHolder's View
-        }
     }
 }
-
-

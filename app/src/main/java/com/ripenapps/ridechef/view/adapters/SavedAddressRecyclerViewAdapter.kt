@@ -10,7 +10,7 @@ import com.ripenapps.ridechef.databinding.SavedAddressItemBinding
 import com.ripenapps.ridechef.model.retrofit.models.UserAddressesData
 
 
-class SavedAddressRecyclerViewAdapter(val listener: (UserAddressesData) -> Unit) : RecyclerView.Adapter<SavedAddressRecyclerViewAdapter.ViewHolder>() {
+class SavedAddressRecyclerViewAdapter(val listener: (editAddressItem : UserAddressesData,buttonType: Enum<AddressButtonType>) -> Unit) : RecyclerView.Adapter<SavedAddressRecyclerViewAdapter.ViewHolder>() {
 
     var savedAddressList = mutableListOf<UserAddressesData>()
 
@@ -23,7 +23,11 @@ class SavedAddressRecyclerViewAdapter(val listener: (UserAddressesData) -> Unit)
         holder.binding?.savedAddress = savedAddressList[position]
 
         holder.binding?.editButton?.setOnClickListener {
-            listener(savedAddressList[position])
+            listener(savedAddressList[position],AddressButtonType.Edit)
+        }
+
+        holder.binding?.savedAddressId?.setOnClickListener {
+            listener(savedAddressList[position],AddressButtonType.Change)
         }
     }
 
@@ -40,12 +44,12 @@ class SavedAddressRecyclerViewAdapter(val listener: (UserAddressesData) -> Unit)
 
     inner class ViewHolder(view: View?) : RecyclerView.ViewHolder(view!!) {
         var binding: SavedAddressItemBinding? = DataBindingUtil.bind(view!!)
-
-        init {
-            // Define click listener for the ViewHolder's View
-        }
     }
 
+}
+
+enum class AddressButtonType{
+    Edit,Change
 }
 
 

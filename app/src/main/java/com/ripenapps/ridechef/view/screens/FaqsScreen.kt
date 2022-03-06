@@ -20,7 +20,15 @@ class FaqsScreen : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_faqs_screen, container, false)
+        setAppBar()
         return binding.root
+    }
+
+    private fun setAppBar() {
+        binding.appBarId.titleId.text = getString(R.string.faqs)
+        binding.appBarId.backButtonId.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
     }
 
 }

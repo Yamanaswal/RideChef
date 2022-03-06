@@ -23,6 +23,8 @@
         <entry key="app/src/main/res/drawable/custom_switch_track_red.xml" value="0.23072916666666668" />
         <entry key="app/src/main/res/drawable/custom_switch_track_veg.xml" value="0.23072916666666668" />
         <entry key="app/src/main/res/drawable/dotted_line_grey.xml" value="0.34609375" />
+        <entry key="app/src/main/res/drawable/faq_minus.xml" value="0.23072916666666668" />
+        <entry key="app/src/main/res/drawable/faq_plus.xml" value="0.23072916666666668" />
         <entry key="app/src/main/res/drawable/faq_red.xml" value="0.23072916666666668" />
         <entry key="app/src/main/res/drawable/favorites_red.xml" value="0.23072916666666668" />
         <entry key="app/src/main/res/drawable/forward_arrow.xml" value="0.23072916666666668" />
@@ -87,7 +89,7 @@
         <entry key="app/src/main/res/layout/fragment_coupon_screen.xml" value="0.315625" />
         <entry key="app/src/main/res/layout/fragment_cuisine_search_screen.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_dish_search_screen.xml" value="0.21041666666666667" />
-        <entry key="app/src/main/res/layout/fragment_faqs_screen.xml" value="0.21041666666666667" />
+        <entry key="app/src/main/res/layout/fragment_faqs_screen.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_help_and_support.xml" value="0.315625" />
         <entry key="app/src/main/res/layout/fragment_home_screen.xml" value="0.45139664804469276" />
         <entry key="app/src/main/res/layout/fragment_home_search_screen.xml" value="0.3682092555331992" />

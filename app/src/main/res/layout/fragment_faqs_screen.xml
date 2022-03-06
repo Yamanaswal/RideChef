@@ -12,6 +12,44 @@
         android:orientation="vertical"
         tools:context=".view.screens.FaqsScreen">
 
+        <include
+            android:id="@+id/appBarId"
+            layout="@layout/app_bar" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/airbnb_cereal_bold"
+            android:text="@string/how_can_we_help"
+            android:layout_marginTop="16dp"
+            android:layout_marginHorizontal="20dp"
+            android:textColor="@color/black"
+            android:textSize="25sp" />
+
+        <EditText
+            android:id="@+id/search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="18dp"
+            android:maxLines="1"
+            android:inputType="text"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/round_brown_otp_unselected"
+            android:drawableStart="@drawable/search"
+            android:drawablePadding="11dp"
+            android:fontFamily="@font/airbnb_cereal_medium"
+            android:hint="@string/search_faqs"
+            android:paddingHorizontal="13dp"
+            android:paddingVertical="12dp"
+            android:textColor="@color/black"
+            android:textSize="17sp" />
+
+        <View
+            android:background="@color/line_grey"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="18dp"
+            android:layout_height="1dp"/>
 
 
 

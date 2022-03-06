@@ -126,4 +126,8 @@
     <string name="stripe_development_key" translatable="false">pk_test_51K9bN4HMUfVn5kyKLy8dxISU3UALWyDzn6upbpLTZlFtMR28Jxzbzd5KQRaJWFqShlp96cqFo0b4S0TyJwiq4cEu00gf3y4jdb</string>
     <string name="stripe_production_key" translatable="false">pk_test_51HWP2ZK7D70fnsRhID7o1orBteyG1D6ZdMfysXSXFzM2U7GCps1kb35LuJwdabZZvgleenko4FVxqWs0c1gO17oK00j0rMzNIJ</string>
 
+    <string name="how_can_we_help">How can we help ?</string>
+    <string name="search_faqs">Search FAQs</string>
+    <string name="faqs">FAQs</string>
+
 </resources>
