@@ -50,6 +50,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="18dp"
+                android:maxLines="1"
+                android:inputType="text"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/round_brown_otp_unselected"
                 android:drawableStart="@drawable/search"

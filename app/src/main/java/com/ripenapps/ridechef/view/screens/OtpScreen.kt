@@ -34,7 +34,8 @@ class OtpScreen : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_otp_screen, container, false)
         viewModel = ViewModelProvider(this)[OtpViewModel::class.java]
 
-        Log.e("Mobile Number", "onCreateView: ${args.mobileNumber}")
+        Log.e("Mobile Number", "onCreateView: ${args.mobileNumber.replace(" ", "")}")
+
         binding.mobileNumber.text = args.mobileNumber
 
         setObservers()
@@ -49,7 +50,7 @@ class OtpScreen : Fragment() {
                     "Vasundhara",
                     23.99,
                     23.00,
-                    args.mobileNumber,
+                    args.mobileNumber.replace(" ", ""),
                     fcmToken = "xyz",
                     deviceType = "1"
                 )
@@ -92,6 +93,12 @@ class OtpScreen : Fragment() {
         PreferencesUtil.setStringPreference(
             requireContext(),
             PrefConstants.IS_USER_LOGIN, "true"
+        )
+
+        PreferencesUtil.setStringPreference(
+            requireContext(),
+            PrefConstants.USER_IMAGE,
+            response?.data?.profileImage
         )
     }
 

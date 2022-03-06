@@ -146,8 +146,7 @@ class RestaurantDetailsScreen : Fragment() {
         binding.recyclerViewMenuHeader.adapter = menuHeaderAdapter
 
         couponRecyclerViewAdapter = CouponRecyclerViewAdapter(requireContext())
-        binding.couponRecyclerView.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.couponRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.couponRecyclerView.adapter = couponRecyclerViewAdapter
 
     }

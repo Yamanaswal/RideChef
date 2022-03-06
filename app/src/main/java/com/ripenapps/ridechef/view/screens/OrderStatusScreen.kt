@@ -1,10 +1,12 @@
 package com.ripenapps.ridechef.view.screens
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavArgs
@@ -35,7 +37,20 @@ class OrderStatusScreen : Fragment() {
         )
 
         if(args.isOrderPlaced){
-            this.findNavController().popBackStack(R.id.myCartScreen,true)
+
+            //Back Button - System
+            requireActivity().onBackPressedDispatcher.addCallback(this,
+                object : OnBackPressedCallback(true) {
+                    override fun handleOnBackPressed() {
+                        Log.e("TAG", "handleOnBackPressed: isOrderPlaced")
+                        findNavController().popBackStack(R.id.myCartScreen,true)
+                    }
+                })
+
+            //Back Button Icon
+            binding.backButtonId.setOnClickListener {
+                this.findNavController().popBackStack(R.id.myCartScreen,true)
+            }
         }
         val userData = getUserData(requireContext())
 
@@ -45,6 +60,8 @@ class OrderStatusScreen : Fragment() {
         )
 
         setObservers()
+
+
         return binding.root
     }
 

@@ -10,7 +10,7 @@ import com.ripenapps.ridechef.databinding.DishMyCartBinding
 import com.ripenapps.ridechef.model.retrofit.models.Item
 
 
-class DishMyCartRecyclerViewAdapter(val listener: (Item, String) -> Unit) :
+class DishMyCartRecyclerViewAdapter(val listener: (Item, String) -> Unit,val noCartItem:(Boolean) -> Unit) :
     RecyclerView.Adapter<DishMyCartRecyclerViewAdapter.ViewHolder>() {
 
     private val searchDishList = mutableListOf<Item>()
@@ -34,13 +34,18 @@ class DishMyCartRecyclerViewAdapter(val listener: (Item, String) -> Unit) :
                 listener(searchDishList[position], "minus")
                 searchDishList[position].quantity--
                 notifyItemChanged(position)
-            }else{
+            } else {
                 listener(searchDishList[position], "one")
                 searchDishList[position].quantity--
                 searchDishList.removeAt(position)
                 notifyItemRemoved(position)
+                if(searchDishList.size == 0){
+                    noCartItem(true)
+                }
             }
         }
+
+
     }
 
     override fun getItemCount(): Int {
@@ -53,13 +58,8 @@ class DishMyCartRecyclerViewAdapter(val listener: (Item, String) -> Unit) :
         notifyDataSetChanged()
     }
 
-
     inner class ViewHolder(view: View?) : RecyclerView.ViewHolder(view!!) {
         var binding: DishMyCartBinding? = DataBindingUtil.bind(view!!)
-
-        init {
-            // Define click listener for the ViewHolder's View
-        }
     }
 
 }

@@ -24,18 +24,7 @@ import com.ripenapps.ridechef.view.adapters.DishMyCartRecyclerViewAdapter
 import com.ripenapps.ridechef.view_model.MyCartViewModel
 import com.ripenapps.ridechef.view_model.UserProfileVIewModel
 
-import com.stripe.android.model.PaymentMethod
-
-import com.stripe.android.ApiResultCallback
-
-import com.stripe.android.Stripe
-import com.stripe.android.model.PaymentMethodCreateParams
-import com.stripe.android.view.CardMultilineWidget
-import java.lang.Exception
 import androidx.recyclerview.widget.SimpleItemAnimator
-
-
-
 
 
 class MyCartScreen : Fragment() {
@@ -107,27 +96,21 @@ class MyCartScreen : Fragment() {
 
     private fun setClicks() {
 
-        binding.appleCouponCard.setOnClickListener {
-            this.findNavController().navigate(
-                MyCartScreenDirections.actionMyCartScreenToCouponScreen(Gson().toJson(couponList))
-            )
-        }
-
-
         //On Checkout Click
         binding.checkoutButton.setOnClickListener {
-
             if (isProfile) {
                 val personalDetailsBottomSheet = PersonalDetailsBottomSheet() { status ->
-                    if(status == 200){
-                        this.findNavController().navigate(MyCartScreenDirections.actionMyCartScreenToPaymentScreen())
+                    if (status == 200) {
+                        this.findNavController()
+                            .navigate(MyCartScreenDirections.actionMyCartScreenToPaymentScreen())
                     }
                 }
                 personalDetailsBottomSheet.show(parentFragmentManager, "personalDetailsBottomSheet")
-            }else{
-                this.findNavController().navigate(MyCartScreenDirections.actionMyCartScreenToPaymentScreen())
             }
-
+            else {
+                this.findNavController()
+                    .navigate(MyCartScreenDirections.actionMyCartScreenToPaymentScreen())
+            }
         }
 
         //Go To Saved Address - Add
@@ -142,7 +125,7 @@ class MyCartScreen : Fragment() {
         val userdata = getUserData(requireContext())
         viewModel.callApiCartDetails(userdata?.tokenType + " " + userdata?.accessToken)
 
-        dishMyCartRecyclerView = DishMyCartRecyclerViewAdapter { item, type ->
+        dishMyCartRecyclerView = DishMyCartRecyclerViewAdapter({ item, type ->
 
             if (type == "plus") {
 
@@ -201,27 +184,48 @@ class MyCartScreen : Fragment() {
                     userdata?.tokenType + " " + userdata?.accessToken,
                     UpdateCartItemQuantityRequest("", 0, item.id, type = "delete")
                 )
-
-                if (dishMyCartRecyclerView.itemCount < 1) {
-                    requireActivity().onBackPressed()
-                }
             }
 
-        }
+
+        }, noCartItem = { cartEmpty ->
+            Log.e("TAG", "setRecyclerView: $cartEmpty")
+            if (cartEmpty) {
+                requireActivity().onBackPressed()
+            }
+        })
+
+
         binding.dishRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.dishRecyclerView.adapter = dishMyCartRecyclerView
         //Disable Item Animation
-        (binding.dishRecyclerView.itemAnimator as SimpleItemAnimator).supportsChangeAnimations = false
+        (binding.dishRecyclerView.itemAnimator as SimpleItemAnimator).supportsChangeAnimations =
+            false
     }
 
     private fun setObservers() {
+
         viewModel.getCartDetailsResponse.observe(this) { res ->
             if (res.response?.status == 200) {
                 binding.myCartDetails = res.response?.data
                 dishMyCartRecyclerView.updateList(res.response?.data?.items)
                 couponList.clear()
+
+                //Set Coupon List
                 if (!res.response?.data?.coupons.isNullOrEmpty()) {
                     couponList.addAll(res.response?.data?.coupons!!)
+
+                    // Go To Coupon Screen
+                    binding.appleCouponCard.setOnClickListener {
+                        this.findNavController().navigate(
+                            MyCartScreenDirections.actionMyCartScreenToCouponScreen(
+                                Gson().toJson(
+                                    couponList
+                                )
+                            )
+                        )
+                    }
+                } else {
+                    binding.appleCouponCard.isEnabled = false
                 }
             }
         }

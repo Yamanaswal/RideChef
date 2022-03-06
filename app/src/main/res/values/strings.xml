@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">RideChef</string>
+    <string name="app_name">Ride Chef</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="your_location">Your Location</string>
     <string name="_1373_emily_renzelli_boulevard_monterey_ca_california_95940">1373 Emily Renzelli Boulevard, Monterey, CA, California, 95940</string>
@@ -120,6 +120,7 @@
     <string name="pay_now">Pay Now</string>
     <string name="thank_you_for_order_with_ridechef_stay_connected_with_order_info">Thank you for order with Ridechef, stay Connected with order info</string>
     <string name="terms_conditions">Terms &amp; Conditions></string>
+    <string name="no_coupon_found">No Coupon Available</string>
 
     //Stripe key
     <string name="stripe_development_key" translatable="false">pk_test_51K9bN4HMUfVn5kyKLy8dxISU3UALWyDzn6upbpLTZlFtMR28Jxzbzd5KQRaJWFqShlp96cqFo0b4S0TyJwiq4cEu00gf3y4jdb</string>

@@ -681,4 +681,16 @@ class MainRepo {
         }
     }
 
+    suspend fun logout(
+        token: String,
+    ) {
+        try {
+            val response = apiService.logout(token)
+
+        } catch (e: Exception) {
+            Log.e(tag, "Exception (localizedMessage) -> getUserProfile: ${e.localizedMessage}")
+            Log.e(tag, "Exception (message) -> getUserProfile: ${e.message}")
+        }
+    }
+
 }

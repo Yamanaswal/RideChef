@@ -138,22 +138,6 @@ fun addSymbolBeforeEditText(editable: Editable?) {
     }
 }
 
-fun getMultipartBodyIMG(uploaded_File: String?, keyName: String): MultipartBody.Part? {
-    if (!TextUtils.isEmpty(uploaded_File)) {
-        if (!(uploaded_File!!.contains("https://"))) {
-            val file = File(uploaded_File)
-            val image = file.asRequestBody(
-                getMimeType(
-                    uploaded_File
-                )?.toMediaTypeOrNull()
-            )
-            return MultipartBody.Part.createFormData(keyName, file.name, image)
-        }
-        return null
-    } else
-        return null
-}
-
 fun getMimeType(url: String): String? {
     var type: String? = null
     val extension = MimeTypeMap.getFileExtensionFromUrl(url)

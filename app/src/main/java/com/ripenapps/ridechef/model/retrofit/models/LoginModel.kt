@@ -47,7 +47,13 @@ data class LoginResponseData(
     @SerializedName("token_type")
     val tokenType: String,
     @SerializedName("updated_at")
-    val updatedAt: String
+    val updatedAt: String,
+    @SerializedName("profile_image")
+    val profileImage: String,
+    @SerializedName("dob")
+    val dob: String,
+    @SerializedName("stripe_id")
+    val stripe_id: String,
 )
 
 

@@ -145,6 +145,12 @@ interface ApiService {
         @Body cmsRequest: CmsRequest,
     ): Response<CmsResponse>
 
+    @GET("api/user/logout")
+    suspend fun logout(
+        @Header("Authorization") token: String,
+    ): Response<EmptyResponse>
+
+
 
 }
 

@@ -9,144 +9,150 @@
             type="com.ripenapps.ridechef.model.retrofit.models.GetUserProfileResponseData" />
     </data>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".view.screens.PersonalDetailsBottomSheet">
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="22dp"
-            android:layout_marginBottom="20dp"
-            android:fontFamily="@font/airbnb_cereal_bold"
-            android:text="@string/personal_details"
-            android:textColor="@color/black"
-            android:textSize="19sp" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginBottom="20dp"
-            android:background="@color/line_grey" />
-
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="18dp"
-            android:fontFamily="@font/airbnb_cereal_medium"
-            android:text="@string/enter_name"
-            android:textColor="#A7A8AD"
-            android:textSize="14sp" />
+            android:orientation="vertical"
+            tools:context=".view.screens.PersonalDetailsBottomSheet">
 
-        <EditText
-            android:id="@+id/name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="18dp"
-            android:backgroundTint="@color/black"
-            android:hint="Raymundo M. McNitt"
-            android:inputType="textPersonName"
-            android:maxLines="1"
-            android:text="@{userdata.name}"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="22dp"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/airbnb_cereal_bold"
+                android:text="@string/personal_details"
+                android:textColor="@color/black"
+                android:textSize="19sp" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="20dp"
+                android:background="@color/line_grey" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="22dp"
-            android:layout_marginEnd="18dp"
-            android:fontFamily="@font/airbnb_cereal_medium"
-            android:text="@string/enter_dob"
-            android:textColor="#A7A8AD"
-            android:textSize="14sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="18dp"
+                android:fontFamily="@font/airbnb_cereal_medium"
+                android:text="@string/enter_name"
+                android:textColor="#A7A8AD"
+                android:textSize="14sp" />
 
-        <EditText
-            android:id="@+id/dob"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="18dp"
-            android:backgroundTint="@color/black"
-            android:hint="Raymundo M. McNitt"
-            android:inputType="text"
-            android:maxLines="1"
-            android:text="@{userdata.dob}"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="18dp"
+                android:backgroundTint="@color/black"
+                android:hint="Raymundo M. McNitt"
+                android:inputType="textPersonName"
+                android:maxLines="1"
+                android:text="@{userdata.name}"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
 
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="22dp"
-            android:layout_marginEnd="18dp"
-            android:fontFamily="@font/airbnb_cereal_medium"
-            android:text="@string/email_address"
-            android:textColor="#A7A8AD"
-            android:textSize="14sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="22dp"
+                android:layout_marginEnd="18dp"
+                android:fontFamily="@font/airbnb_cereal_medium"
+                android:text="@string/enter_dob"
+                android:textColor="#A7A8AD"
+                android:textSize="14sp" />
 
-        <EditText
-            android:id="@+id/email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="18dp"
-            android:backgroundTint="@color/black"
-            android:hint="Raymundo M. McNitt"
-            android:inputType="textEmailAddress"
-            android:maxLines="1"
-            android:text="@{userdata.email}"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
+            <EditText
+                android:id="@+id/dob"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="5dp"
+                android:inputType="none"
+                android:focusable="false"
+                android:layout_marginEnd="18dp"
+                android:paddingVertical="10dp"
+                android:backgroundTint="@color/black"
+                android:hint="DD-MM-YYYY"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="22dp"
+                android:layout_marginEnd="18dp"
+                android:fontFamily="@font/airbnb_cereal_medium"
+                android:text="@string/email_address"
+                android:textColor="#A7A8AD"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="18dp"
+                android:backgroundTint="@color/black"
+                android:hint="person@gmail.com"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:text="@{userdata.email}"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
 
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="22dp"
-            android:layout_marginEnd="18dp"
-            android:fontFamily="@font/airbnb_cereal_medium"
-            android:text="@string/mobile_number"
-            android:textColor="#A7A8AD"
-            android:textSize="14sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="22dp"
+                android:layout_marginEnd="18dp"
+                android:fontFamily="@font/airbnb_cereal_medium"
+                android:text="@string/mobile_number"
+                android:textColor="#A7A8AD"
+                android:textSize="14sp" />
 
-        <EditText
-            android:id="@+id/mobileNumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="18dp"
-            android:enabled="false"
-            android:backgroundTint="@color/black"
-            android:hint="Raymundo M. McNitt"
-            android:inputType="phone"
-            android:maxLines="1"
-            android:text="@{userdata.mobileNumber}"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
+            <EditText
+                android:id="@+id/mobileNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="18dp"
+                android:backgroundTint="@color/black"
+                android:enabled="false"
+                android:inputType="phone"
+                android:maxLines="1"
+                android:text="@{userdata.mobileNumber}"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
 
-        <Button
-            android:id="@+id/doneButton"
-            style="@style/buttonStyleRed"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="30dp"
-            android:text="@string/done" />
+            <Button
+                android:id="@+id/doneButton"
+                style="@style/buttonStyleRed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="30dp"
+                android:text="@string/done" />
 
-    </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
 </layout>

@@ -9,6 +9,7 @@ object PrefConstants {
     const val TAG = "tag"
     const val USERDATA = "userdata"
     const val IS_USER_LOGIN = "is_user_login"
+    const val USER_IMAGE = "user_image"
     const val IS_SKIPPED = "is_skipped"
     const val LATITUDE = "latitude"
     const val LONGITUDE = "longitude"

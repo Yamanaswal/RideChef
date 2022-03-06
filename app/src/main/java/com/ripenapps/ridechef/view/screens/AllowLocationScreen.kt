@@ -27,9 +27,13 @@ import com.ripenapps.ridechef.R
 import com.ripenapps.ridechef.databinding.FragmentAllowLocationScreenBinding
 import com.ripenapps.ridechef.utils.PrefConstants
 import com.ripenapps.ridechef.utils.PreferencesUtil
+import com.ripenapps.ridechef.utils.permssion.PermissionManager
+import com.ripenapps.ridechef.utils.permssion.PermissionResult
 import com.yaman.location_services.GpsUtils
 import com.yaman.location_services.OnGpsListener
 import com.yaman.location_services.getAddressFromLatLng
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class AllowLocationScreen : Fragment() {
 
@@ -116,9 +120,45 @@ class AllowLocationScreen : Fragment() {
             }
         })
 
+
+        askPermissions()
+
+
         getDeviceCurrentLocation()
+        
+    }
+
+    private fun askPermissions() {
+        GlobalScope.launch {
+
+            //Resume coroutine once result is ready
+            when(PermissionManager.requestPermissions(this@AllowLocationScreen,1,Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                is PermissionResult.PermissionGranted -> {
+                    //Add your logic here after user grants permission(s)
+                }
+                is PermissionResult.PermissionDenied -> {
+                    //Add your logic to handle permission denial
+                    //Ask Again Permission
+                    askPermissions()
+                }
+                is PermissionResult.PermissionDeniedPermanently -> {
+                    //Add your logic here if user denied permission(s) permanently.
+                    //Ideally you should ask user to manually go to settings and enable permission(s)
+                }
+                is PermissionResult.ShowRational -> {
+                    //If user denied permission frequently then she/he is not clear about why you are asking this permission.
+                    //This is your chance to explain them why you need permission.
+                }
+            }
+
+        }
 
     }
+
+//     Use registerForActivityResult(ActivityResultContract, ActivityResultCallback)
+//     passing in a androidx.activity.result.contract.ActivityResultContracts.RequestMultiplePermissions object
+//     for the ActivityResultContract
+//     and handling the result in the callback.
 
 
     //TODO - GET CURRENT LOCATION.

@@ -57,4 +57,10 @@ class UserProfileVIewModel : ViewModel() {
 
     }
 
+    fun callApiLogout(token:String){
+        viewModelScope.launch {
+            mainRepo.logout(token)
+        }
+    }
+
 }

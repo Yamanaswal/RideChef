@@ -49,21 +49,33 @@ class HomeScreen : Fragment() {
 
         //Call Api For Home
         val userdata = getUserData(requireContext())
+        val userImage = PreferencesUtil.getStringPreference(requireContext(), PrefConstants.USER_IMAGE)
+
+        if(!userImage.isNullOrEmpty()) {
+            binding.profileImage.load(userImage)
+        }else{
+            binding.profileImage.load(R.mipmap.person_placeholder)
+        }
 
         val address = PreferencesUtil.getStringPreference(requireContext(), PrefConstants.ADDRESS)
+        val lat = PreferencesUtil.getStringPreference(requireContext(), PrefConstants.LATITUDE)
+        val long = PreferencesUtil.getStringPreference(requireContext(), PrefConstants.LONGITUDE)
 
         //Set Address Home Page
         if (address.isNullOrEmpty()) {
-            binding.deliveryAddress.text = "Not Available"
+            binding.deliveryAddress.text = "Fetching Address .... "
         } else {
             binding.deliveryAddress.text = address
         }
 
+
+        Log.e(TAG, "onCreateView: $lat + $long")
+
         //Call Api Home
         viewModel.callApiHome(
             homeRequest = HomeRequest(
-                "23.77",
-                "22.44",
+                "40.7127",
+                "74.0134",
                 userdata?.id.toString()
             )
         )
@@ -134,7 +146,8 @@ class HomeScreen : Fragment() {
 
         binding.search.setOnClickListener {
             this.findNavController().navigate(
-                HomeScreenDirections.actionHomeScreenToHomeSearchScreen().setScreenType(HomeScreenType.All)
+                HomeScreenDirections.actionHomeScreenToHomeSearchScreen()
+                    .setScreenType(HomeScreenType.All)
             )
         }
 
@@ -164,7 +177,8 @@ class HomeScreen : Fragment() {
         }
 
         binding.deliveryAddress.setOnClickListener {
-            this.findNavController().navigate(HomeScreenDirections.actionHomeScreenToChangeLocation())
+            this.findNavController()
+                .navigate(HomeScreenDirections.actionHomeScreenToChangeLocation())
         }
     }
 
@@ -206,10 +220,12 @@ class HomeScreen : Fragment() {
         featureRestaurantRecyclerViewAdapter =
             FeatureRestaurantRecyclerViewAdapter(requireContext()) { restaurantItem ->
                 this.findNavController().navigate(
-                    HomeScreenDirections.actionHomeScreenToRestaurantDetailsScreen().setRestaurantId(restaurantItem.id)
+                    HomeScreenDirections.actionHomeScreenToRestaurantDetailsScreen()
+                        .setRestaurantId(restaurantItem.id)
                 )
             }
-        binding.featuredRestaurantRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.featuredRestaurantRecyclerView.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         val snapHelper: SnapHelper = PagerSnapHelper()
         snapHelper.attachToRecyclerView(binding.featuredRestaurantRecyclerView)
         binding.featuredRestaurantRecyclerView.adapter = featureRestaurantRecyclerViewAdapter
@@ -218,10 +234,12 @@ class HomeScreen : Fragment() {
     private fun setCuisineRecyclerView() {
         cuisineRecyclerViewAdapter = CuisineRecyclerViewAdapter(requireContext()) { cuisineItem ->
             this.findNavController().navigate(
-                HomeScreenDirections.actionHomeScreenToSearchRestaurantAndDishScreen().setCuisineId(cuisineItem.id.toString()).setSearchText("")
+                HomeScreenDirections.actionHomeScreenToSearchRestaurantAndDishScreen()
+                    .setCuisineId(cuisineItem.id.toString()).setSearchText("")
             )
         }
-        binding.trendingCuisineRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.trendingCuisineRecyclerView.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.trendingCuisineRecyclerView.adapter = cuisineRecyclerViewAdapter
     }
 
@@ -233,5 +251,6 @@ class HomeScreen : Fragment() {
         snapHelper.attachToRecyclerView(binding.topBannerRecyclerView)
         binding.topBannerRecyclerView.adapter = topBannerRecyclerViewAdapter
     }
+
 
 }
