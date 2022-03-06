@@ -81,6 +81,7 @@
         <entry key="app/src/main/res/layout/dish_item_search.xml" value="0.21041666666666667" />
         <entry key="app/src/main/res/layout/dish_my_cart.xml" value="0.55" />
         <entry key="app/src/main/res/layout/enter_address_bottomsheet.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/faq_card.xml" value="0.335" />
         <entry key="app/src/main/res/layout/food_item.xml" value="0.375" />
         <entry key="app/src/main/res/layout/fragment_about_us_screen.xml" value="0.375" />
         <entry key="app/src/main/res/layout/fragment_add_to_cart_bottom_sheet.xml" value="0.335" />

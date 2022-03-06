@@ -165,6 +165,13 @@ class MainRepo {
     val cmsResponseLiveData: LiveData<ApiResponse<CmsResponse>>
         get() = cmsResponseMutableLiveData
 
+
+    private val faqResponseMutableLiveData =
+        MutableLiveData<ApiResponse<FaqResponse>>()
+
+    val faqResponseLiveData: LiveData<ApiResponse<FaqResponse>>
+        get() = faqResponseMutableLiveData
+
     /**********************************************************************************
      * Api Methods - Defined Here
      * *******************************************************************************/
@@ -665,7 +672,7 @@ class MainRepo {
         cmsRequest: CmsRequest
     ) {
         try {
-            val response = apiService.getCms(token,cmsRequest)
+            val response = apiService.getCms(token, cmsRequest)
 
             cmsResponseMutableLiveData.postValue(
                 ApiResponse(
@@ -686,6 +693,26 @@ class MainRepo {
     ) {
         try {
             val response = apiService.logout(token)
+
+        } catch (e: Exception) {
+            Log.e(tag, "Exception (localizedMessage) -> getUserProfile: ${e.localizedMessage}")
+            Log.e(tag, "Exception (message) -> getUserProfile: ${e.message}")
+        }
+    }
+
+    suspend fun faq(
+        faqRequest: FaqRequest
+    ) {
+        try {
+            val response = apiService.faq(faqRequest)
+
+            faqResponseMutableLiveData.postValue(
+                ApiResponse(
+                    response = response.body(),
+                    errorBody = response.errorBody(),
+                    error = response.message()
+                )
+            )
 
         } catch (e: Exception) {
             Log.e(tag, "Exception (localizedMessage) -> getUserProfile: ${e.localizedMessage}")

@@ -5,13 +5,16 @@
 
     <data>
 
+        <variable
+            name="myOrderItem"
+            type="com.ripenapps.ridechef.model.retrofit.models.MyOrderResponseDataData" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_marginTop="4dp"
-        android:background="#FBFBFB"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:background="#FBFBFB">
 
         <TextView
             android:id="@+id/delivered"
@@ -63,14 +66,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <ImageView
+                <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/imageView"
-                    android:layout_width="37dp"
-                    android:layout_height="37dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="18dp"
                     android:scaleType="fitXY"
                     android:src="@mipmap/rest_placeholder"
+                    android:theme="@style/roundedImageViewRounded_20"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -81,27 +85,29 @@
                     android:layout_marginStart="12dp"
                     android:layout_marginEnd="15dp"
                     android:fontFamily="@font/airbnb_cereal_bold"
-                    android:text="Celebration Restaurant"
+                    android:text="@{myOrderItem.restaurantDetails.restaurantName}"
                     android:textColor="@color/black"
                     android:textSize="17sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/imageView"
-                    app:layout_constraintTop_toTopOf="@+id/imageView" />
+                    app:layout_constraintTop_toTopOf="@+id/imageView"
+                    tools:text="Celebration Restaurant" />
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
+                    android:layout_marginTop="3dp"
                     android:layout_marginEnd="15dp"
                     android:drawablePadding="7dp"
                     android:fontFamily="@font/airbnb_cereal_book"
-                    android:text="4211 Sunburst Drive, Puerto Rico"
+                    android:text="@{myOrderItem.restaurantDetails.shopLocation}"
                     android:textColor="@color/grey"
                     android:textSize="12sp"
                     app:drawableStartCompat="@drawable/location_red"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/textView"
-                    app:layout_constraintTop_toBottomOf="@+id/textView" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView"
+                    tools:text="4211 Sunburst Drive, Puerto Rico" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView"
@@ -136,7 +142,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/line" />
-
 
                 <View
                     android:layout_width="match_parent"

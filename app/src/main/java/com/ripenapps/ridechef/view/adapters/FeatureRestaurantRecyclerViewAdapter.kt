@@ -46,10 +46,6 @@ class FeatureRestaurantRecyclerViewAdapter(
 
     inner class ViewHolder(view: View?) : RecyclerView.ViewHolder(view!!) {
         var binding: RestaurantItemBinding? = DataBindingUtil.bind(view!!)
-
-        init {
-            // Define click listener for the ViewHolder's View
-        }
     }
 
 }

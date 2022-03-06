@@ -150,7 +150,10 @@ interface ApiService {
         @Header("Authorization") token: String,
     ): Response<EmptyResponse>
 
-
+    @POST("api/user/faq")
+    suspend fun faq(
+        @Body faqRequest: FaqRequest
+    ): Response<FaqResponse>
 
 }
 

@@ -41,10 +41,6 @@ class AllFoodsRecyclerAdapter(val listener: (SearchDishHomeResponseDataData) -> 
 
     inner class ViewHolder(view: View?) : RecyclerView.ViewHolder(view!!) {
         var binding: RestaurantFoodItemBinding? = DataBindingUtil.bind(view!!)
-
-        init {
-            // Define click listener for the ViewHolder's View
-        }
     }
 
 }

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="faq"
+            type="com.ripenapps.ridechef.model.retrofit.models.FaqResponseDataData" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
+        android:layout_marginHorizontal="20dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/questionLayout">
+
+            <TextView
+                android:id="@+id/faqQuestion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/airbnb_cereal_medium"
+                tools:text="What is RideChef?"
+                android:text="@{faq.question}"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@id/questionIcon"
+                android:layout_marginEnd="20dp"
+                android:textColor="#191919"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:id="@+id/questionIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/faq_plus" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content"
+            android:textColor="#707070"
+            android:text="@{faq.answer}"
+            android:fontFamily="@font/airbnb_cereal_book"
+            android:layout_marginTop="12sp"
+            android:textSize="13sp"
+            android:lineSpacingExtra="8dp"
+            android:id="@+id/faqAnswer" />
+
+    </LinearLayout>
+</layout>
