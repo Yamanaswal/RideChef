@@ -21,9 +21,6 @@
         android:usesCleartextTraffic="true">
 
         <activity
-            android:name=".stripe_payment.StripePaymentHostActivity"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
